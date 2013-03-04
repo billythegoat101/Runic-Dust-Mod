@@ -4,6 +4,7 @@ minecraft/*
 !minecraft/dustexample/
 !minecraft/dustdeco/
 !minecraft/dustmodtestpack/
+!minecraft/org/
 
 !minecraft/net/
 minecraft/net/*
