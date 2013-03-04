@@ -337,13 +337,23 @@ public class BlockRut extends BlockContainer
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
         TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(x, y, z);
+
         
-        Block block = blocksList[ter.fluid];
-        if (block != null && block != this)
+        Block mask = blocksList[ter.fluid];
+        Block fluid = blocksList[ter.fluid];
+        int light = lightValue[blockID];
+        
+        if (mask != null && mask != this)
         {
-        	DustMod.log("WTF " + ter.fluid + " " + block);
-            return lightValue[ter.fluid];
+        	int mLight = lightValue[ter.fluid];
+        	if(mLight > light) light = mLight;
         }
-        return lightValue[blockID];
+        
+        if (fluid != null && fluid != this)
+        {
+        	int fLight = lightValue[ter.fluid];
+        	if(fLight > light) light = fLight;
+        }
+        return light;
     }
 }
