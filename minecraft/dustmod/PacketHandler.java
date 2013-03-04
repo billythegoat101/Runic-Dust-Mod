@@ -213,7 +213,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
             }
             
             for(int i = 0; i < 8; i++){
-            	dos.writeInt(shape.manRot[i]);
+            	dos.writeInt(shape.rotationMatrix[i]);
             }
         }
         catch (IOException e)
@@ -633,7 +633,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
             shape.setDesc(desc);
             shape.setAuthor(author);
             shape.isPower = powered;
-            shape.manRot = manRot;
+            shape.rotationMatrix = manRot;
             
             shape.isRemote = true;
             

@@ -69,7 +69,7 @@ public class DustModTestPack {
 		s.setDesc("Description:\n\n"
 				+ "Spawns a torch or, if a piece of flint is sacrficed, a beacon.");
 		s.setAuthor("billythegoat101 -TestPack");
-		s.setManualRotationDerp(new int[] { 00, 00, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 00, 00, 0, 0, 0, 0, 0, 0 });
 		// DustManager.registerLocalDustShape(s, new LaunchTestRune());
 	}
 

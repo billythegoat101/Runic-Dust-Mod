@@ -102,7 +102,7 @@ public class DustExample {
 		// This tells the shape how it should offset its position during
 		// rotation.
 		// Kinda just gonna have to go by guess,check,revise :-/
-		s.setManualRotationDerp(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
 
 		// Set the sacrifice entry information and any extra notes.
 		// Doesn't actually set the sacrifice requirements, just what is said in
@@ -129,7 +129,7 @@ public class DustExample {
 				{ g, G, g, G }, { g, g, G, G } } };
 		s.setData(values);
 		s.setRuneName("First Rune of Cheating");
-		s.setManualRotationDerp(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
 		s.setNotes("Sacrifice:\n\n"
 				+ "-1xIronIngot or 1xGoldIngot or 1xDiamond ");
 		s.setDesc("Description:\n\n"
@@ -145,7 +145,7 @@ public class DustExample {
 				{ g, L, g, g }, { L, g, g, g } } };
 		s.setData(values);
 		s.setRuneName("Rune of the Rain Maker");
-		s.setManualRotationDerp(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
 		s.setNotes("Sacrifice:\n\n" + "-2xHearts per rain change");
 		s.setDesc("Description:\n\n"
 				+ "Right click the rune to toggle rainfall.\n\n"
@@ -165,7 +165,7 @@ public class DustExample {
 		// Sets which types of dusts are allowed to replace the variable dust
 		s.addAllowedVariable(100, 200, 300, 350, 400);
 		s.setRuneName("Rune of Pain");
-		s.setManualRotationDerp(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
 		s.setNotes("Sacrifice:\n\n" + "-None\n\n" + "Notes:\n\n"
 				+ "-Will last for a day unless fueled.");
 		s.setDesc("Description:\n\n"
@@ -190,7 +190,7 @@ public class DustExample {
 				{ 0, 0, 0, G, 0, 0, G, 0, 0, 0 } } };
 		s.setData(values);
 		s.setRuneName("Rune of the Ice Sprite");
-		s.setManualRotationDerp(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
 		s.setNotes("Sacrifice:\n\n" + "-4xSnowBlock + 1xGhastTear + 20XP\n\n"
 				+ "Notes:\n\n" + "-Will last for a three days unless fueled.");
 		s.setDesc("Description:\n\n"
@@ -212,7 +212,7 @@ public class DustExample {
 		s.setRuneName("Second Rune of Cheating");
 		// Sets which types of dusts are allowed to replace the variable dust
 		s.addAllowedVariable(100, 200, 300, 350, 400);
-		s.setManualRotationDerp(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
 		s.setNotes("Sacrifice:\n\n" + "-");
 		s.setDesc("Description:\n\n" + "");
 		s.setAuthor("billythegoat101: Demonstrations pack");

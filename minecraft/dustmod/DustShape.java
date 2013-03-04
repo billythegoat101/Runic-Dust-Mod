@@ -37,7 +37,7 @@ public class DustShape
     public int[][][] data;
     protected boolean isRemote = false;
 
-    public int[] manRot = new int[8];
+    public int[] rotationMatrix = new int[8];
     private int[] setPos = new int[] {0, 0, 0};
 
     public int cy, cx;
@@ -96,7 +96,7 @@ public class DustShape
     public DustShape(int w, int l, String name, boolean solid, int ox, int oy, int cx, int cy, int page, int id)
     {
         
-        if(w > 22 || l > 32){
+        if(w > 32 || l > 32){
             throw new IllegalArgumentException("Rune dimensions too big! " + name + " Max:22x32");
         }
         
@@ -192,10 +192,9 @@ public class DustShape
      * @param n Raw string to display
      * @return  This DustShape
      */
-    public DustShape setManualRotationDerp(int[] derp)
+    public DustShape setRotationMatrix(int[] derp)
     {
-        this.manRot = derp;
-//    	System.out.println("Setting derp " + name + " " + Arrays.toString(manRot));
+        this.rotationMatrix = derp;
         return this;
     }
 
@@ -216,6 +215,13 @@ public class DustShape
     		setDesc(desc.substring(0,desc.indexOf("\n----\nAllowed Variable Dusts:\n")));
     	}
     	
+    	return this;
+    }
+    public DustShape addAllowedVariable(ArrayList<Integer> values){
+    	allowedVariable.addAll(values);
+    	if(desc.contains("\n----\nAllowed Variable Dusts:\n")){
+    		setDesc(desc.substring(0,desc.indexOf("\n----\nAllowed Variable Dusts:\n")));
+    	}
     	return this;
     }
     
@@ -618,8 +624,8 @@ public class DustShape
         int tcx = cy, tcy = cx, tox = oy, toy = ox;
         int[][][] tdata = new int[height][width][length];
         
-        si += manRot[r*2];
-        sk += manRot[r*2+1];
+        si += rotationMatrix[r*2];
+        sk += rotationMatrix[r*2+1];
         
         j++;
         r = (5-r)%4;
@@ -827,8 +833,8 @@ public class DustShape
         int tcx = cy, tcy = cx, tox = oy, toy = ox;
         int[][][] tdata = new int[height][width][length];
         
-        si += manRot[r*2];
-        sk += manRot[r*2+1];
+        si += rotationMatrix[r*2];
+        sk += rotationMatrix[r*2+1];
         
         j++;
         r = (5-r)%4;
