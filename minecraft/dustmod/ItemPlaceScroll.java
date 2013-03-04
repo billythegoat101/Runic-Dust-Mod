@@ -113,7 +113,11 @@ public class ItemPlaceScroll extends Item
     
     public String getItemNameIS(ItemStack itemstack)
     {
-        return "tile.scroll" + DustManager.getShapeFromID(itemstack.getItemDamage()).name;
+    	DustShape shape = DustManager.getShapeFromID(itemstack.getItemDamage());
+    	if(shape != null)
+    		return "tile.scroll" + shape.name;	
+		else
+			return "tile.scroll.error"; 
     }
     
     @Override
