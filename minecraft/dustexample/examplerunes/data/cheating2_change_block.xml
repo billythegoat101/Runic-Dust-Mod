@@ -1,0 +1,67 @@
+<rune>
+<!-- 
+	Unique ID Number for this rune: 
+	It should be different from any other rune you 
+	have made as well as avoiding what others might use. 
+	Max value is (2^31 - 1) 
+-->
+	<id value="106"/>
+	
+<!-- 
+	Display name is the name the player will see. ID is
+	the name used by the system and *should not be changed.*
+	
+	The only exception to this is when you want to change or update
+	a rune, and want the dusts to give back the players who may already have
+	a version of this rune alive in the world. In which case, just
+	add/change a number onto the name.
+-->
+	<name display="Second Rune of Cheating" id="changeblock"/>
+	
+<!-- Author: This should be you!-->
+	<author>billythegoat101: Demonstrations pack</author>
+	
+<!-- Should this rune be one solid color (useful for runes which are entirely variable.) -->
+	<solid value="true"/>
+	
+<!-- The text that will appear on the Information page of the tome. -->
+	<sacrifices>
+		Sacrifice:
+		-
+	</sacrifices>
+	
+<!-- The text that will appear on the Description page of the tome. -->
+	<description>
+		Description:
+		----
+		Allowed Variable Dusts:
+		Plant
+		Gunpowder
+		Lapis
+		Glowing Runic Dust
+		Blaze
+	</description>
+	
+<!-- 
+	Design of the rune. The numbers correspond to what dusts
+	should be placed where. ox,oy,cx,and cy are described on the wiki.
+-->
+	<design width="6" height="6" ox="3" oy="3" cx="1" cy="1">
+		0,		0,		-1,		-1,		-1,		0
+		0,		-1,		-1,		-1,		-1,		-1
+		-1,		-1,		-1,		0,		-1,		-1
+		-1,		-1,		0,		-1,		-1,		-1
+		-1,		-1,		-1,		-1,		-1,		0
+		0,		-1,		-1,		-1,		0,		0
+	</design>
+<!-- Which types of dust are allowed to be used to substitute the variable dust? -->
+	<allowedVariables>100, 200, 300, 350, 400</allowedVariables>
+	
+<!-- This is also better described on the wiki.-->
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

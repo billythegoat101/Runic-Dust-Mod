@@ -1,0 +1,41 @@
+<rune>
+	<id value="103"/>
+	<name display="Rune of Pain" id="constanthurt"/>
+	<author>billythegoat101: Demonstrations pack</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-None
+		Notes:
+		-Will last for a day unless fueled.
+	</sacrifices>
+	<description>
+		Description:
+		Constantly damages all entities (that aren't the summoning player) within range.Amount of damage depends on the variable dust.
+		Demonstrates: Identifying the rune creator, Powered runes, Pausing powered runes, Basic AOE effects.
+		----
+		Allowed Variable Dusts:
+		Plant
+		Gunpowder
+		Lapis
+		Glowing Runic Dust
+		Blaze
+	</description>
+	<design width="8" height="8" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		0,		400,	400,	0,		0,		0
+		0,		0,		400,	200,	200,	400,	0,		0
+		0,		400,	400,	0,		0,		400,	400,	0
+		400,	200,	0,		-1,		-1,		0,		200,	400
+		400,	200,	0,		-1,		-1,		0,		200,	400
+		0,		400,	400,	0,		0,		400,	400,	0
+		0,		0,		400,	200,	200,	400,	0,		0
+		0,		0,		0,		400,	400,	0,		0,		0
+	</design>
+	<allowedVariables>100, 200, 300, 350, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

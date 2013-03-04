@@ -1,0 +1,35 @@
+<rune>
+	<id value="105"/>
+	<name display="Rune of the Ice Sprite" id="icesprite"/>
+	<author>billythegoat101: Demonstrations pack</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-4xSnowBlock + 1xGhastTear + 20XP
+		Notes:
+		-Will last for a three days unless fueled.
+	</sacrifices>
+	<description>
+		Description:
+		Summons a sprite which follows the player and freezes the surface of liquids. Water turns to ice and lava turns to obsidian.
+		Demonstrates: Item sacrifices, XP Sacrifices, Powered runes, Pausing, and Following sprites.
+	</description>
+	<design width="10" height="10" ox="1" oy="1" cx="3" cy="3">
+		0,		0,		0,		200,	0,		0,		200,	0,		0,		0
+		0,		200,	200,	0,		200,	200,	0,		200,	200,	0
+		0,		200,	200,	200,	200,	200,	200,	200,	200,	0
+		200,	0,		200,	200,	0,		0,		200,	200,	0,		200
+		0,		200,	200,	0,		300,	300,	0,		200,	200,	0
+		0,		200,	200,	0,		300,	300,	0,		200,	200,	0
+		200,	0,		200,	200,	0,		0,		200,	200,	0,		200
+		0,		200,	200,	200,	200,	200,	200,	200,	200,	0
+		0,		200,	200,	0,		200,	200,	0,		200,	200,	0
+		0,		0,		0,		200,	0,		0,		200,	0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

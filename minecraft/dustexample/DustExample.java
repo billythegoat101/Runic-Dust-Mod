@@ -22,6 +22,7 @@ import dustmod.DustItemManager;
 import dustmod.DustManager;
 import dustmod.DustMod;
 import dustmod.DustShape;
+import dustmod.XMLDustShapeReader;
 
 /**
  * 
@@ -47,8 +48,8 @@ public class DustExample {
 
 	@PostInit
 	public void postInit(FMLPostInitializationEvent evt) {
-		// registerDusts();
-		// registerRunes();
+		 registerDusts();
+		 registerRunes();
 		// registerInscriptions();
 	}
 
@@ -66,178 +67,34 @@ public class DustExample {
 	 * Here is where you register all your runes with the DustManager.
 	 */
 	public void registerRunes() {
+		
 		// Note that the order in which these runes appear in the tome is
-		// dependent
-		// upon the order by which they are registered into the system.
+		// dependent upon the order by which they are registered into the system.
 
-		// Pre-set all these variables to make mass-rune-making easier.
-		int N = -1; // Variable
-		int P = 100; // Plant
-		int G = 200; // Gunpowder
-		int L = 300; // Lapis
-		int g = 350; // Custom glow dust
-		int B = 400; // Blaze
-		DustShape s;
-		int[][][] values;
+		//Read and load properties from the XML file for the rune, then register it to the DustEvent.
+		XMLDustShapeReader.readAndRegiterShape("/dustexample/examplerunes/data/omnom.xml", new DEChestNom());
 
-		// This first line just helps to keep things organized
-		// <editor-fold defaultstate="collapsed" desc="nomchest">
-		// width, height, IDName, isOneColor, cx,cy,ox,oy, unique ID number
-		s = new DustShape(8, 8, "nomchest", false, 2, 2, 2, 2, 100);
-		// The design pattern for the rune
-		values = new int[][][] { { { 0, 0, 0, G, G, 0, 0, 0 },
-				{ 0, G, G, G, G, P, P, 0 }, { G, G, 0, 0, 0, 0, P, P },
-				{ P, G, 0, 0, 0, 0, P, G }, { P, G, 0, 0, 0, 0, P, G },
-				{ G, G, 0, 0, 0, 0, P, P }, { 0, G, G, P, P, P, P, 0 },
-				{ 0, 0, 0, P, P, 0, 0, 0 } } };
-		// Assigns the design to the DustShape
-		s.setData(values);
+		XMLDustShapeReader.readAndRegiterShape("/dustexample/examplerunes/data/cheating1_make_block.xml", new DEMakeBlockFromItem());
 
-		// Assigns the DustShape a proper name, rather than just the
-		// identification one.
-		// This one can be altered anytime, while the IDName should always
-		// remain the same for
-		s.setRuneName("Rune of OmNom");
+		XMLDustShapeReader.readAndRegiterShape("/dustexample/examplerunes/data/rain_maker.xml", new DEMakeItRain());
 
-		// This tells the shape how it should offset its position during
-		// rotation.
-		// Kinda just gonna have to go by guess,check,revise :-/
-		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
+		XMLDustShapeReader.readAndRegiterShape("/dustexample/examplerunes/data/pain.xml", new DEPain());
 
-		// Set the sacrifice entry information and any extra notes.
-		// Doesn't actually set the sacrifice requirements, just what is said in
-		// the tome GUI
-		s.setNotes("Sacrifice:\n\n"
-				+ "-1xChest, 1xGoldIngot, 1XP, 1/2xHungerBars");
-		// Set the description of the rune for the entry in the tome GUI
-		s.setDesc("Description:\n\n"
-				+ "Creates a rune that sucks in items and puts them in a chest.\n\n"
-				+ "Demonstrates: Item,XP,Hunger Sacrifices, and what happens after you die. ");
-		// Set the author of this rune (and optionally the name of your rune
-		// pack)
-		// This should be you!
-		s.setAuthor("billythegoat101: Demonstrations pack");
-
-		// Finally register this rune into the sytem along with an instance of
-		// the DustEvent that should be called for every instance of this rune.
-		DustManager.registerLocalDustShape(s, new DEChestNom());
-		// </editor-fold>
-
-		// <editor-fold defaultstate="collapsed" desc="makeblock">
-		s = new DustShape(4, 4, "makeblock", false, 0, 0, 0, 0, 101);
-		values = new int[][][] { { { G, G, g, g }, { G, g, G, g },
-				{ g, G, g, G }, { g, g, G, G } } };
-		s.setData(values);
-		s.setRuneName("First Rune of Cheating");
-		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
-		s.setNotes("Sacrifice:\n\n"
-				+ "-1xIronIngot or 1xGoldIngot or 1xDiamond ");
-		s.setDesc("Description:\n\n"
-				+ "Creates a block of the sacrificed material\n\n"
-				+ "Demonstrates: Variable sacrifices, Slowly altering the world.");
-		s.setAuthor("billythegoat101: Demonstrations pack");
-		DustManager.registerLocalDustShape(s, new DEMakeBlockFromItem());
-		// </editor-fold>
-
-		// <editor-fold defaultstate="collapsed" desc="makeitrain">
-		s = new DustShape(4, 4, "makeitrain", false, 0, 0, 0, 0, 102);
-		values = new int[][][] { { { g, g, g, L }, { g, g, L, g },
-				{ g, L, g, g }, { L, g, g, g } } };
-		s.setData(values);
-		s.setRuneName("Rune of the Rain Maker");
-		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
-		s.setNotes("Sacrifice:\n\n" + "-2xHearts per rain change");
-		s.setDesc("Description:\n\n"
-				+ "Right click the rune to toggle rainfall.\n\n"
-				+ "Demonstrates: Right-clicking, health sacrifices");
-		s.setAuthor("billythegoat101: Demonstrations pack");
-		DustManager.registerLocalDustShape(s, new DEMakeItRain());
-		// </editor-fold>
-
-		// <editor-fold defaultstate="collapsed" desc="constanthurt">
-		s = new DustShape(8, 8, "constanthurt", false, 2, 2, 2, 2, 103);
-		values = new int[][][] { { { 0, 0, 0, B, B, 0, 0, 0 },
-				{ 0, 0, B, G, G, B, 0, 0 }, { 0, B, B, 0, 0, B, B, 0 },
-				{ B, G, 0, N, N, 0, G, B }, { B, G, 0, N, N, 0, G, B },
-				{ 0, B, B, 0, 0, B, B, 0 }, { 0, 0, B, G, G, B, 0, 0 },
-				{ 0, 0, 0, B, B, 0, 0, 0 } } };
-		s.setData(values);
-		// Sets which types of dusts are allowed to replace the variable dust
-		s.addAllowedVariable(100, 200, 300, 350, 400);
-		s.setRuneName("Rune of Pain");
-		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
-		s.setNotes("Sacrifice:\n\n" + "-None\n\n" + "Notes:\n\n"
-				+ "-Will last for a day unless fueled.");
-		s.setDesc("Description:\n\n"
-				+ "Constantly damages all entities (that aren't the summoning player) within range."
-				+ "Amount of damage depends on the variable dust.\n\n"
-				+ "Demonstrates: Identifying the rune creator, Powered runes, Pausing powered runes, Basic AOE effects.");
-		s.setAuthor("billythegoat101: Demonstrations pack");
-		DustManager.registerLocalDustShape(s, new DEPain());
-		// </editor-fold>
-
-		// <editor-fold defaultstate="collapsed" desc="icesprite">
-		s = new DustShape(10, 10, "icesprite", false, 1, 1, 3, 3, 105);
-		values = new int[][][] { { { 0, 0, 0, G, 0, 0, G, 0, 0, 0 },
-				{ 0, G, G, 0, G, G, 0, G, G, 0 },
-				{ 0, G, G, G, G, G, G, G, G, 0 },
-				{ G, 0, G, G, 0, 0, G, G, 0, G },
-				{ 0, G, G, 0, L, L, 0, G, G, 0 },
-				{ 0, G, G, 0, L, L, 0, G, G, 0 },
-				{ G, 0, G, G, 0, 0, G, G, 0, G },
-				{ 0, G, G, G, G, G, G, G, G, 0 },
-				{ 0, G, G, 0, G, G, 0, G, G, 0 },
-				{ 0, 0, 0, G, 0, 0, G, 0, 0, 0 } } };
-		s.setData(values);
-		s.setRuneName("Rune of the Ice Sprite");
-		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
-		s.setNotes("Sacrifice:\n\n" + "-4xSnowBlock + 1xGhastTear + 20XP\n\n"
-				+ "Notes:\n\n" + "-Will last for a three days unless fueled.");
-		s.setDesc("Description:\n\n"
-				+ "Summons a sprite which follows the player and freezes the surface of liquids. Water turns to ice and lava turns to obsidian.\n\n"
-				+ "Demonstrates: Item sacrifices, XP Sacrifices, Powered runes, Pausing, and Following sprites.");
-		s.setAuthor("billythegoat101: Demonstrations pack");
-		DustManager.registerLocalDustShape(s, new DEIceSprite());
-		// </editor-fold>
-
-		// <editor-fold defaultstate="collapsed" desc="NAME">
-		// Solid flag is now changed to true because it is all variable and we
-		// don't
-		// want people cheating the rune by making some blaze and some plant
-		s = new DustShape(6, 6, "changeblock", true, 3, 3, 1, 1, 106);
-		values = new int[][][] { { { 0, 0, N, N, N, 0 }, { 0, N, N, N, N, N },
-				{ N, N, N, 0, N, N }, { N, N, 0, N, N, N },
-				{ N, N, N, N, N, 0 }, { 0, N, N, N, 0, 0 } } };
-		s.setData(values);
-		s.setRuneName("Second Rune of Cheating");
-		// Sets which types of dusts are allowed to replace the variable dust
-		s.addAllowedVariable(100, 200, 300, 350, 400);
-		s.setRotationMatrix(new int[] { 0, 0, 0, 0, 0, 0, 0, 0 });
-		s.setNotes("Sacrifice:\n\n" + "-");
-		s.setDesc("Description:\n\n" + "");
-		s.setAuthor("billythegoat101: Demonstrations pack");
-		DustManager.registerLocalDustShape(s, new DEMakeBlockFromDustLevel());
-		// </editor-fold>
+		XMLDustShapeReader.readAndRegiterShape("/dustexample/examplerunes/data/sprite.ice.xml", new DEIceSprite());
+		
+		// Note that the solid flag is now changed to true because it is all variable and 
+		// we don't want people cheating the rune by making some blaze and some plant
+		
+		// There is also a new tag <allowedVariable> which specifies which types of dusts 
+		// are allowed to substitute the variable dust
+		XMLDustShapeReader.readAndRegiterShape("/dustexample/examplerunes/data/cheating2_change_block.xml", new DEMakeBlockFromDustLevel());
+		
 		// ******Notes for reanimation*******
 		// Adding numbers to the end of your rune's IDName (or just changing the
 		// name in general) will force all existing runes of that type to
 		// reanimate. Use this in case you make a major changes/updates to that
 		// rune.
 	}
-
-	/*
-	 * Template
-	 * 
-	 * //<editor-fold defaultstate="collapsed" desc="NAME"> s = new
-	 * DustShape(8,8, "NAME", false,0,0,0,0, id); values = new int[][][]{ {
-	 * {0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0},
-	 * {0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0},
-	 * {0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0} } }; s.setData(values);
-	 * s.setRuneName("Name"); s.setManualRotationDerp(new int[]{0,0, 0,0, 0,0,
-	 * 0,0}); s.setNotes("Sacrifice:\n\n" + "-"); s.setDesc("Description:\n\n" +
-	 * ""); s.setAuthor(""); DustManager.registerLocalDustShape(s, new
-	 * DENAME()); //</editor-fold>
-	 */
 
 	public void registerInscriptions() {
 	}

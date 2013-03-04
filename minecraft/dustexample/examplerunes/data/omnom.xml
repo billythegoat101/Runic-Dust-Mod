@@ -1,0 +1,62 @@
+<rune>
+<!-- 
+	Unique ID Number for this rune: 
+	It should be different from any other rune you 
+	have made as well as avoiding what others might use. 
+	Max value is (2^31 - 1) 
+-->
+	<id value="100"/> 
+	
+<!-- 
+	Display name is the name the player will see. ID is
+	the name used by the system and *should not be changed.*
+	
+	The only exception to this is when you want to change or update
+	a rune, and want the dusts to give back the players who may already have
+	a version of this rune alive in the world. In which case, just
+	add/change a number onto the name.
+-->
+	<name display="Rune of OmNom" id="nomchest"/>
+	
+<!-- Author: This should be you!-->
+	<author>billythegoat101: Demonstrations pack</author>
+	
+<!-- Should this rune be one solid color (useful for runes which are entirely variable.) -->
+	<solid value="false"/>
+	
+<!-- The text that will appear on the Information page of the tome. -->
+	<sacrifices>
+		Sacrifice:
+		-1xChest, 1xGoldIngot, 1XP, 1/2xHungerBars
+	</sacrifices>
+	
+<!-- The text that will appear on the Description page of the tome. -->
+	<description>
+		Description:
+		Creates a rune that sucks in items and puts them in a chest.
+		Demonstrates: Item,XP,Hunger Sacrifices, and what happens after you die. 
+	</description>
+	
+<!-- 
+	Design of the rune. The numbers correspond to what dusts
+	should be placed where. ox,oy,cx,and cy are described on the wiki.
+-->
+	<design width="8" height="8" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		0,		200,	200,	0,		0,		0
+		0,		200,	200,	200,	200,	100,	100,	0
+		200,	200,	0,		0,		0,		0,		100,	100
+		100,	200,	0,		0,		0,		0,		100,	200
+		100,	200,	0,		0,		0,		0,		100,	200
+		200,	200,	0,		0,		0,		0,		100,	100
+		0,		200,	200,	100,	100,	100,	100,	0
+		0,		0,		0,		100,	100,	0,		0,		0
+	</design>
+	
+<!-- This is also better described on the wiki.-->
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

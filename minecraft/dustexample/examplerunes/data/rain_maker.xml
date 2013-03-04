@@ -1,0 +1,27 @@
+<rune>
+	<id value="102"/>
+	<name display="Rune of the Rain Maker" id="makeitrain"/>
+	<author>billythegoat101: Demonstrations pack</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-2xHearts per rain change
+	</sacrifices>
+	<description>
+		Description:
+		Right click the rune to toggle rainfall.
+		Demonstrates: Right-clicking, health sacrifices
+	</description>
+	<design width="4" height="4" ox="0" oy="0" cx="0" cy="0">
+		350,	350,	350,	300
+		350,	350,	300,	350
+		350,	300,	350,	350
+		300,	350,	350,	350
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>
