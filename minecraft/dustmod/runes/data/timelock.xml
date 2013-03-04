@@ -1,0 +1,31 @@
+<rune>
+	<id value="19"/>
+	<name display="Rune of Locked Time" id="timelock6"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-4xObsidian + 4xSlime + 1xLapisLaz
+		Notes:
+		-Expect bugs.
+		-Lasts for a day's time unless fueled.
+	</sacrifices>
+	<description>
+		Description:
+		Locks day/night time, sand falling, and water flowing for as long as it is fueled. BEWARE: Very high chance of bugs especially with other mods.
+	</description>
+	<design width="6" height="6" ox="3" oy="2" cx="1" cy="2">
+		0,		200,	200,	200,	200,	0
+		0,		200,	0,		0,		200,	0
+		200,	200,	200,	200,	200,	200
+		200,	200,	300,	300,	200,	200
+		200,	200,	300,	300,	200,	200
+		200,	200,	200,	200,	200,	200
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="-1" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

@@ -1,0 +1,34 @@
+<rune>
+	<id value="44"/>
+	<name display="Rune of the Rabbit Hole" id="rabbit"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-2xHunger.
+		Notes:
+		-Variable determines the volume of the den.
+		-Stepping on the rune will send you down.
+		-Standing directly below and crouching will send you back up.
+	</sacrifices>
+	<description>
+		Description:
+		Creates a small hole beneath the rune and allows you to jump
+		inside for safety. Walking over the top will send you down to
+		the next solid block below the rune. Pressing [crouch] while
+		directly beneath the rune will bring you back up.
+	</description>
+	<design width="4" height="4" ox="0" oy="0" cx="0" cy="0">
+		-1,		-1,		0,		0
+		-1,		0,		0,		0
+		0,		0,		0,		-1
+		0,		0,		-1,		-1
+	</design>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

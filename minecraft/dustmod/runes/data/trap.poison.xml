@@ -1,0 +1,31 @@
+<rune>
+	<id value="11"/>
+	<name display="Poison Trap Rune" id="poison"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-1xSpiderEye
+		Notes:
+		-Dust must be gunpowder or better.
+	</sacrifices>
+	<description>
+		Description:
+		Poisons entities when an entity comes near.
+	</description>
+	<design width="6" height="6" ox="3" oy="3" cx="1" cy="1">
+		0,		0,		-1,		0,		-1,		0
+		0,		-1,		-1,		-1,		-1,		-1
+		-1,		-1,		-1,		0,		-1,		0
+		-1,		0,		-1,		-1,		-1,		-1
+		0,		-1,		0,		-1,		-1,		0
+		0,		0,		-1,		-1,		0,		0
+	</design>
+	<allowedVariables>200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

@@ -1,0 +1,28 @@
+<rune>
+	<id value="16"/>
+	<name display="Rune of the Barrier" id="wall"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-1xIronOre + 3XP
+	</sacrifices>
+	<description>
+		Description:
+		Lifts a wall out of the earth.
+	</description>
+	<design width="14" height="6" ox="3" oy="3" cx="5" cy="1">
+		0,		0,		0,		0,		0,		0,		200,	200,	200,	0,		0,		0,		0,		0
+		0,		0,		0,		0,		0,		0,		200,	100,	200,	200,	200,	0,		0,		0
+		0,		200,	200,	200,	200,	200,	200,	200,	100,	100,	200,	200,	200,	200
+		100,	100,	100,	100,	200,	200,	100,	100,	100,	100,	100,	100,	100,	0
+		0,		0,		0,		100,	100,	100,	200,	100,	0,		0,		0,		0,		0,		0
+		0,		0,		0,		0,		0,		100,	100,	100,	0,		0,		0,		0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="-1" z="1" />
+		<rot1 x="0" z="0" />
+		<rot2 x="-1" z="1" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

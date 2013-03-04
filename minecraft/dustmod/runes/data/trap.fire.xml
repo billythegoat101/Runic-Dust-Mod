@@ -1,0 +1,29 @@
+<rune>
+	<id value="10"/>
+	<name display="Fire Trap Rune" id="firetrap"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-3xFlint
+		Notes:
+		-Dust must be gunpowder or better.
+	</sacrifices>
+	<description>
+		Description:
+		Sets entities and landscape on fire when an entity comes near.
+	</description>
+	<design width="4" height="4" ox="0" oy="0" cx="0" cy="0">
+		0,		0,		0,		-1
+		-1,		0,		-1,		-1
+		-1,		-1,		0,		0
+		-1,		-1,		-1,		0
+	</design>
+	<allowedVariables>200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

@@ -1,0 +1,32 @@
+<rune>
+	<id value="8"/>
+	<name display="Rune of Dawn" id="dawn"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-4xRedstoneDust + 1LapisLazuli
+		Notes:
+		-If it is already day, it will last through to the next night night to do anything.
+	</sacrifices>
+	<description>
+		Description:
+		Turns night into day. If it is already day, it will wait until the next night to activate.
+	</description>
+	<design width="8" height="8" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		200,	0,		0,		200,	0,		0
+		0,		0,		0,		200,	200,	0,		0,		0
+		200,	0,		200,	0,		0,		200,	0,		200
+		0,		200,	0,		200,	200,	0,		200,	0
+		0,		200,	0,		200,	200,	0,		200,	0
+		200,	0,		200,	0,		0,		200,	0,		200
+		0,		0,		0,		200,	200,	0,		0,		0
+		0,		0,		200,	0,		0,		200,	0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

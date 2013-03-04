@@ -1,0 +1,29 @@
+<rune>
+	<id value="35"/>
+	<name display="Rune of Spawner Collection" id="scollect"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-6xGoldIngot + 10XP
+	</sacrifices>
+	<description>
+		Description:
+		Collects a spawner that it is placed around.
+	</description>
+	<design width="8" height="7" ox="2" oy="3" cx="2" cy="3">
+		300,	200,	200,	200,	200,	200,	200,	300
+		300,	200,	0,		0,		0,		0,		200,	300
+		200,	200,	0,		0,		0,		0,		200,	200
+		300,	300,	0,		0,		0,		0,		300,	300
+		200,	300,	0,		0,		0,		0,		300,	200
+		200,	300,	300,	300,	300,	300,	300,	200
+		0,		0,		300,	300,	300,	300,	0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="1" />
+		<rot1 x="-1" z="0" />
+		<rot2 x="0" z="-1" />
+		<rot3 x="1" z="0" />
+	</rotationMatrix>
+</rune>

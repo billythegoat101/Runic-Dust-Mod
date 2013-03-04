@@ -1,0 +1,36 @@
+<rune>
+	<id value="42"/>
+	<name display="Rune of Power Distribution" id="powerRelay"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-3xIronIngot + 5XP
+		Notes:
+		-Does not exhaust any fuel itself. All fuel is redirected to runes within a 32 block radius.
+		-Fueled runes will have a bigger spark than normal.
+		-Sprites cannot be powered by powering the location at which their runes are summoned, but by the sprites themselves.
+	</sacrifices>
+	<description>
+		Description:
+		Acts like a battery storing an infinite amount of fuel and distributing it to nearby runes who need it as they need it. Takes no fuel to sustain itself. Runes being powered will display a spark twice as big as normal.
+	</description>
+	<design width="10" height="10" ox="1" oy="1" cx="3" cy="3">
+		0,		300,	300,	300,	300,	0,		0,		0,		0,		0
+		0,		300,	200,	200,	300,	0,		200,	200,	0,		0
+		0,		300,	200,	200,	300,	300,	200,	200,	0,		0
+		0,		300,	300,	0,		300,	300,	300,	0,		0,		0
+		200,	200,	0,		0,		400,	400,	300,	300,	200,	200
+		200,	200,	300,	300,	400,	400,	0,		0,		200,	200
+		0,		0,		0,		300,	300,	300,	0,		300,	300,	0
+		0,		0,		200,	200,	300,	300,	200,	200,	300,	0
+		0,		0,		200,	200,	0,		300,	200,	200,	300,	0
+		0,		0,		0,		0,		0,		300,	300,	300,	300,	0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

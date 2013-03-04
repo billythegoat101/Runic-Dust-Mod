@@ -1,0 +1,40 @@
+<rune>
+	<id value="2"/>
+	<name display="Rune of Depths" id="pit"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-2xLog at Plant &amp; Gunpowder levels
+		-2xCoal at Lapis &amp; Blaze levels.
+		Notes:
+		-Requires hole in the center.
+	</sacrifices>
+	<description>
+		Description:
+		Digs a pit down into the earth. Requires a hole at the center of the rune (1 block down).
+		----
+		Allowed Variable Dusts:
+		Plant
+		Gunpowder
+		Lapis
+		Blaze
+	</description>
+	<design width="8" height="8" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		-1,		0,		0,		-1,		0,		0
+		0,		-1,		-1,		0,		0,		-1,		-1,		0
+		-1,		-1,		0,		0,		0,		0,		-1,		-1
+		0,		0,		0,		0,		0,		0,		0,		0
+		0,		0,		0,		0,		0,		0,		0,		0
+		-1,		-1,		0,		0,		0,		0,		-1,		-1
+		0,		-1,		-1,		0,		0,		-1,		-1,		0
+		0,		0,		-1,		0,		0,		-1,		0,		0
+	</design>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

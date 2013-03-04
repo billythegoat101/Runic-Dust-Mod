@@ -1,0 +1,35 @@
+<rune>
+	<id value="3"/>
+	<name display="Rune of the Farm" id="farm"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-8xIronIngot + 4XP
+	</sacrifices>
+	<description>
+		Description:
+		Instantly spawns a farm.
+		----
+		Allowed Variable Dusts:
+		Plant
+		Gunpowder
+		Lapis
+		Blaze
+	</description>
+	<design width="8" height="6" ox="2" oy="3" cx="2" cy="1">
+		0,		100,	100,	0,		0,		100,	100,	0
+		100,	0,		100,	-1,		-1,		100,	0,		100
+		100,	0,		100,	-1,		-1,		100,	0,		100
+		100,	0,		100,	-1,		-1,		100,	0,		100
+		100,	0,		100,	-1,		-1,		100,	0,		100
+		0,		100,	100,	0,		0,		100,	100,	0
+	</design>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="-1" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="-1" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

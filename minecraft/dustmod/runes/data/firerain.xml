@@ -1,0 +1,32 @@
+<rune>
+	<id value="25"/>
+	<name display="Rune of the Hellstorm" id="firerain6"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-2xBlazeRod
+		Notes:
+		-Will last half a day unless fueled.
+		-Will cause major lag.
+	</sacrifices>
+	<description>
+		Description:
+		Summons a storm of ignited arrows for a duration of time. WARNING:Large chance of lag if left running. Break rune to stop.
+	</description>
+	<design width="6" height="7" ox="3" oy="3" cx="1" cy="1">
+		400,	200,	200,	200,	200,	400
+		400,	400,	200,	200,	400,	400
+		0,		200,	400,	400,	200,	0
+		400,	200,	400,	400,	200,	400
+		400,	400,	200,	200,	400,	400
+		0,		400,	200,	200,	400,	0
+		0,		200,	200,	200,	200,	0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="-1" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="-1" z="0" />
+	</rotationMatrix>
+</rune>

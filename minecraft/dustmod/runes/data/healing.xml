@@ -1,0 +1,30 @@
+<rune>
+	<name display="Rune of Healing" id="heal"/>
+	<id value="1" />
+	<solid value="true" />
+	<sacrifices>
+		Sacrifice:
+		-None: Normal torch spawn.
+		-1xFlint: Beacon rune.
+		Notes:
+		=Sacrificing a dye to an existing beacon will change its color.
+	</sacrifices>
+	<description>
+		Description:
+		Spawns a torch or, if a piece of flint is sacrficed, a beacon.
+	</description>
+	<design width="4" height="4" ox="0" oy="0" cx="0" cy="0">
+		0,	0,	0,	0
+		0,	-1,	-1,	0
+		0,	-1,	-1,	0
+		0,	0,	0,	0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+	<author>billythegoat101</author>
+	<allowedVariables>100,200,300,400</allowedVariables>
+</rune>

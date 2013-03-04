@@ -1,0 +1,27 @@
+<rune>
+	<id value="6"/>
+	<name display="Rune of Speed" id="speed"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-3xSugar + 1xBlazePowder
+	</sacrifices>
+	<description>
+		Description:
+		Gives you a variable speed boost.
+	</description>
+	<design width="5" height="4" ox="0" oy="0" cx="0" cy="0">
+		100,	100,	100,	100,	-1
+		0,		300,	300,	300,	-1
+		0,		0,		100,	100,	-1
+		0,		0,		0,		300,	-1
+	</design>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="-1" z="0" />
+		<rot3 x="0" z="-1" />
+	</rotationMatrix>
+</rune>

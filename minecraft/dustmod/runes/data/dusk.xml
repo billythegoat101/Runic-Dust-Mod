@@ -1,0 +1,26 @@
+<rune>
+	<id value="9"/>
+	<name display="Rune of Dusk" id="lunar"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-4xNetherwart + 1xLapisLazuli
+	</sacrifices>
+	<description>
+		Description:
+		Turns day into night. If it is already night, it will wait until the next day to activate.
+	</description>
+	<design width="4" height="4" ox="0" oy="0" cx="0" cy="0">
+		200,	200,	200,	200
+		200,	0,		0,		200
+		200,	0,		0,		0
+		200,	200,	0,		200
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

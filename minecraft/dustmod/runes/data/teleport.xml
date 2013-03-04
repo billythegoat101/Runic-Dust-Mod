@@ -1,0 +1,36 @@
+<rune>
+	<id value="30"/>
+	<name display="Rune of Teleportation" id="tele7"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-1xEnderEye + 5XP
+		Notes:
+		-Takes away 3 hearts upon every teleportation.
+	</sacrifices>
+	<description>
+		Description:
+		Creates a teleporation network location for other teleportation runes to teleport to. Will cost 4 hearts every teleportation. The teleportation network frequency on which to send you depends on the block beneath the blaze square in the rune design.
+	</description>
+	<design width="10" height="12" ox="1" oy="0" cx="3" cy="8">
+		0,		0,		0,		0,		0,		400,	0,		0,		0,		0
+		0,		0,		0,		0,		400,	400,	0,		0,		0,		0
+		0,		0,		0,		0,		400,	200,	0,		0,		0,		0
+		0,		0,		0,		0,		200,	200,	0,		0,		0,		0
+		0,		0,		0,		0,		200,	400,	0,		0,		0,		0
+		0,		0,		0,		0,		400,	400,	0,		0,		0,		0
+		0,		0,		0,		0,		400,	200,	0,		0,		0,		0
+		0,		0,		0,		0,		200,	200,	0,		0,		0,		0
+		200,	200,	200,	200,	200,	200,	200,	200,	200,	200
+		0,		400,	400,	200,	400,	400,	200,	400,	400,	0
+		0,		0,		200,	200,	400,	400,	200,	200,	0,		0
+		0,		0,		0,		200,	0,		0,		200,	0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="1" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="1" z="-2" />
+		<rot3 x="2" z="0" />
+	</rotationMatrix>
+</rune>

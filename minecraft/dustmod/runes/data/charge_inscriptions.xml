@@ -1,0 +1,32 @@
+<rune>
+	<id value="46"/>
+	<name display="Inscription Enchanting Rune" id="charchInsc"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		Defined by the inscription.
+	</sacrifices>
+	<description>
+		Description:
+		Placing a dried inscription on this rune along with its required sacrifices will imbue it with energy.
+	</description>
+	<design width="10" height="10" ox="1" oy="1" cx="3" cy="3">
+		0,		0,		0,		0,		0,		0,		200,	0,		0,		0
+		0,		0,		0,		0,		0,		100,	200,	100,	0,		0
+		0,		100,	200,	100,	100,	100,	200,	100,	0,		0
+		100,	200,	200,	200,	200,	100,	100,	200,	200,	0
+		200,	200,	100,	100,	200,	0,		100,	100,	200,	0
+		0,		200,	100,	100,	0,		200,	100,	100,	200,	200
+		0,		200,	200,	100,	100,	200,	200,	200,	200,	100
+		0,		0,		100,	200,	100,	100,	100,	200,	100,	0
+		0,		0,		100,	200,	100,	0,		0,		0,		0,		0
+		0,		0,		0,		200,	0,		0,		0,		0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

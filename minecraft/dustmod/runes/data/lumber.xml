@@ -1,0 +1,32 @@
+<rune>
+	<id value="4"/>
+	<name display="Rune of Lumber" id="lumberjack"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-3xLog + 2xStick
+	</sacrifices>
+	<description>
+		Description:
+		Chops down all trees within an area. Has a chance to drop more than 1 log and some sticks.
+		The area of effect and the chances of doubling increase with dust value. Also destroys leaves with a small chance of dropping plant runic dust.
+	</description>
+	<design width="8" height="8" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		-1,		0,		0,		-1,		0,		0
+		0,		0,		-1,		-1,		-1,		-1,		0,		0
+		-1,		-1,		0,		0,		0,		0,		-1,		-1
+		0,		-1,		0,		0,		0,		0,		-1,		0
+		0,		-1,		0,		0,		0,		0,		-1,		0
+		-1,		-1,		0,		0,		0,		0,		-1,		-1
+		0,		0,		-1,		-1,		-1,		-1,		0,		0
+		0,		0,		-1,		0,		0,		-1,		0,		0
+	</design>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="1" />
+		<rot1 x="-1" z="0" />
+		<rot2 x="0" z="-1" />
+		<rot3 x="1" z="0" />
+	</rotationMatrix>
+</rune>

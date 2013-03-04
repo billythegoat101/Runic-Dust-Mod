@@ -1,0 +1,34 @@
+<rune>
+	<id value="13"/>
+	<name display="Rune of Detonation" id="bomb"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-2xGunpowder
+		Notes:
+		-Center determines strength.
+		-Fuse determines triggering.
+		-If fuse is made out of plant runic dust, it will wait for a mob to trigger.
+		-Otherwise, the time until deonation will depend on the dust strength.
+	</sacrifices>
+	<description>
+		Description:
+		Creates a variable-sized explosion when triggered by an entity or by time. Center determines the strength, fuse deteremines the triggering. If fuse is made out of plant runic dust, it will wait for a mob to trigger. Otherwise, the time until deonation will depend on the dust strength.
+	</description>
+	<design width="5" height="6" ox="0" oy="2" cx="0" cy="2">
+		0,		0,		0,		0,		-1
+		0,		0,		0,		-1,		-1
+		200,	200,	200,	-1,		0
+		200,	-1,		-1,		200,	0
+		200,	-1,		-1,		200,	0
+		200,	200,	200,	200,	0
+	</design>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="-1" />
+		<rot3 x="0" z="-1" />
+	</rotationMatrix>
+</rune>

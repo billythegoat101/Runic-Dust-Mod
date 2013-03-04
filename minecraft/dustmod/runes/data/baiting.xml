@@ -1,0 +1,31 @@
+<rune>
+	<id value="5"/>
+	<name display="Rune of Baiting" id="bait6"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-1xMobEgg + 1xGoldBlock + 5XP
+		Notes:
+		-Will last seven days unless fueled.
+		Will not attract flying mobs, swimming mobs, or slimes.
+	</sacrifices>
+	<description>
+		Description:
+		Attracts any mobs with the specified drop type.
+	</description>
+	<design width="6" height="6" ox="3" oy="3" cx="1" cy="1">
+		100,	100,	100,	0,		0,		0
+		100,	100,	100,	100,	100,	0
+		100,	100,	300,	300,	100,	0
+		0,		100,	300,	300,	100,	100
+		0,		100,	100,	100,	100,	100
+		0,		0,		0,		100,	100,	100
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

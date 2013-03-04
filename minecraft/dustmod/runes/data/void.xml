@@ -1,0 +1,33 @@
+<rune>
+	<id value="29"/>
+	<name display="Rune of the Void" id="void"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-3XP + Items to store
+		Notes:
+		-If there is a sacrifice, it will be stored.
+		-If there is not, all items in storage will be dropped.
+		-3XP will be taken either way.
+		-Inventories are separated by user. So you will not get yours mixed with someone elses.
+	</sacrifices>
+	<description>
+		Description:
+		Stores sacrificed items in a void. When activated without a sacrifice, the items are returned.
+	</description>
+	<design width="8" height="6" ox="2" oy="3" cx="2" cy="1">
+		0,		300,	0,		300,	300,	0,		300,	0
+		300,	300,	300,	0,		0,		300,	300,	300
+		0,		300,	0,		300,	300,	0,		300,	0
+		0,		300,	0,		300,	300,	0,		300,	0
+		300,	300,	300,	0,		0,		300,	300,	300
+		0,		300,	0,		300,	300,	0,		300,	0
+	</design>
+	<rotationMatrix>
+		<rot0 x="-1" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="-1" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

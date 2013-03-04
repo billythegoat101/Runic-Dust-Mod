@@ -1,0 +1,32 @@
+<rune>
+	<id value="37"/>
+	<name display="Rune of Wisdom" id="xpstore"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-16xIronIngot + 6XP
+		Notes:
+		-Right-clicking will give you back your XP and pause the rune for a short time.
+		-While the rune is paused, it will glow yellow and not absorb any XP.
+		-Not accessible by other players.
+	</sacrifices>
+	<description>
+		Description:
+		Stores all XP. When you walk over it it will take all your levels. It will also store any XP orbs dropped onto it. Not useable by other players.
+	</description>
+	<design width="6" height="6" ox="3" oy="3" cx="1" cy="1">
+		0,		0,		0,		100,	100,	0
+		0,		200,	200,	0,		100,	100
+		0,		200,	300,	300,	0,		100
+		100,	0,		300,	300,	200,	0
+		100,	100,	0,		200,	200,	0
+		0,		100,	100,	0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

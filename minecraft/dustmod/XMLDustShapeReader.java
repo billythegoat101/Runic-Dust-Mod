@@ -36,14 +36,14 @@ public class XMLDustShapeReader extends DefaultHandler {
 	private DustEvent event;
 	private String runeFile;
 	
-	public static void ReadAndRegiterShape(String runeFile, DustEvent e){
+	public static void readAndRegiterShape(String runeFile, DustEvent e){
 		new XMLDustShapeReader(runeFile,e).run();
 	}
 	
 	private XMLDustShapeReader(String runeFile, DustEvent e) {
 		super();
 		this.event = e;
-		this.runeFile = "/runes/"+runeFile;
+		this.runeFile = (!runeFile.startsWith("/") ? "/":"") + runeFile;
 	}
 	
 	private void run(){
@@ -133,7 +133,6 @@ public class XMLDustShapeReader extends DefaultHandler {
 				this.rotationMatrix[rot * 2 + 1] = Integer.parseInt(y);
 			else
 				this.rotationMatrix[rot * 2 + 1] = 0;
-			DustMod.log("You bitch " + this.idName + " " + rot + " [" + x + "," + y + "] "+ Arrays.toString(this.rotationMatrix));
 		}
 	}
 

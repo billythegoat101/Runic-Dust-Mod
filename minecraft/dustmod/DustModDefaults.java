@@ -89,91 +89,91 @@ public class DustModDefaults {
 		DustShape s;
 		int[][][] values;
 		
-		XMLDustShapeReader.ReadAndRegiterShape("torch.xml", new DESpawnTorch());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/torch.xml", new DESpawnTorch());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("rabbit.xml", new DEHideout());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/rabbit.xml", new DEHideout());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("healing.xml", new DEHeal());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/healing.xml", new DEHeal());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("lumber.xml", new DELumberjack());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/lumber.xml", new DELumberjack());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("campfire.xml", new DECampFire());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/campfire.xml", new DECampFire());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("depths.xml", new DEPit());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/depths.xml", new DEPit());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("heights.xml", new DEObelisk());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/heights.xml", new DEObelisk());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("farm.xml", new DEFarm());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/farm.xml", new DEFarm());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("leapfrog.xml", new DELillyBridge());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/leapfrog.xml", new DELillyBridge());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("dawn.xml", new DEDawn());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/dawn.xml", new DEDawn());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("dusk.xml", new DELunar());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/dusk.xml", new DELunar());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("trap.fire.xml", new DEFireTrap());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/trap.fire.xml", new DEFireTrap());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("trap.lightning.xml", new DELightning());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/trap.lightning.xml", new DELightning());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("trap.poison.xml", new DEPoisonTrap());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/trap.poison.xml", new DEPoisonTrap());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("trap.detonation.xml", new DEBomb());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/trap.detonation.xml", new DEBomb());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("trap.entrap.xml", new DECage());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/trap.entrap.xml", new DECage());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("timelock.xml", new DETimeLock());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/timelock.xml", new DETimeLock());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("void.xml", new DEVoid());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/void.xml", new DEVoid());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("wall.xml", new DEWall());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/wall.xml", new DEWall());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("wisdom.xml", new DEXPStore());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/wisdom.xml", new DEXPStore());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("speed.xml", new DESpeed());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/speed.xml", new DESpeed());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("compression.xml", new DECompression());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/compression.xml", new DECompression());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("firerain.xml", new DEFireRain());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/firerain.xml", new DEFireRain());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("eggifier.xml", new DEEggifier());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/eggifier.xml", new DEEggifier());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("resurrection.xml", new DEResurrection());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/resurrection.xml", new DEResurrection());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("power_relay.xml", new DEPowerRelay());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/power_relay.xml", new DEPowerRelay());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("charge_inscriptions.xml", new DEChargeInscription());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/charge_inscriptions.xml", new DEChargeInscription());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("spawner_collection.xml", new DESpawnerCollector());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/spawner_collection.xml", new DESpawnerCollector());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("spawner_reassignment.xml", new DESpawnerReprog());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/spawner_reassignment.xml", new DESpawnerReprog());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("teleport.xml", new DETeleportation());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/teleport.xml", new DETeleportation());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("minitele.xml", new DEMiniTele());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/minitele.xml", new DEMiniTele());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("sprite.fire.xml", new DEFireSprite());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/sprite.fire.xml", new DEFireSprite());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("sprite.earth.xml", new DEEarthSprite());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/sprite.earth.xml", new DEEarthSprite());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("bounce.xml", new DEBounce());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/bounce.xml", new DEBounce());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("spawn_record.xml", new DESpawnRecord());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/spawn_record.xml", new DESpawnRecord());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("spirit_tools.xml", new DESpiritTool());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/spirit_tools.xml", new DESpiritTool());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("ench.firebow.xml", new DEFireBowEnch());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/ench.firebow.xml", new DEFireBowEnch());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("ench.silktouch.xml", new DESilkTouchEnch());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/ench.silktouch.xml", new DESilkTouchEnch());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("ench.Fortune.xml", new DEFortuneEnch());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/ench.Fortune.xml", new DEFortuneEnch());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("protection.xml", new DEForcefield());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/protection.xml", new DEForcefield());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("level_earth.xml", new DEFlatten());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/level_earth.xml", new DEFlatten());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("lift_terrain.xml", new DELiftTerrain());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/lift_terrain.xml", new DELiftTerrain());
 		
-		XMLDustShapeReader.ReadAndRegiterShape("sarlacc.xml", new DEXP());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/sarlacc.xml", new DEXP());
 
 		// last id used: 46
 		// notes for reanimation:

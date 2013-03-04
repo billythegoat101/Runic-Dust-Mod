@@ -1,0 +1,32 @@
+<rune>
+	<id value="33"/>
+	<name display="Rune of Spawner Reassignment" id="reprog"/>
+	<author>billythegoat101</author>
+	<solid value="true"/>
+	<sacrifices>
+		Sacrifice:
+		-1xMobEgg + 2xEnderPearl + 10XP
+	</sacrifices>
+	<description>
+		Description:
+		Reassigns a placed spawner to spawn mobs of the specified type. Note:The entity inside won't update visually until you re-log.
+	</description>
+	<design width="8" height="10" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		300,	0,		0,		300,	0,		0
+		0,		300,	300,	0,		0,		300,	300,	0
+		0,		300,	0,		0,		0,		0,		300,	0
+		0,		0,		0,		0,		0,		0,		0,		0
+		300,	300,	0,		0,		0,		0,		300,	300
+		300,	300,	0,		0,		0,		0,		300,	300
+		0,		300,	300,	300,	300,	300,	300,	0
+		300,	300,	300,	300,	300,	300,	300,	300
+		300,	300,	0,		300,	300,	0,		300,	300
+		0,		300,	0,		300,	300,	0,		300,	0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="-1" z="0" />
+		<rot2 x="0" z="-1" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

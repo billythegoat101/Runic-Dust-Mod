@@ -1,0 +1,34 @@
+<rune>
+	<id value="27"/>
+	<name display="Enchanting Rune of Fortune" id="ench.fortune"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-1xDiamondOre + 1xLapisOre + 1xRedstoneOre + 1xDiamondPickaxe + 15XP
+		OR
+		-1xDiamondOre + 1xLapisOre + 1xRedstoneOre + 1xDiamondSword + 15XP
+	</sacrifices>
+	<description>
+		Description:
+		Enchants and repairs your pick or sword with Fortune IV or Looting IV respectively.
+	</description>
+	<design width="10" height="10" ox="1" oy="1" cx="3" cy="3">
+		0,		0,		200,	200,	200,	200,	200,	200,	0,		0
+		0,		0,		200,	300,	200,	200,	300,	200,	0,		0
+		200,	200,	300,	300,	100,	100,	300,	300,	200,	200
+		200,	300,	300,	100,	0,		0,		100,	300,	300,	200
+		200,	200,	100,	0,		0,		0,		0,		100,	200,	200
+		200,	200,	100,	0,		0,		0,		0,		100,	200,	200
+		200,	300,	300,	100,	0,		0,		100,	300,	300,	200
+		200,	200,	300,	300,	100,	100,	300,	300,	200,	200
+		0,		0,		200,	300,	200,	200,	300,	200,	0,		0
+		0,		0,		200,	200,	200,	200,	200,	200,	0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

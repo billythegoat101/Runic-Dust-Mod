@@ -1,0 +1,33 @@
+<rune>
+	<id value="39"/>
+	<name display="Rune of the Earth Sprite" id="earthsprite6"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-1xGhastTear + 16xGlass + 20XP
+		Notes:
+		-Stop and crouch to call the sprite to protect you.
+		-Will last for three days unless fueled.
+	</sacrifices>
+	<description>
+		Description:
+		Summons a sprite that will encircle you with earth. Pressing [crouch] while standing still will call the sprite to protect you.
+	</description>
+	<design width="10" height="8" ox="1" oy="2" cx="3" cy="2">
+		0,		0,		0,		0,		200,	200,	0,		0,		0,		0
+		0,		0,		200,	100,	400,	200,	100,	200,	0,		0
+		0,		400,	400,	100,	400,	400,	100,	400,	400,	0
+		200,	200,	200,	100,	200,	400,	100,	200,	200,	200
+		200,	200,	200,	100,	400,	200,	100,	200,	200,	200
+		0,		400,	400,	100,	400,	400,	100,	400,	400,	0
+		0,		0,		200,	100,	200,	400,	100,	200,	0,		0
+		0,		0,		0,		0,		200,	200,	0,		0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="-1" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="-1" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>
