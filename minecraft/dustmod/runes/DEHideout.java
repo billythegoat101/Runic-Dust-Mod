@@ -11,6 +11,7 @@ import net.minecraft.block.BlockFluid;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import dustmod.DustEvent;
 import dustmod.EntityDust;
@@ -181,6 +182,9 @@ public class DEHideout extends DustEvent
     }
     
     public boolean canBreakBlock(EntityDust e, int x, int y, int z){
+    	
+    	if(!e.canAlterBlock(x, y, z)) return false;
+    	
     	int id = e.worldObj.getBlockId(x, y, z);
     	Block b = Block.blocksList[id];
     	if(b == null) return false;

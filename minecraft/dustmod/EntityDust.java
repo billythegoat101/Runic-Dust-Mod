@@ -871,6 +871,25 @@ public class EntityDust extends Entity
 //        System.out.println("You bitch " + i + " " + locations.length);
         
     }
+    
+    
+    /**
+     * Checks if summoning player is allowed to modify blocks at that location
+     * @param x
+     * @param y
+     * @param z
+     * @return true if player can edit block, false otherwise
+     */
+    public boolean canAlterBlock(int x, int y, int z){
+
+    	
+    	EntityPlayer p = worldObj.getPlayerEntityByName(summonerUN);
+    	if(p != null && !worldObj.canMineBlock(p, x, y, z)){
+    		return false;
+    	}
+    	
+    	return y >- 0 && y < worldObj.getHeight();
+    }
 
     public void onRightClick(TileEntityDust ted, EntityPlayer p)
     {
