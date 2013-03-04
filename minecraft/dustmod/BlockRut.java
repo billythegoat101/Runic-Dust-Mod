@@ -338,10 +338,11 @@ public class BlockRut extends BlockContainer
     {
         TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(x, y, z);
         
-        Block block = blocksList[ter.maskBlock];
+        Block block = blocksList[ter.fluid];
         if (block != null && block != this)
         {
-            return lightValue[ter.maskBlock];
+        	DustMod.log("WTF " + ter.fluid + " " + block);
+            return lightValue[ter.fluid];
         }
         return lightValue[blockID];
     }

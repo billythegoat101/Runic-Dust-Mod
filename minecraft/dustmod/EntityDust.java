@@ -586,7 +586,7 @@ public class EntityDust extends Entity
 //            }
 
 
-            if (!ignoreRune)
+            if (!ignoreRune || ticksExisted < birthLength)
             {
                 for (Integer[] i : dustPoints)
                 {

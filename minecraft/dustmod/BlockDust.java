@@ -31,6 +31,11 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author billythegoat101
  */
 public class BlockDust extends BlockContainer {
+	
+	public static final int UNUSED_DUST = 0;
+	public static final int ACTIVE_DUST = 1;
+	public static final int DEAD_DUST = 2;
+	public static final int ACTIVATING_DUST = 3;
 	// private int itemID=0;
 	public BlockDust(int i, int j) {
 		super(i, j, Material.circuits);
@@ -42,7 +47,7 @@ public class BlockDust extends BlockContainer {
 		this.setTextureFile(DustMod.path + "/dustBlocks.png");
 		this.blockIndexInTexture = 0;
 		this.setHardness(0.2F);
-		this.setLightValue(0.45F);
+//		this.setLightValue(0.45F);
 		this.setStepSound(Block.soundGrassFootstep);
 		this.setBlockName("dustblock");
 		this.setRequiresSelfNotify();
@@ -81,7 +86,7 @@ public class BlockDust extends BlockContainer {
 			Entity entity) {
 		int meta = world.getBlockMetadata(i,j,k);
 		// if(world.isRemote) return;
-		if (entity instanceof EntityItem && meta != 2) {
+		if (entity instanceof EntityItem && meta != DEAD_DUST) {
 			EntityItem ei = (EntityItem) entity;
 			ei.age = 0;
 			EntityPlayer p = world.getClosestPlayerToEntity(ei, 0.6);
@@ -101,7 +106,7 @@ public class BlockDust extends BlockContainer {
 //			}
 		}
 
-		if (entity instanceof EntityXPOrb && meta != 2) {
+		if (entity instanceof EntityXPOrb && meta != DEAD_DUST) {
 			EntityXPOrb orb = (EntityXPOrb) entity;
 			orb.xpOrbAge = 0;
 			EntityPlayer p = world.getClosestPlayerToEntity(orb, 3.0);
@@ -122,7 +127,7 @@ public class BlockDust extends BlockContainer {
 
 		ItemStack equipped = ((EntityPlayer) entityliving).getCurrentEquippedItem();
 		if (equipped != null) {
-			if(equipped.itemID != DustMod.pouch.shiftedIndex)
+			if(equipped.itemID != DustMod.pouch.itemID)
 				equipped.stackSize++;
 		}
 	}
@@ -250,7 +255,7 @@ public class BlockDust extends BlockContainer {
 						// {
 						if(!player.capabilities.isCreativeMode)
 							this.dropBlockAsItem_do(world, i, j, k, new ItemStack(
-								DustMod.idust.shiftedIndex, 1, dust));
+								DustMod.idust.itemID, 1, dust));
 					}
 					// }
 				}
@@ -273,14 +278,14 @@ public class BlockDust extends BlockContainer {
 		
 		ItemStack item = p.getCurrentEquippedItem();
 		
-		if(item != null && item.itemID == DustMod.chisel.shiftedIndex){
+		if(item != null && item.itemID == DustMod.chisel.itemID){
 			int bid = world.getBlockId(i, j-1, k);
 			if(bid == DustMod.rutBlock.blockID){
 				return DustMod.rutBlock.onBlockActivated(world, i, j-1, k, p, face, x, y, z);
 			}
 		}
 
-		if (world.getBlockMetadata(i, j, k) == 1) {
+		if (world.getBlockMetadata(i, j, k) == ACTIVE_DUST) {
 			TileEntityDust ted = (TileEntityDust) world.getBlockTileEntity(i,
 					j, k);
 			ted.onRightClick(p);
@@ -299,21 +304,21 @@ public class BlockDust extends BlockContainer {
 
 		if (!world.isRemote
 				&& item != null
-				&& item.itemID == DustMod.tome.shiftedIndex) {
+				&& item.itemID == DustMod.tome.itemID) {
 			updatePattern(world, i, j, k, p);
 			world.notifyBlockChange(i, j, k, 0);
 			return true;
 		}
 
 		if (item == null
-				|| (item.itemID != DustMod.idust.shiftedIndex 
-				&& item.itemID != DustMod.pouch.shiftedIndex)) {
+				|| (item.itemID != DustMod.idust.itemID 
+				&& item.itemID != DustMod.pouch.itemID)) {
 			return false;
 		}
 
 		
 
-		boolean isPouch = (item.itemID == DustMod.pouch.shiftedIndex);
+		boolean isPouch = (item.itemID == DustMod.pouch.itemID);
 		int dust = item.getItemDamage();// mod_DustMod.dustValue(p.getCurrentEquippedItem().itemID);
 		if(isPouch) dust = ItemPouch.getValue(item);
 		if(dust < 5) dust *= 100;
@@ -367,12 +372,12 @@ public class BlockDust extends BlockContainer {
 			for (int sind = 0; sind < p.inventory.mainInventory.length; sind++) {
 				ItemStack is = p.inventory.mainInventory[sind];
 
-				if (is != null && ((is.itemID == DustMod.idust.shiftedIndex
+				if (is != null && ((is.itemID == DustMod.idust.itemID
 						&& is.getItemDamage() == dust) ||
-						(is.itemID == DustMod.pouch.shiftedIndex && ItemPouch.getValue(is) == dust && ItemPouch.getDustAmount(is) > 0))) {
+						(is.itemID == DustMod.pouch.itemID && ItemPouch.getValue(is) == dust && ItemPouch.getDustAmount(is) > 0))) {
 					ItemPouch.subtractDust(is, 1);
 
-					if (ItemPouch.getDustAmount(is) == 0 && is.itemID != DustMod.pouch.shiftedIndex) {
+					if (ItemPouch.getDustAmount(is) == 0 && is.itemID != DustMod.pouch.itemID) {
 						p.inventory.mainInventory[sind] = null;
 					}
 
@@ -473,7 +478,7 @@ public class BlockDust extends BlockContainer {
 					if (ted.getDust(rx, rz) > 0
 							&& !p.capabilities.isCreativeMode) {
 						this.dropBlockAsItem_do(world, i, j, k,
-								new ItemStack(DustMod.idust.shiftedIndex, 1,
+								new ItemStack(DustMod.idust.itemID, 1,
 										ted.getDust(rx, rz)));
 					}
 
@@ -515,7 +520,7 @@ public class BlockDust extends BlockContainer {
 
 		for (Integer[] iter : n) {
 			if (world.getBlockId(iter[0], j, iter[2]) == blockID) {
-				world.setBlockMetadataWithNotify(iter[0], j, iter[2], 3);
+				world.setBlockMetadataWithNotify(iter[0], j, iter[2], ACTIVATING_DUST);
 			}
 		}
 
@@ -629,6 +634,25 @@ public class BlockDust extends BlockContainer {
     public float getAmbientOcclusionLightValue(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return 0;
+    }
+    
+
+    /**
+     * Get a light value for the block at the specified coordinates, normal ranges are between 0 and 15
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y position
+     * @param z Z position
+     * @return The light value
+     */
+    public int getLightValue(IBlockAccess world, int x, int y, int z)
+    {
+        int meta = world.getBlockMetadata(x, y, z);
+        if(meta == ACTIVE_DUST || meta == ACTIVATING_DUST){
+        	return 8;
+        }
+        return lightValue[blockID];
     }
     
 }

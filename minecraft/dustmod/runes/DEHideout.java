@@ -108,7 +108,7 @@ public class DEHideout extends DustEvent
 //                        else
 //                            world.setBlockWithNotify(x+i, y+j, z+k, Block.sandStone.blockID);
                     }
-                    else
+                    else if(canBreakBlock(e, x + i, y + j, z + k))
                     {
                         world.setBlockWithNotify(x + i, y + j, z + k, 0);
                     }
@@ -178,6 +178,19 @@ public class DEHideout extends DustEvent
             e.setColorStar(255, 255, 0);
             e.ram --;
         }
+    }
+    
+    public boolean canBreakBlock(EntityDust e, int x, int y, int z){
+    	int id = e.worldObj.getBlockId(x, y, z);
+    	Block b = Block.blocksList[id];
+    	if(b == null) return false;
+    	
+    	if(b.getBlockHardness(e.worldObj, x, y, z) >= Block.obsidian.getBlockHardness(e.worldObj, x, y, z)){
+    		return false;
+    	}else if(b == Block.bedrock){
+        	return false;
+    	}
+    	return true;
     }
 
     private void yCheck(EntityDust e)
