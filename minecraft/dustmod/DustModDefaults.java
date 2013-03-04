@@ -79,15 +79,6 @@ public class DustModDefaults {
 	}
 
 	public void registerRunes() {
-
-		// System.out.println("Registering Shapes");
-		int N = -1;
-		int P = 100;
-		int G = 200;
-		int L = 300;
-		int B = 400;
-		DustShape s;
-		int[][][] values;
 		
 		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/torch.xml", new DESpawnTorch());
 		
