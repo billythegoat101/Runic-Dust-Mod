@@ -36,9 +36,9 @@ import dustmod.InscriptionEvent;
 public class PageHelper
 {
 
-	public static String folder = "\\dust_pages\\";
-    public static String runeFolder = "\\dust_pages\\runes\\";
-    public static String insFolder = "\\dust_pages\\inscriptions\\";
+//	public static String folder = "\\dust_pages\\";
+//    public static String runeFolder = "\\dust_pages\\runes\\";
+//    public static String insFolder = "\\dust_pages\\inscriptions\\";
     public static BufferedImage background;
     public static BufferedImage backgroundIns;
     public static BufferedImage shade;
@@ -46,16 +46,18 @@ public class PageHelper
     public static int bgw, bgh;
     public static PageHelper instance;
     private static BufferedImage missingExternalTextureImage;
-
+ 
+    private static HashMap<String, BufferedImage> images;
+    
     public PageHelper()
     {
     	String minecraftPath = DustMod.suggestedConfig.getParent();
     	File file = new File(minecraftPath);
     	minecraftPath = file.getParent();
     	
-    	folder = minecraftPath + folder;
-    	runeFolder = minecraftPath + runeFolder;
-    	insFolder = minecraftPath + insFolder;
+//    	folder = minecraftPath + folder;
+//    	runeFolder = minecraftPath + runeFolder;
+//    	insFolder = minecraftPath + insFolder;
     	
         missingExternalTextureImage = new BufferedImage(64, 64, 2);
         Graphics var3 = missingExternalTextureImage.getGraphics();
@@ -75,14 +77,14 @@ public class PageHelper
             bgw = background.getWidth();
             bgh = background.getHeight();
 
-            boolean success = new File(folder).mkdir();
-            if (success)
-            {
-            	DustMod.log(Level.INFO,"Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
+//            boolean success = new File(folder).mkdir();
+//            if (success)
+//            {
+//            	DustMod.log(Level.INFO,"Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
 //                System.out.println("[DustMod] Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
-            }
-            new File(runeFolder).mkdirs();
-            new File(insFolder).mkdirs();
+//            }
+//            new File(runeFolder).mkdirs();
+//            new File(insFolder).mkdirs();
 
         } catch (IOException ex)
         {
@@ -101,9 +103,9 @@ public class PageHelper
 //            name = name.substring(0, name.length() - 1);
 //        }
         
-        File file = new File(insFolder + name + ".png");
-        if(file.exists()) return;
-        DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
+//        File file = new File(insFolder + name + ".png");
+//        if(file.exists()) return;
+//        DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
 //        System.out.println("[DustMod] Lexicon Inscription entry for " + name + " not found! Generating...");
         
         int[][]values = event.referenceDesign;
@@ -206,14 +208,16 @@ public class PageHelper
         }
 //            result.getGraphics().drawImage(shade, 0, 0, null);
 
-        try
-        {
-            new File(insFolder).mkdirs();
-            ImageIO.write(result, "PNG", new File(insFolder + name + ".png"));
-        } catch (IOException ex)
-        {
-            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try
+//        {
+//            new File(insFolder).mkdirs();
+//            ImageIO.write(result, "PNG", new File(insFolder + name + ".png"));
+//        } catch (IOException ex)
+//        {
+//            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        images.put(name, result);
     }
 
     public static void checkRuneImage(DustShape shape)
@@ -229,9 +233,9 @@ public class PageHelper
 //            name = name.substring(0, name.length() - 1);
 //        }
         
-        File file = new File(runeFolder + name + ".png");
-        if(file.exists()) return;
-        DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
+//        File file = new File(runeFolder + name + ".png");
+//        if(file.exists()) return;
+//        DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
 //        System.out.println("[DustMod] Lexicon Rune entry for " + name + " not found! Generating...");
         
         int[][][] values = shape.data;
@@ -395,15 +399,16 @@ public class PageHelper
         }
 //            result.getGraphics().drawImage(shade, 0, 0, null);
 
-        try
-        {
-            new File(runeFolder).mkdirs();
-            ImageIO.write(result, "PNG", new File(runeFolder + name + ".png"));
-        } catch (IOException ex)
-        {
-            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try
+//        {
+//            new File(runeFolder).mkdirs();
+//            ImageIO.write(result, "PNG", new File(runeFolder + name + ".png"));
+//        } catch (IOException ex)
+//        {
+//            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
+        images.put(name, result);
     }
 
     public static int linearColorBurn(int v1, int v2)
@@ -523,7 +528,6 @@ public class PageHelper
     }
     
 //    private static HashMap<String, Boolean> textures;
-    private static HashMap<String, BufferedImage> images;
 
     public static BufferedImage getImage(String file) throws IOException
     {
@@ -579,5 +583,28 @@ public class PageHelper
         }
         re.bindTexture(tex);
 
+    }
+    
+    public static void bindPage(String name){
+
+    	if(singleIntBuffer == null){
+    		 singleIntBuffer = GLAllocation.createDirectIntBuffer(1);
+    	}
+        Minecraft mc = ModLoader.getMinecraftInstance();
+        RenderEngine re = mc.renderEngine;
+
+        singleIntBuffer.clear();
+        GLAllocation.generateTextureNames(singleIntBuffer);
+        int tex = singleIntBuffer.get(0);
+
+        try
+        {
+            BufferedImage image = getImage(name);
+            re.setupTexture(image, tex);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        re.bindTexture(tex);
     }
 }

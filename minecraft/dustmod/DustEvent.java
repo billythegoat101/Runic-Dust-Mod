@@ -30,6 +30,7 @@ public abstract class DustEvent {
 	public String name;
 	public boolean secret = false;
 	public String permission = "ALL";
+	
 	// Set by the coder, unalterable by user configs.
 	// Setting it to false disallows all use, but if true it will not affect
 	// anything

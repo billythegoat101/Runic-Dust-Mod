@@ -86,7 +86,7 @@ public class RenderDustTable extends TileEntitySpecialRenderer
         int page = (int)Math.round(tedt.pageFlipping * 2);
         if(page == 0)
             bindTextureByName(DustMod.path + File.separator + "pages" + File.separator + "info.png");
-        else PageHelper.bindExternalTexture(PageHelper.runeFolder + getRunePageName(page) + ".png");
+        else PageHelper.bindPage(getRunePageName(page));
         
 //        bindTextureByName(PageHelper.g//getPagePath((int)Math.round(tedt.pageFlipping * 2)));
         book.renderPages(null, f1, f4, f5, f6, 0.0F, 0.0625F);

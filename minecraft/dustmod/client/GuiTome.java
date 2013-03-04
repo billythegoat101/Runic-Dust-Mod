@@ -332,7 +332,7 @@ public class GuiTome extends GuiScreen
 	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages/info.png"));
 //	        	}
 	        }
-	        else PageHelper.bindExternalTexture(PageHelper.runeFolder + RenderDustTable.getRunePageName(getRunePage()) + ".png");
+	        else PageHelper.bindPage(RenderDustTable.getRunePageName(getRunePage()));
         }else {
 	        if(getInsPage() == 0){
 //	        	if(InscriptionManager.isEmpty()){
@@ -341,7 +341,7 @@ public class GuiTome extends GuiScreen
 	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/info.png"));
 //	        	}
 	        }
-	        else PageHelper.bindExternalTexture(PageHelper.insFolder + InscriptionManager.getEventInOrder(getInsPage() -1).getIDName() + ".png");
+	        else PageHelper.bindPage(InscriptionManager.getEventInOrder(getInsPage() -1).getIDName());
         }
         drawTexturedModalRect(0, 0, 0, 0, 256, 256);
         
