@@ -616,7 +616,7 @@ public class EntityDust extends Entity
             	ticksExisted = 0;
             	for(Integer[] loc:dustPoints){
             		if(worldObj.getBlockId(loc[0],loc[1], loc[2]) == DustMod.dust.blockID)
-            			worldObj.setBlockMetadataWithNotify(loc[0], loc[1], loc[2], 1);
+            			worldObj.setBlockMetadataWithNotify(loc[0], loc[1], loc[2], BlockDust.ACTIVE_DUST);
             	}
             }
             if(doFizzle){
@@ -664,7 +664,7 @@ public class EntityDust extends Entity
 
                     if (DustMod.isDust(id))
                     {
-                        worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], 0);
+                        worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], BlockDust.UNUSED_DUST);
                     }
                 }
 
@@ -744,7 +744,7 @@ public class EntityDust extends Entity
 				int blockID = worldObj.getBlockId(x+i, y, z+k);
 				int meta = worldObj.getBlockMetadata(x+i, y, z+k);
 				
-				if(blockID == DustMod.dust.blockID && (meta == 1 || meta == 3)){
+				if(blockID == DustMod.dust.blockID && (meta == BlockDust.ACTIVE_DUST || meta == BlockDust.ACTIVATING_DUST)){
 					TileEntityDust ted = (TileEntityDust)worldObj.getBlockTileEntity(x+i, y, z+k);
 					
 					if(ted.dustEntID == this.entityId){
@@ -898,7 +898,7 @@ public class EntityDust extends Entity
 
             if (DustMod.isDust(id))
             {
-                worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], 2);
+                worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], BlockDust.DEAD_DUST);
             }
         }
 

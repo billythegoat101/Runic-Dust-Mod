@@ -155,7 +155,7 @@ public class TileEntityDust extends TileEntity implements IInventory
             return;
         }
         
-        if(Math.random() < 0.12 && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1){
+        if(Math.random() < 0.12 && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == BlockDust.ACTIVE_DUST){
 //        	for(int i = 0; i < 1; i++){
         		worldObj.spawnParticle("reddust", xCoord + Math.random(), yCoord, zCoord+Math.random(), 0, 0, 0);
 //        	}
@@ -171,7 +171,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 //        System.out.println("upd " + ticksExisted);
         if (toDestroy == 0)
         {
-            if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 2)
+            if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != BlockDust.DEAD_DUST)
             {
                 toDestroy = -1;
                 return;
@@ -206,13 +206,6 @@ public class TileEntityDust extends TileEntity implements IInventory
             toDestroy = (int) Math.round(Math.random() * 200D + 100D);
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
-            if (this.isEmpty() && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 10)
-            {
-                worldObj.setBlockWithNotify(xCoord, yCoord, zCoord, 0);
-                worldObj.setBlockTileEntity(xCoord, yCoord, zCoord, null);
-                this.invalidate();
-            }
-
 //            System.out.println("Floating away.....");
         }
         else if (toDestroy > 0)
@@ -222,7 +215,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 
         if (ticksExisted % 100 == 0)
         {
-            if (toDestroy <= -1 && this.getBlockMetadata() == 2)
+            if (toDestroy <= -1 && this.getBlockMetadata() == BlockDust.DEAD_DUST)
             {
                 toDestroy = (int) Math.round(Math.random() * 200D + 100D);
 //                System.out.println("SettingToDestroy " + toDestroy);
@@ -463,7 +456,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         }
         else
         {
-            return new ItemStack(DustMod.idust.shiftedIndex, 1, pattern[x][y]);
+            return new ItemStack(DustMod.idust.itemID, 1, pattern[x][y]);
         }
     }
 
@@ -477,12 +470,12 @@ public class TileEntityDust extends TileEntity implements IInventory
         return null;
 //        }else if(amt < 0){
 //            pattern[x][y] = 1;
-//            return new ItemStack(mod_DustMod.idust.shiftedIndex,1,pattern[x][y]);
+//            return new ItemStack(mod_DustMod.idust.itemID,1,pattern[x][y]);
 //        }else{
 //            if(pattern[x][y] == 0){
 //                return null;
 //            }else{
-//                return new ItemStack(mod_DustMod.idust.shiftedIndex,1,pattern[x][y]);
+//                return new ItemStack(mod_DustMod.idust.itemID,1,pattern[x][y]);
 //            }
 //        }
     }
@@ -502,7 +495,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         int meta = item.getItemDamage();
         int id = item.itemID;
 
-        if (id == DustMod.idust.shiftedIndex && size > 0)
+        if (id == DustMod.idust.itemID && size > 0)
         {
             pattern[x][y] = meta;
         }

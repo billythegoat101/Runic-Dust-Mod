@@ -339,7 +339,7 @@ public class DustManager
 
 						if (id == DustMod.dust.blockID) {
 							world.setBlockMetadataWithNotify(p[0], p[1], p[2],
-									2);
+									BlockDust.DEAD_DUST);
 						}
 					}
 
@@ -373,7 +373,7 @@ public class DustManager
 				int id = world.getBlockId(p[0], p[1], p[2]);
 
 				if (id == DustMod.dust.blockID) {
-					world.setBlockMetadataWithNotify(p[0], p[1], p[2], 2);
+					world.setBlockMetadataWithNotify(p[0], p[1], p[2], BlockDust.DEAD_DUST);
 				}
 			}
 
