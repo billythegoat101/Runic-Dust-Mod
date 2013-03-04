@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.DustModEntityBouncer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -51,9 +52,9 @@ public class DEBait extends PoweredEvent
             if (o instanceof EntityItem)
             {
                 EntityItem ei = (EntityItem)o;
-                ItemStack item = ei.func_92014_d();
+                ItemStack item = ei.getEntityItem();
 
-                if (item.itemID == Item.monsterPlacer.shiftedIndex)
+                if (item.itemID == Item.monsterPlacer.itemID)
                 {
                     entClass = item.getItemDamage();
                     item.stackSize--;
@@ -63,7 +64,7 @@ public class DEBait extends PoweredEvent
                         ei.setDead();
                     }
                 }
-                ei.func_92013_a(item);
+                ei.func_92058_a(item);
             }
         }
 
@@ -122,12 +123,19 @@ public class DEBait extends PoweredEvent
 //                else
 //                {
 
-                    if (!DustModEntityBouncer.hasAITask(el, new EntityAIDustFollowBaitRune(null, 0F)))
-                    {
-                    	DustModEntityBouncer.addAITask(el, new EntityAIDustFollowBaitRune(el, 0.22F), -1);
-//                        System.out.println("Adding ai task");
-                    }
-//                }
+                EntityAITasks tasks = el.tasks;
+                List taskList = tasks.taskEntries;
+                boolean hasTaskAlready = false;
+                for(Object o:taskList){
+                	EntityAIBase task = (EntityAIBase)o;
+                	if(task.getClass() == EntityAIDustFollowBaitRune.class){
+                		hasTaskAlready = true;
+                		break;
+                	}
+                }
+                if(!hasTaskAlready){
+                	tasks.addTask(-1, new EntityAIDustFollowBaitRune(el, 0.22F));
+                }
             }
         }
     }
@@ -153,26 +161,26 @@ public class DEBait extends PoweredEvent
 
     static
     {
-        entdrops.put(new ItemStack(Item.porkRaw.shiftedIndex, 0, 0), 90);
-        entdrops.put(new ItemStack(Item.beefRaw.shiftedIndex, 0, 0), 92);
-        entdrops.put(new ItemStack(Item.chickenRaw.shiftedIndex, 0, 0), 93);
-        entdrops.put(new ItemStack(Item.dyePowder.shiftedIndex, 0, 0), 94);
-        entdrops.put(new ItemStack(Item.leather.shiftedIndex, 0, 0), 95);
+        entdrops.put(new ItemStack(Item.porkRaw.itemID, 0, 0), 90);
+        entdrops.put(new ItemStack(Item.beefRaw.itemID, 0, 0), 92);
+        entdrops.put(new ItemStack(Item.chickenRaw.itemID, 0, 0), 93);
+        entdrops.put(new ItemStack(Item.dyePowder.itemID, 0, 0), 94);
+        entdrops.put(new ItemStack(Item.leather.itemID, 0, 0), 95);
         entdrops.put(new ItemStack(Block.mushroomRed.blockID, 0, 0), 96);
         entdrops.put(new ItemStack(Block.pumpkin.blockID, 0, 0), 97);
-        entdrops.put(new ItemStack(Item.porkCooked.shiftedIndex, 0, 0), 57);
-        entdrops.put(new ItemStack(Item.gunpowder.shiftedIndex, 0, 0), 50);
-        entdrops.put(new ItemStack(Item.bone.shiftedIndex, 0, 0), 51);
-        entdrops.put(new ItemStack(Item.silk.shiftedIndex, 0, 0), 52);
-        entdrops.put(new ItemStack(Item.rottenFlesh.shiftedIndex, 0, 0), 54);
-        entdrops.put(new ItemStack(Item.slimeBall.shiftedIndex, 0, 0), 55);
-        entdrops.put(new ItemStack(Item.ghastTear.shiftedIndex, 0, 0), 56);
-        entdrops.put(new ItemStack(Item.enderPearl.shiftedIndex, 0, 0), 58);
-        entdrops.put(new ItemStack(Item.spiderEye.shiftedIndex, 0, 0), 59);
+        entdrops.put(new ItemStack(Item.porkCooked.itemID, 0, 0), 57);
+        entdrops.put(new ItemStack(Item.gunpowder.itemID, 0, 0), 50);
+        entdrops.put(new ItemStack(Item.bone.itemID, 0, 0), 51);
+        entdrops.put(new ItemStack(Item.silk.itemID, 0, 0), 52);
+        entdrops.put(new ItemStack(Item.rottenFlesh.itemID, 0, 0), 54);
+        entdrops.put(new ItemStack(Item.slimeBall.itemID, 0, 0), 55);
+        entdrops.put(new ItemStack(Item.ghastTear.itemID, 0, 0), 56);
+        entdrops.put(new ItemStack(Item.enderPearl.itemID, 0, 0), 58);
+        entdrops.put(new ItemStack(Item.spiderEye.itemID, 0, 0), 59);
         entdrops.put(new ItemStack(Block.stoneBrick.blockID, 0, 0), 60);
-        entdrops.put(new ItemStack(Item.blazeRod.shiftedIndex, 0, 0), 61);
-        entdrops.put(new ItemStack(Item.magmaCream.shiftedIndex, 0, 0), 62);
-        //entdrops.put(new ItemStack(Item.eyeOfEnder.shiftedIndex, 0, 0), 63);
+        entdrops.put(new ItemStack(Item.blazeRod.itemID, 0, 0), 61);
+        entdrops.put(new ItemStack(Item.magmaCream.itemID, 0, 0), 62);
+        //entdrops.put(new ItemStack(Item.eyeOfEnder.itemID, 0, 0), 63);
     }
 
     @Override

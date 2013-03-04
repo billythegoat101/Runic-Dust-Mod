@@ -75,16 +75,16 @@ public class DEResurrection extends DustEvent
                 break;
             }
 
-            int id = ei.func_92014_d().itemID;
-            int m = ei.func_92014_d().getItemDamage();
+            int id = ei.getEntityItem().itemID;
+            int m = ei.getEntityItem().getItemDamage();
             int amount;
             int amt = amount = 2;
 
             for (EntityItem ent: itemstacks)
             {
-                if (ent.func_92014_d().itemID == id && ent.func_92014_d().getItemDamage() == m)
+                if (ent.getEntityItem().itemID == id && ent.getEntityItem().getItemDamage() == m)
                 {
-                    amount -= ent.func_92014_d().stackSize;
+                    amount -= ent.getEntityItem().stackSize;
                 }
             }
 
@@ -92,19 +92,19 @@ public class DEResurrection extends DustEvent
             {
                 for (EntityItem ent: itemstacks)
                 {
-                    if (ent.func_92014_d().itemID == id && ent.func_92014_d().getItemDamage() == m)
+                    if (ent.getEntityItem().itemID == id && ent.getEntityItem().getItemDamage() == m)
                     {
-                        while (amt > 0 && ent.func_92014_d().stackSize > 0)
+                        while (amt > 0 && ent.getEntityItem().stackSize > 0)
                         {
                             amt--;
-                            ItemStack item = ent.func_92014_d();
+                            ItemStack item = ent.getEntityItem();
                             item.stackSize--;
                             
                             if (item.stackSize <= 0)
                             {
                                 ent.setDead();
                             }else{
-                            	ent.func_92013_a(item);
+                            	ent.func_92058_a(item);
                             }
                         }
                     }

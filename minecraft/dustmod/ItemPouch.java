@@ -85,14 +85,14 @@ public class ItemPouch extends ItemReed {
             if (world.canPlaceEntityOnSide(this.blockID, i, j, k, false, face, (Entity)null))
             {
                 Block var12 = Block.blocksList[this.blockID];
-                int var13 = var12.func_85104_a(world, i, j, k, face, x, y, z, 0);
+                int var13 = var12.onBlockPlaced(world, i, j, k, face, x, y, z, 0);
 
                 if (world.setBlockWithNotify(i, j, k, this.blockID))
                 {
                     if (world.getBlockId(i, j, k) == this.blockID)
                     {
                         Block.blocksList[this.blockID].onBlockPlacedBy(world, i, j, k, p);
-                        Block.blocksList[this.blockID].func_85105_g(world, i, j, k, var13);
+                        Block.blocksList[this.blockID].onPostBlockPlaced(world, i, j, k, var13);
                     }
                     DustMod.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
 
@@ -222,10 +222,10 @@ public class ItemPouch extends ItemReed {
     
     
     public static int getDustAmount(ItemStack pouch){
-    	if(pouch.itemID == DustMod.idust.shiftedIndex){
+    	if(pouch.itemID == DustMod.idust.itemID){
     		return pouch.stackSize;
     	}
-    	if(pouch.itemID != DustMod.pouch.shiftedIndex) return -1;
+    	if(pouch.itemID != DustMod.pouch.itemID) return -1;
     	
     	if(pouch.getItemDamage() %2 == 0) return 0;
     	
@@ -237,14 +237,14 @@ public class ItemPouch extends ItemReed {
     }
     
     public static boolean subtractDust(ItemStack pouch, int sub){
-    	if(pouch.itemID == DustMod.idust.shiftedIndex){
+    	if(pouch.itemID == DustMod.idust.itemID){
     		if(pouch.stackSize >= sub){
     			pouch.stackSize -= sub;
     			return true;
     		} else
     			return false;
     	}
-    	if(pouch.itemID != DustMod.pouch.shiftedIndex) return false;
+    	if(pouch.itemID != DustMod.pouch.itemID) return false;
     	
     	if(!pouch.hasTagCompound()){
     		pouch.setTagCompound(new NBTTagCompound());
@@ -269,11 +269,11 @@ public class ItemPouch extends ItemReed {
      * @return amount remaining if attempting to add more than pouch can contain
      */
     public static int addDust(ItemStack pouch, int add){
-    	if(pouch.itemID == DustMod.idust.shiftedIndex){
+    	if(pouch.itemID == DustMod.idust.itemID){
 			pouch.stackSize += add;
 			return 0;
     	}
-    	if(pouch.itemID != DustMod.pouch.shiftedIndex) return -1;
+    	if(pouch.itemID != DustMod.pouch.itemID) return -1;
     	
     	int rtn = 0;
     	
@@ -298,10 +298,10 @@ public class ItemPouch extends ItemReed {
     }
     
     public static void setAmount(ItemStack pouch, int amt){
-    	if(pouch.itemID == DustMod.idust.shiftedIndex){
+    	if(pouch.itemID == DustMod.idust.itemID){
 			pouch.stackSize -= amt;
     	}
-    	if(pouch.itemID != DustMod.pouch.shiftedIndex) return;
+    	if(pouch.itemID != DustMod.pouch.itemID) return;
     	
     	if(!pouch.hasTagCompound()){
     		pouch.setTagCompound(new NBTTagCompound());

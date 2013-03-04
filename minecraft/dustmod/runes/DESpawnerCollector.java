@@ -82,7 +82,7 @@ public class DESpawnerCollector extends DustEvent
 //                NBTTagCompound nbt = new NBTTagCompound();
 //                item.setTagCompound(nbt);
 //                nbt.setString("EntityID", entID); 
-                ei.func_92013_a(item); 
+                ei.func_92058_a(item); 
                 e.worldObj.spawnEntityInWorld(ei);
                 e.worldObj.markBlockForUpdate(fin[0], fin[1], fin[2]);
             }

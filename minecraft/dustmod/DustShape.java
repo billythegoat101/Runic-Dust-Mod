@@ -680,9 +680,9 @@ public class DustShape
         {
             if (is != null)
             {
-            	if(is.itemID == DustMod.idust.shiftedIndex){
+            	if(is.itemID == DustMod.idust.itemID){
             		pDustAmount[is.getItemDamage()] += is.stackSize;
-            	}else if(is.itemID == DustMod.pouch.shiftedIndex){
+            	}else if(is.itemID == DustMod.pouch.itemID){
             		int dustID = ItemPouch.getValue(is);
             		int amt = ItemPouch.getDustAmount(is);
             		pDustAmount[dustID] += amt;
@@ -784,7 +784,7 @@ public class DustShape
 
                     if (is != null && pDustAmount[id] > 0)
                     {
-                    	if(is.itemID == DustMod.idust.shiftedIndex && is.getItemDamage() == id){
+                    	if(is.itemID == DustMod.idust.itemID && is.getItemDamage() == id){
 	                        while (pDustAmount[id] > 0 && is.stackSize > 0)
 	                        {
 	                            is.stackSize--;
@@ -796,7 +796,7 @@ public class DustShape
 	
 	                            pDustAmount[id] --;
 	                        }
-                    	}else if(is.itemID == DustMod.pouch.shiftedIndex){
+                    	}else if(is.itemID == DustMod.pouch.itemID){
                     		int did = ItemPouch.getValue(is);
                     		if(did == id){
                     			while (pDustAmount[id] > 0 && ItemPouch.getDustAmount(is) > 0)
@@ -889,9 +889,9 @@ public class DustShape
         {
             if (is != null)
             {
-            	if(is.itemID == DustMod.idust.shiftedIndex){
+            	if(is.itemID == DustMod.idust.itemID){
             		pDustAmount[is.getItemDamage()] += is.stackSize;
-            	}else if(is.itemID == DustMod.pouch.shiftedIndex){
+            	}else if(is.itemID == DustMod.pouch.itemID){
             		int dustID = ItemPouch.getValue(is);
             		int amt = ItemPouch.getDustAmount(is);
             		pDustAmount[dustID] += amt;
@@ -1093,7 +1093,7 @@ public class DustShape
 
                     if (is != null && reduceDustAmount[id] > 0)
                     {
-                    	if(is.itemID == DustMod.idust.shiftedIndex && is.getItemDamage() == id){
+                    	if(is.itemID == DustMod.idust.itemID && is.getItemDamage() == id){
 	                        while (reduceDustAmount[id] > 0 && is.stackSize > 0)
 	                        {
 	                            is.stackSize--;
@@ -1105,7 +1105,7 @@ public class DustShape
 	
 	                            reduceDustAmount[id] --;
 	                        }
-                    	}else if(is.itemID == DustMod.pouch.shiftedIndex){
+                    	}else if(is.itemID == DustMod.pouch.itemID){
                     		int did = ItemPouch.getValue(is);
                     		if(did == id){
                     			while (reduceDustAmount[id] > 0 && ItemPouch.getDustAmount(is) > 0)

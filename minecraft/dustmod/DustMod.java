@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet5PlayerInventory;
@@ -42,7 +43,6 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import dustmod.client.PageHelper;
 
 @Mod(modid = "DustMod", name = "Runic Dust Mod", version = "1.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class, channels = {
@@ -249,9 +249,9 @@ public class DustMod {
 
 		proxy.registerEventHandlers();
 
-		GameRegistry.registerBlock(dust);
-		GameRegistry.registerBlock(dustTable);
-		GameRegistry.registerBlock(rutBlock);
+		GameRegistry.registerBlock(dust, ItemBlock.class, dust.getBlockName());
+		GameRegistry.registerBlock(dustTable, ItemBlock.class, dustTable.getBlockName());
+		GameRegistry.registerBlock(rutBlock, ItemBlock.class, rutBlock.getBlockName());
 
 		GameRegistry.registerTileEntity(TileEntityDust.class, "dusttileentity");
 		GameRegistry.registerTileEntity(TileEntityDustTable.class,
@@ -306,61 +306,61 @@ public class DustMod {
 				new ItemStack(runicPaper, 1) });
 
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Block.leaves, 1, -1),
 						new ItemStack(Block.leaves, 1, -1) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Block.sapling, 1, -1),
 						new ItemStack(Block.sapling, 1, -1) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Item.seeds, Item.seeds /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Block.cactus, Block.cactus /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Block.cactus, Item.seeds });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Block.cactus, new ItemStack(Block.sapling, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Block.cactus, new ItemStack(Block.leaves, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Block.cactus, new ItemStack(Block.tallGrass, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Item.seeds, new ItemStack(Block.sapling, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Item.seeds, new ItemStack(Block.leaves, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						Item.seeds, new ItemStack(Block.tallGrass, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Block.sapling, 1, -1),
 						new ItemStack(Block.leaves, 1, -1) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Block.sapling, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Block.leaves, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 12, 200),
 				new Object[] { Item.gunpowder, new ItemStack(idust, 1, 100),
 						new ItemStack(idust, 1, 100) /* , mortar */});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 8, 300),
-				new Object[] { new ItemStack(Item.coal.shiftedIndex, 1, -1),
+				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
 						new ItemStack(Item.dyePowder, 2, 4),
 						new ItemStack(Item.dyePowder, 2, 4),
 						new ItemStack(Item.dyePowder, 2, 4) });
@@ -469,7 +469,7 @@ public class DustMod {
 	}
 
 	/**
-	 * Returns if item.shiftedIndex equals the dust item id. Not sure why this
+	 * Returns if item.itemID equals the dust item id. Not sure why this
 	 * is needed, I think its still just here from when the dusts were all
 	 * different items >_>.
 	 * 
@@ -657,30 +657,30 @@ public class DustMod {
 
 	static {
 		entdrops = new HashMap<ItemStack, Integer>();
-		entdrops.put(new ItemStack(Item.chickenRaw.shiftedIndex, 4, 0), 93); // chicken
-		entdrops.put(new ItemStack(Item.beefRaw.shiftedIndex, 4, 0), 92); // cow
+		entdrops.put(new ItemStack(Item.chickenRaw.itemID, 4, 0), 93); // chicken
+		entdrops.put(new ItemStack(Item.beefRaw.itemID, 4, 0), 92); // cow
 		entdrops.put(new ItemStack(Block.mushroomCapRed, 16, -1), 96); // mooshroom
-		entdrops.put(new ItemStack(Item.fishRaw.shiftedIndex, 8, 0), 98); // ocelot
-		entdrops.put(new ItemStack(Item.porkRaw.shiftedIndex, 4, 0), 90); // pig
+		entdrops.put(new ItemStack(Item.fishRaw.itemID, 8, 0), 98); // ocelot
+		entdrops.put(new ItemStack(Item.porkRaw.itemID, 4, 0), 90); // pig
 		entdrops.put(new ItemStack(Block.cloth.blockID, 8, -1), 91); // sheep
-		entdrops.put(new ItemStack(Item.dyePowder.shiftedIndex, 4, 0), 94); // squid
+		entdrops.put(new ItemStack(Item.dyePowder.itemID, 4, 0), 94); // squid
 		entdrops.put(new ItemStack(Block.brick.blockID, 8, 0), 120); // villager
-		entdrops.put(new ItemStack(Item.enderPearl.shiftedIndex, 8, 0), 58); // enderman
-		entdrops.put(new ItemStack(Item.leather.shiftedIndex, 16, 0), 95); // wolf
-		entdrops.put(new ItemStack(Item.goldNugget.shiftedIndex, 16, 0), 57); // zombie
+		entdrops.put(new ItemStack(Item.enderPearl.itemID, 8, 0), 58); // enderman
+		entdrops.put(new ItemStack(Item.leather.itemID, 16, 0), 95); // wolf
+		entdrops.put(new ItemStack(Item.goldNugget.itemID, 16, 0), 57); // zombie
 																				// pigman
-		entdrops.put(new ItemStack(Item.blazeRod.shiftedIndex, 16, 0), 61); // blaze
-		entdrops.put(new ItemStack(Item.spiderEye.shiftedIndex, 8, 0), 59); // cave
+		entdrops.put(new ItemStack(Item.blazeRod.itemID, 16, 0), 61); // blaze
+		entdrops.put(new ItemStack(Item.spiderEye.itemID, 8, 0), 59); // cave
 																			// spider
-		entdrops.put(new ItemStack(Item.gunpowder.shiftedIndex, 8, 0), 50); // creeper
-		entdrops.put(new ItemStack(Item.ghastTear.shiftedIndex, 8, 0), 56); // ghast
-		entdrops.put(new ItemStack(Item.magmaCream.shiftedIndex, 8, 0), 62); // magma
+		entdrops.put(new ItemStack(Item.gunpowder.itemID, 8, 0), 50); // creeper
+		entdrops.put(new ItemStack(Item.ghastTear.itemID, 8, 0), 56); // ghast
+		entdrops.put(new ItemStack(Item.magmaCream.itemID, 8, 0), 62); // magma
 																				// slime
 		entdrops.put(new ItemStack(Block.stoneBrick.blockID, 16, 1), 60); // silverfish
-		entdrops.put(new ItemStack(Item.bone.shiftedIndex, 16, 0), 51); // skeleton
-		entdrops.put(new ItemStack(Item.slimeBall.shiftedIndex, 16, 0), 55); // slime
-		entdrops.put(new ItemStack(Item.silk.shiftedIndex, 16, 0), 52); // spider
-		entdrops.put(new ItemStack(Item.rottenFlesh.shiftedIndex, 8, 0), 54); // zombie
+		entdrops.put(new ItemStack(Item.bone.itemID, 16, 0), 51); // skeleton
+		entdrops.put(new ItemStack(Item.slimeBall.itemID, 16, 0), 55); // slime
+		entdrops.put(new ItemStack(Item.silk.itemID, 16, 0), 52); // spider
+		entdrops.put(new ItemStack(Item.rottenFlesh.itemID, 8, 0), 54); // zombie
 		entdrops.put(new ItemStack(Block.snow.blockID, 8, 0), 97); // snow golem
 		entdrops.put(new ItemStack(Block.blockSteel.blockID, 8, 0), 99); // iron
 																			// golem

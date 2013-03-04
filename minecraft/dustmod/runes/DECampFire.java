@@ -116,7 +116,7 @@ public class DECampFire extends PoweredEvent
                 EntityItem ei = (EntityItem)i;
                 ei.attackEntityFrom(null, -20);
 //                ei.delayBeforeCanPickup = 20;
-                ItemStack is = ei.func_92014_d();
+                ItemStack is = ei.getEntityItem();
                 ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(is);
 
                 if (e.ticksExisted % 3 == 0)

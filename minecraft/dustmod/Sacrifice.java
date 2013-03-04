@@ -48,7 +48,7 @@ public class Sacrifice
 
         if (ent instanceof EntityItem)
         {
-            ItemStack in = ((EntityItem)ent).func_92014_d();
+            ItemStack in = ((EntityItem)ent).getEntityItem();
 
             if (in.itemID == itemType.itemID && itemType.stackSize > 0 &&
                     (in.getItemDamage() == itemType.getItemDamage() || itemType.getItemDamage() == -1))
@@ -69,7 +69,7 @@ public class Sacrifice
                 }
 
                 e.data[15] = in.itemID;
-                ((EntityItem)ent).func_92013_a(in);
+                ((EntityItem)ent).func_92058_a(in);
                 return true;
             }
         }
@@ -101,7 +101,7 @@ public class Sacrifice
 
         if (ent instanceof EntityItem && itemType != null)
         {
-            ItemStack in = ((EntityItem)ent).func_92014_d();
+            ItemStack in = ((EntityItem)ent).getEntityItem();
 
             if (in.itemID == itemType.itemID &&
                     (in.getItemDamage() == itemType.getItemDamage() || itemType.getItemDamage() == -1))

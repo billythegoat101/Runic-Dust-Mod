@@ -49,8 +49,8 @@ public class DustItemManager {
 		reloadLanguage();
 		
 
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.shiftedIndex, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.shiftedIndex, 1, 0), new ItemStack(DustMod.pouch, 1, value*2+1), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.pouch, 1, value*2+1), Item.ghastTear});
     	
 		ItemStack craft = new ItemStack(DustMod.pouch, 1, value*2);
 		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustMod.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});
@@ -72,8 +72,8 @@ public class DustItemManager {
 		LanguageRegistry.instance().addStringLocalization("ink." + idName + ".name", "en_US", name + " Runic Ink");
 		LanguageRegistry.instance().addStringLocalization("pouch." + idName + ".name", "en_US", name + " Dust Pouch");
 
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.shiftedIndex, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.shiftedIndex, 1, 0), new ItemStack(DustMod.pouch, 1, value*2+1), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.pouch, 1, value*2+1), Item.ghastTear});
     	
 		ItemStack craft = new ItemStack(DustMod.pouch, 1, value*2);
 		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustMod.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});

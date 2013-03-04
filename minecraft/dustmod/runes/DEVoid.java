@@ -57,7 +57,7 @@ public class DEVoid extends DustEvent
         {
             for (EntityItem i: sacrifice)
             {
-            	VoidStorageManager.addItemToVoidInventory(e, i.func_92014_d());
+            	VoidStorageManager.addItemToVoidInventory(e, i.getEntityItem());
                 i.setDead();
             }
 

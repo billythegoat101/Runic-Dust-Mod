@@ -389,13 +389,13 @@ public abstract class DustEvent {
 
 		for (EntityItem i : sacrifice) {
 			for (ItemStack item : items) {
-				ItemStack is = i.func_92014_d();
-				if (is.itemID == DustMod.negateSacrifice.shiftedIndex) {
+				ItemStack is = i.getEntityItem();
+				if (is.itemID == DustMod.negateSacrifice.itemID) {
 					return true;
 				}
 
 				if (is.itemID == item.itemID
-						&& (item.getItemDamage() == -1 || i.func_92014_d()
+						&& (item.getItemDamage() == -1 || i.getEntityItem()
 								.getItemDamage() == item.getItemDamage())) {
 					if (is.stackSize <= item.stackSize
 							&& item.stackSize > 0) {
@@ -403,7 +403,7 @@ public abstract class DustEvent {
 						i.setDead();
 					} else {
 						is.stackSize -= item.stackSize;
-						i.func_92013_a(is);
+						i.func_92058_a(is);
 						break;
 					}
 				}
@@ -426,9 +426,9 @@ public abstract class DustEvent {
 		boolean negate = false;
 
 		for (EntityItem i : sacrifice) {
-			ItemStack is = i.func_92014_d();
+			ItemStack is = i.getEntityItem();
 
-			if (is.itemID == DustMod.negateSacrifice.shiftedIndex) {
+			if (is.itemID == DustMod.negateSacrifice.itemID) {
 				negate = true;
 				break;
 			}
@@ -456,7 +456,7 @@ public abstract class DustEvent {
 				rz += (rz < 0) ? -min : min;
 				i.addVelocity(rx, Math.random() * 0.5, rz);
 			}
-	        i.func_92013_a(is);
+	        i.func_92058_a(is);
 		}
 
 		if (negate) {
@@ -488,7 +488,7 @@ public abstract class DustEvent {
 			}
 
 			if (ei != null
-					&& ei.func_92014_d().itemID == DustMod.negateSacrifice.shiftedIndex) {
+					&& ei.getEntityItem().itemID == DustMod.negateSacrifice.itemID) {
 				negate = true;
 				break;
 			}
@@ -501,7 +501,7 @@ public abstract class DustEvent {
 				if (!(i instanceof EntityPlayer || i instanceof EntityDust)
 						&& s.matchObject(i)) {
 					if (ei != null) {
-						s.itemType.stackSize -= ei.func_92014_d().stackSize;
+						s.itemType.stackSize -= ei.getEntityItem().stackSize;
 
 						if (s.itemType.stackSize == 0) {
 							s.isComplete = true;

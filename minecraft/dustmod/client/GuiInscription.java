@@ -47,7 +47,7 @@ public class GuiInscription extends GuiContainer {
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
         ItemStack inscription = player.getCurrentEquippedItem();
-        if(inscription == null || inscription.itemID != DustMod.inscription.shiftedIndex){
+        if(inscription == null || inscription.itemID != DustMod.inscription.itemID){
             this.mc.thePlayer.closeScreen();
         }
 	}
@@ -137,9 +137,9 @@ public class GuiInscription extends GuiContainer {
 	protected void mouseClicked(int x, int y, int b) {
 
         Slot slot = this.getSlotAtPosition(x, y);
-        if(slot != null && slot.getHasStack() && slot.getStack().itemID == DustMod.ink.shiftedIndex){
+        if(slot != null && slot.getHasStack() && slot.getStack().itemID == DustMod.ink.itemID){
         	int id = ItemInk.getDustID(slot.getStack());
-        	insc.setInventorySlotContents(0, new ItemStack(DustMod.ink.shiftedIndex, id, slot.slotNumber-1));
+        	insc.setInventorySlotContents(0, new ItemStack(DustMod.ink.itemID, id, slot.slotNumber-1));
         }
         if(isOnMap(x,y)){
 //        	System.out.println("rawr");
@@ -187,14 +187,14 @@ public class GuiInscription extends GuiContainer {
 //					this.inventorySlots.putStackInSlot(slot, stack);
 					this.playerInv.setInventorySlotContents(slot, stack);
 					this.inventorySlots.putStackInSlot(slot+1, stack);
-					if(stack.itemID != DustMod.ink.shiftedIndex){
-//						this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.shiftedIndex, 0, -1));
+					if(stack.itemID != DustMod.ink.itemID){
+//						this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, 0, -1));
 						 //Loop through player's hotbar for inks
 //						 for(int i = 1; i < 10; i++){
 //							 ItemStack item = this.playerInv.getStackInSlot(i-1);
-//							 if(item != null && item.itemID == DustMod.ink.shiftedIndex){
+//							 if(item != null && item.itemID == DustMod.ink.itemID){
 //						        	int dustId = ItemInk.getDustID(item);
-//						        	this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.shiftedIndex, dustId, i-1));
+//						        	this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, dustId, i-1));
 //								 break;
 //							 }
 //						 }
@@ -253,14 +253,14 @@ public class GuiInscription extends GuiContainer {
 ////					this.inventorySlots.putStackInSlot(slot, stack);
 //					this.playerInv.setInventorySlotContents(slot, stack);
 //					this.inventorySlots.putStackInSlot(slot+1, stack);
-//					if(stack.itemID != DustMod.ink.shiftedIndex){
-////						this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.shiftedIndex, 0, -1));
+//					if(stack.itemID != DustMod.ink.itemID){
+////						this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, 0, -1));
 //						 //Loop through player's hotbar for inks
 ////						 for(int i = 1; i < 10; i++){
 ////							 ItemStack item = this.playerInv.getStackInSlot(i-1);
-////							 if(item != null && item.itemID == DustMod.ink.shiftedIndex){
+////							 if(item != null && item.itemID == DustMod.ink.itemID){
 ////						        	int dustId = ItemInk.getDustID(item);
-////						        	this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.shiftedIndex, dustId, i-1));
+////						        	this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, dustId, i-1));
 ////								 break;
 ////							 }
 ////						 }
@@ -295,7 +295,7 @@ public class GuiInscription extends GuiContainer {
 	public void setDust(int x, int y, int dust){
 		changed = true;
 		
-		this.insc.setInventorySlotContents(x*16 + y + 10, new ItemStack(DustMod.inscription.shiftedIndex, 1, dust));
+		this.insc.setInventorySlotContents(x*16 + y + 10, new ItemStack(DustMod.inscription.itemID, 1, dust));
 		
 
 		if(newInscription){

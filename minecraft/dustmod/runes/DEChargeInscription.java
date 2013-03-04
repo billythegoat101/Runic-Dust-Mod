@@ -43,14 +43,14 @@ public class DEChargeInscription extends DustEvent {
         	List<EntityItem> items = this.getItems(e);
         	
         	for(EntityItem ei:items){
-        		ItemStack i = ei.func_92014_d();
-        		if(i.itemID == DustMod.getWornInscription().shiftedIndex){
+        		ItemStack i = ei.getEntityItem();
+        		if(i.itemID == DustMod.getWornInscription().itemID){
         			InscriptionEvent evt = InscriptionManager.getEvent(i);
         			DustMod.log("Charge ins found", evt);
         			if(evt != null){
         				boolean sucess = evt.callSacrifice(this,e, i);
         				DustMod.log("Charging:", sucess);
-        				ei.func_92013_a(i);
+        				ei.func_92058_a(i);
         				if(sucess) {
         					e.fade();
         					return;

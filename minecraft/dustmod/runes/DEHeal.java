@@ -40,7 +40,7 @@ public class DEHeal extends DustEvent
 
     public void onInit(EntityDust e)
     {
-        ItemStack[] req = new ItemStack[] {new ItemStack(Item.coal.shiftedIndex, 2, -1)};
+        ItemStack[] req = new ItemStack[] {new ItemStack(Item.coal.itemID, 2, -1)};
         req = this.sacrifice(e, req);
 
         if (!checkSacrifice(req) || !takeXP(e, 2))

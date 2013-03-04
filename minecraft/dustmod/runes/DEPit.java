@@ -61,7 +61,7 @@ public class DEPit extends DustEvent
         boolean advanced = (dustID > 2);
         ItemStack[] sac;//
         if(!advanced) sac = new ItemStack[] {new ItemStack(Block.wood.blockID, 2, -1)};
-        else sac = new ItemStack[] {new ItemStack(Item.coal.shiftedIndex, 2, -1)};
+        else sac = new ItemStack[] {new ItemStack(Item.coal.itemID, 2, -1)};
         sac = this.sacrifice(e, sac);
 
         if (!this.checkSacrifice(sac))

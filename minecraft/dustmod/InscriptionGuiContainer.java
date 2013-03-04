@@ -23,9 +23,9 @@ public class InscriptionGuiContainer extends Container {
 		 //Loop through player's hotbar for inks
 		 for(int i = 1; i < 10; i++){
 			 ItemStack stack = inventoryPlayer.getStackInSlot(i-1);
-			 if(stack != null && stack.itemID == DustMod.ink.shiftedIndex){
+			 if(stack != null && stack.itemID == DustMod.ink.itemID){
 		        	int id = ItemInk.getDustID(stack);
-		        	this.putStackInSlot(0, new ItemStack(DustMod.ink.shiftedIndex, id, i-1));
+		        	this.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, id, i-1));
 				 break;
 			 }
 		 }
@@ -49,7 +49,7 @@ public class InscriptionGuiContainer extends Container {
 	public boolean canInteractWith(EntityPlayer p) {
 		// TODO Auto-generated method stub
 		if(p.getCurrentEquippedItem() == null) return false;
-		return p.getCurrentEquippedItem().itemID == DustMod.inscription.shiftedIndex;
+		return p.getCurrentEquippedItem().itemID == DustMod.inscription.itemID;
 	}
 	
 	@Override

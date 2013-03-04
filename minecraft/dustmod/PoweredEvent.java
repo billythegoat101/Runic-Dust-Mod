@@ -89,7 +89,7 @@ public abstract class PoweredEvent extends DustEvent
                     EntityItem ei = (EntityItem)i;
                     ei.attackEntityFrom(null, -20);
                     //                ei.delayBeforeCanPickup = 20;
-                    ItemStack is = ei.func_92014_d();
+                    ItemStack is = ei.getEntityItem();
 
                     if (TileEntityFurnace.getItemBurnTime(is) != 0)
                     {

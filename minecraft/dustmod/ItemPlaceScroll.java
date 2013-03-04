@@ -162,7 +162,7 @@ public class ItemPlaceScroll extends Item
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs,
     		List list) {
     	for(DustShape i:DustManager.getShapes()){
-    		list.add(new ItemStack(shiftedIndex, 1, i.id));
+    		list.add(new ItemStack(itemID, 1, i.id));
     	}
 //    	super.getSubItems(par1, par2CreativeTabs, list);
     }

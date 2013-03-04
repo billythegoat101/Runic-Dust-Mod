@@ -113,7 +113,7 @@ public class ItemInk extends Item {
     }
     
     public static ItemStack getInk(int dustID){
-    	return new ItemStack(DustMod.ink.shiftedIndex, 1, dustID*maxAmount + maxAmount-1);
+    	return new ItemStack(DustMod.ink.itemID, 1, dustID*maxAmount + maxAmount-1);
     }
     
     public static int getDustID(ItemStack item){
@@ -130,7 +130,7 @@ public class ItemInk extends Item {
     	if(fill < amt) return false;
     	fill -= amt;
     	if(fill == 0) {
-    		item.itemID = Item.glassBottle.shiftedIndex;
+    		item.itemID = Item.glassBottle.itemID;
     		item.setItemDamage(0);
     	}else
     		item.setItemDamage(level + fill);

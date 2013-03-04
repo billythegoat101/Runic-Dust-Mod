@@ -188,7 +188,7 @@ public class DELumberjack extends DustEvent
         {
             for (int a = rand.nextInt(maxstick); a > 0; a--)
             {
-                EntityItem ei = new EntityItem(world, x, y, z, new ItemStack(Item.stick.shiftedIndex, 1, 0));
+                EntityItem ei = new EntityItem(world, x, y, z, new ItemStack(Item.stick.itemID, 1, 0));
                 world.spawnEntityInWorld(ei);
             }
         }
@@ -259,7 +259,7 @@ public class DELumberjack extends DustEvent
         {
             for (int a = rand.nextInt(maxDust); a >= 0; a--)
             {
-                EntityItem ei = new EntityItem(world, x, y, z, new ItemStack(DustMod.getItemDust().shiftedIndex, 1, 100));
+                EntityItem ei = new EntityItem(world, x, y, z, new ItemStack(DustMod.getItemDust().itemID, 1, 100));
                 world.spawnEntityInWorld(ei);
             }
         }

@@ -109,7 +109,7 @@ public class BlockDustTable extends BlockContainer
         {
             return true;
         }
-        else if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == DustMod.runicPaper.shiftedIndex)
+        else if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == DustMod.runicPaper.itemID)
         {
             int page = (((TileEntityDustTable)world.getBlockTileEntity(i, j, k)).page - 1);
 
@@ -124,7 +124,7 @@ public class BlockDustTable extends BlockContainer
 
             if (cur.stackSize == 1)
             {
-                cur.itemID = DustMod.dustScroll.shiftedIndex;
+                cur.itemID = DustMod.dustScroll.itemID;
                 cur.setItemDamage(to.getItemDamage());
             }
             else

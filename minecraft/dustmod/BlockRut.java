@@ -128,22 +128,22 @@ public class BlockRut extends BlockContainer
         }
 
 //        ter.fluid = Block.obsidian.blockID;
-        if (/*ter.fluid == 0 && */!isNull && pItem.itemID == Item.bucketWater.shiftedIndex)
+        if (/*ter.fluid == 0 && */!isNull && pItem.itemID == Item.bucketWater.itemID)
         {
             if (!p.capabilities.isCreativeMode)
             {
-                pItem.itemID = Item.bucketEmpty.shiftedIndex;
+                pItem.itemID = Item.bucketEmpty.itemID;
             }
 
             ter.setFluid(Block.waterStill.blockID);
             return true;
         }
 
-        if (/*ter.fluid == 0 && */!isNull && pItem.itemID == Item.bucketLava.shiftedIndex)
+        if (/*ter.fluid == 0 && */!isNull && pItem.itemID == Item.bucketLava.itemID)
         {
             if (!p.capabilities.isCreativeMode)
             {
-                pItem.itemID = Item.bucketEmpty.shiftedIndex;
+                pItem.itemID = Item.bucketEmpty.itemID;
             }
 
             ter.setFluid(Block.lavaStill.blockID);
@@ -181,7 +181,7 @@ public class BlockRut extends BlockContainer
             }
         }
 
-        if (isNull || pItem.itemID != DustMod.chisel.shiftedIndex)
+        if (isNull || pItem.itemID != DustMod.chisel.itemID)
         {
             return false;
         }
@@ -323,5 +323,26 @@ public class BlockRut extends BlockContainer
     	return ter.maskMeta;
     }
     
-    
+
+
+    /**
+     * Get a light value for the block at the specified coordinates, normal ranges are between 0 and 15
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y position
+     * @param z Z position
+     * @return The light value
+     */
+    public int getLightValue(IBlockAccess world, int x, int y, int z)
+    {
+        TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(x, y, z);
+        
+        Block block = blocksList[ter.maskBlock];
+        if (block != null && block != this)
+        {
+            return lightValue[ter.maskBlock];
+        }
+        return lightValue[blockID];
+    }
 }

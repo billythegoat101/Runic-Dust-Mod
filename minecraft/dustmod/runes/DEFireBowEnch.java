@@ -39,16 +39,16 @@ public class DEFireBowEnch extends DustEvent
     public void onInit(EntityDust e)
     {
 //        List<EntityItem> sacrifice = getSacrifice(e);
-//        int item = Item.bow.shiftedIndex;
+//        int item = Item.bow.itemID;
 //        for(EntityItem i:sacrifice){
 //            ItemStack is = i.item;
 //
-//            if(is.itemID == Item.pickaxeDiamond.shiftedIndex || is.itemID == Item.shovelDiamond.shiftedIndex) {
+//            if(is.itemID == Item.pickaxeDiamond.itemID || is.itemID == Item.shovelDiamond.itemID) {
 //                item = is.itemID;
 //                break;
 //            }
 //        }
-//        int gold = ((item == Item.pickaxeDiamond.shiftedIndex) ? Item.pickaxeGold.shiftedIndex:Item.shovelGold.shiftedIndex);
+//        int gold = ((item == Item.pickaxeDiamond.itemID) ? Item.pickaxeGold.itemID:Item.shovelGold.itemID);
         ItemStack[] req = this.sacrifice(e, new ItemStack[] {new ItemStack(Item.bow, 1, 0),
                       new ItemStack(Block.blockGold.blockID, 1, 0), new ItemStack(Item.fireballCharge, 9)
         });
@@ -72,8 +72,8 @@ public class DEFireBowEnch extends DustEvent
         if (e.ticksExisted > 20)
         {
             Entity en = null;
-            ItemStack create =  new ItemStack((int)Item.bow.shiftedIndex, 1, 0);
-//            if(e.data == mod_DustMod.spiritSword.shiftedIndex){
+            ItemStack create =  new ItemStack((int)Item.bow.itemID, 1, 0);
+//            if(e.data == mod_DustMod.spiritSword.itemID){
             create.addEnchantment(Enchantment.flame, 1);
 //            }
 //            System.out.println("derp " + create.itemID);

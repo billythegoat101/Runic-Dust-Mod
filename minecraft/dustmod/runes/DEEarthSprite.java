@@ -47,7 +47,7 @@ public class DEEarthSprite  extends PoweredEvent
         e.setColorStarInner(255, 0, 0);
         e.setColorStarOuter(255, 0, 0);
         ItemStack[] req = new ItemStack[] {new ItemStack(Block.glass.blockID, 16, 0),
-                      new ItemStack(Item.ghastTear.shiftedIndex, 1, 0)
+                      new ItemStack(Item.ghastTear.itemID, 1, 0)
         };
         req = this.sacrifice(e, req);
 

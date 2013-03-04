@@ -77,7 +77,7 @@ public class ItemWornInscription extends ItemArmor implements
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List list) {
 		for (InscriptionEvent i : InscriptionManager.getEvents()) {
-			ItemStack item = new ItemStack(shiftedIndex, 1, 0);
+			ItemStack item = new ItemStack(itemID, 1, 0);
 			if (!item.hasTagCompound())
 				item.setTagCompound(new NBTTagCompound());
 			item.getTagCompound().setInteger("eventID", i.id);

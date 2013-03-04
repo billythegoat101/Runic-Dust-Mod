@@ -46,9 +46,9 @@ public class DESilkTouchEnch extends DustEvent
 
         for (EntityItem i: sacrifice)
         {
-            ItemStack is = i.func_92014_d();
+            ItemStack is = i.getEntityItem();
 
-            if (is.itemID == Item.pickaxeDiamond.shiftedIndex || is.itemID == Item.shovelDiamond.shiftedIndex)
+            if (is.itemID == Item.pickaxeDiamond.itemID || is.itemID == Item.shovelDiamond.itemID)
             {
                 item = is.itemID;
 //                i.setDead();
@@ -84,7 +84,7 @@ public class DESilkTouchEnch extends DustEvent
         	DustMod.log("Drop");
             Entity en = null;
             ItemStack create =  new ItemStack((int)e.data[1], 1, 0);
-//            if(e.data == mod_DustMod.spiritSword.shiftedIndex){
+//            if(e.data == mod_DustMod.spiritSword.itemID){
             create.addEnchantment(Enchantment.silkTouch, 1);
 //            }
 //            System.out.println("derp " + create.itemID);

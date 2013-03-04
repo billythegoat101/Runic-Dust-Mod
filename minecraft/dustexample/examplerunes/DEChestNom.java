@@ -69,9 +69,9 @@ public class DEChestNom extends DustEvent
             /**Item sacrifice**/
         
         //An array of all item/block sacrifices required.
-        ItemStack[] sacr = new ItemStack[]{new ItemStack(Block.chest.blockID,1,0), new ItemStack(Item.ingotGold.shiftedIndex,1,0)};
+        ItemStack[] sacr = new ItemStack[]{new ItemStack(Block.chest.blockID,1,0), new ItemStack(Item.ingotGold.itemID,1,0)};
         //This array is optional, You can just list all the itemstacks directly into takeItems
-        //Like this : boolean success = this.takeItems(e,new ItemStack(Block.chest.blockID,1,0), new ItemStack(Item.ingotGold.shiftedIndex,1,0));
+        //Like this : boolean success = this.takeItems(e,new ItemStack(Block.chest.blockID,1,0), new ItemStack(Item.ingotGold.itemID,1,0));
         
         //Automatically searches near the rune for the requested item sacrifices
         //For each item found, the stacksize in sacr is brought down.
@@ -149,7 +149,7 @@ public class DEChestNom extends DustEvent
             for(EntityItem ei:items)
             {
                 //Getting the actual ItemStack of the dropped item.
-                ItemStack item = ei.func_92014_d();
+                ItemStack item = ei.getEntityItem();
                 
                 //Loop through all the slots in the chest
                 for(int i = 0; i < tec.getSizeInventory() && item.stackSize > 0; i++)
@@ -184,7 +184,7 @@ public class DEChestNom extends DustEvent
                         break;
                     }
                 }
-                ei.func_92013_a(item);
+                ei.func_92058_a(item);
             }
         }
         

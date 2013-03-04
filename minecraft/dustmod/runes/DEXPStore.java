@@ -82,7 +82,7 @@ public class DEXPStore extends DustEvent
 //            {
 //                EntityItem ei = (EntityItem)i;
 //
-//                if (ei.item.itemID == mod_DustMod.negateSacrifice.shiftedIndex)
+//                if (ei.item.itemID == mod_DustMod.negateSacrifice.itemID)
 //                {
 //                    e.data[0] = 99999;
 //                    e.bb = 0;

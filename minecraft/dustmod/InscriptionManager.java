@@ -121,7 +121,7 @@ public class InscriptionManager {
 	public static InscriptionEvent getEvent(Player p) {
 		EntityPlayer ep = (EntityPlayer) p;
 		ItemStack item = ep.inventory.getStackInSlot(38);
-		if (item == null || item.itemID != DustMod.getWornInscription().shiftedIndex)
+		if (item == null || item.itemID != DustMod.getWornInscription().itemID)
 			return null;
 		if (item.getItemDamage() >= item.getMaxDamage() - 1)
 			return null;

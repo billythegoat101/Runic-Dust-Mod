@@ -80,8 +80,8 @@ public class DESpawnTorch extends DustEvent
         if(e.data[0] == 1 && e.ticksExisted%10 == 0){
             List<EntityItem> items = this.getItems(e);
             for(EntityItem i:items){
-                ItemStack item = i.func_92014_d();
-                if(item.itemID == Item.dyePowder.shiftedIndex && e.data[1] != item.getItemDamage()){
+                ItemStack item = i.getEntityItem();
+                if(item.itemID == Item.dyePowder.itemID && e.data[1] != item.getItemDamage()){
                     e.data[1] = item.getItemDamage();
                     int[] color = this.getColor(item.getItemDamage());
                     e.setColorBeam(color[0], color[1], color[2]);
@@ -90,7 +90,7 @@ public class DESpawnTorch extends DustEvent
                         i.setDead();
                         break;
                     }else{
-                    	i.func_92013_a(item);
+                    	i.func_92058_a(item);
                     }
                 }
             }

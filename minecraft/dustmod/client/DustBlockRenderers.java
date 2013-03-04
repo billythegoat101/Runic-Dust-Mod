@@ -75,7 +75,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
     	boolean drawHightlight = (meta == 1 || meta == 3);
 //    	meta = 3;
 //    	if(meta == 3){
-//	        renderblocks.updateCustomBlockBounds(Block.woodSingleSlab);
+//	        renderblocks.setRenderBoundsFromBlock(Block.woodSingleSlab);
 //	        renderGlow(renderblocks,iblock,Block.woodSingleSlab,i,j,k);
 //    	}
 //        System.out.println("render");
@@ -105,7 +105,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 //        	System.out.println("waaat");
 //        	block.setBlockBounds(0,0,0,1,0.5f,1);
 //        	
-//            renderblocks.updateCustomBlockBounds(block);
+//            renderblocks.setRenderBoundsFromBlock(block);
 //        	renderblocks.renderBlockFire(block, i, j, k);
 //        }
         
@@ -133,7 +133,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 //                        tes.addVertexWithUV(bx, h, bz-bl, 1, 0);
                     if (meta > 0 && meta != 3)
                     {
-                        renderblocks.updateCustomBlockBounds(block);
+                        renderblocks.setRenderBoundsFromBlock(block);
                         renderblocks.renderStandardBlock(block, i, j, k);
                     }
                     else
@@ -145,7 +145,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                         r = r / 255;
                         g = g / 255;
                         b = b / 255;
-                        renderblocks.updateCustomBlockBounds(block);
+                        renderblocks.setRenderBoundsFromBlock(block);
                         renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
                     }
                     if(drawHightlight){
@@ -184,7 +184,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
                     if (meta > 0 && meta != 3)
                     {
-                        renderblocks.updateCustomBlockBounds(block);
+                        renderblocks.setRenderBoundsFromBlock(block);
                         renderblocks.renderStandardBlock(block, i, j, k);
                     }
                     else
@@ -196,7 +196,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                         r = r / 255;
                         g = g / 255;
                         b = b / 255;
-                        renderblocks.updateCustomBlockBounds(block);
+                        renderblocks.setRenderBoundsFromBlock(block);
                         renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
                     }
                     if(drawHightlight){
@@ -234,7 +234,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
                     if (meta > 0 && meta != 3)
                     {
-                        renderblocks.updateCustomBlockBounds(block);
+                        renderblocks.setRenderBoundsFromBlock(block);
                         renderblocks.renderStandardBlock(block, i, j, k);
                     }
                     else
@@ -246,7 +246,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                         r = r / 255;
                         g = g / 255;
                         b = b / 255;
-                        renderblocks.updateCustomBlockBounds(block);
+                        renderblocks.setRenderBoundsFromBlock(block);
                         renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
                     }
                     if(drawHightlight){
@@ -266,7 +266,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
 
         block.setBlockBounds(0, 0, 0, 0, 0, 0);
-        renderblocks.updateCustomBlockBounds(block);
+        renderblocks.setRenderBoundsFromBlock(block);
         renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, 1, 1, 1);
         
 //        tes.draw();
@@ -303,39 +303,39 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[1][0][1] == 0 && rut[1][2][1] == 0)
         {
             block.setBlockBounds(cw, 0, cw, cw + rw, 1F, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
         else if (rut[1][0][1] == 0)
         {
             block.setBlockBounds(cw, 0, cw, cw + rw, bi, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
         else if (rut[1][2][1] == 0)
         {
             block.setBlockBounds(cw, 1F - bi, cw, cw + rw, 1F, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
 
         block.setBlockBounds(0, 1F - cw, 0, cw, 1F, cw);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
         block.setBlockBounds(1F - cw, 1F - cw, 0, 1F, 1F, cw);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
         block.setBlockBounds(0, 1F - cw, 1F - cw, cw, 1F, 1F);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
         block.setBlockBounds(1F - cw, 1F - cw, 1F - cw, 1F, 1F, 1F);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
 
@@ -344,7 +344,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[1][2][2] == 0)
         {
             block.setBlockBounds(cw, 1f - cw, 1f - cw, cw + rw, 1f, 1f);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -359,7 +359,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[1][2][0] == 0)
         {
             block.setBlockBounds(cw, 1f - cw, 0F, cw + rw, 1f, cw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -374,7 +374,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[2][2][1] == 0)
         {
             block.setBlockBounds(1f - cw, 1f - cw, cw, 1f, 1f, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -389,7 +389,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[0][2][1] == 0)
         {
             block.setBlockBounds(0F, 1f - cw, cw, cw, 1f, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -402,19 +402,19 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
         //corners
         block.setBlockBounds(0, 0, 0, cw, cw, cw);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
         block.setBlockBounds(1F - cw, 0, 0, 1F, cw, cw);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
         block.setBlockBounds(0, 0, 1F - cw, cw, cw, 1F);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
         block.setBlockBounds(1F - cw, 0, 1F - cw, 1F, cw, 1F);
-        rb.updateCustomBlockBounds(block);
+        rb.setRenderBoundsFromBlock(block);
         rb.renderStandardBlock(block, i, j, k);
         rendered++;
 
@@ -460,7 +460,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
             }
 
             fluid.setBlockBounds(ix, iy, iz, iw, ih, il);
-            rb.updateCustomBlockBounds(fluid);
+            rb.setRenderBoundsFromBlock(fluid);
             rb.renderStandardBlock(fluid, i, j, k);
             rendered++;
         }
@@ -506,7 +506,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
             //Base middle
             block.setBlockBounds(ix, iy, iz, iw, ih, il);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -517,21 +517,21 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[0][1][1] == 0 && rut[2][1][1] == 0)
         {
             block.setBlockBounds(0, cw, cw, 1F, cw + rw, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
         else if (rut[0][1][1] == 0)
         {
             block.setBlockBounds(0, cw, cw, bi, cw + rw, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
         else if (rut[2][1][1] == 0)
         {
             block.setBlockBounds(1F - bi, cw, cw, 1F, cw + rw, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -540,21 +540,21 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[1][1][0] == 0 && rut[1][1][2] == 0)
         {
             block.setBlockBounds(cw, cw, 0F, cw + rw, cw + rw, 1F);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
         else if (rut[1][1][0] == 0)
         {
             block.setBlockBounds(cw, cw, 0F, cw + rw, cw + rw, bi);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
         else if (rut[1][1][2] == 0)
         {
             block.setBlockBounds(cw, cw, 1F - bi, cw + rw, cw + rw, 1F);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -570,7 +570,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[1][0][2] == 0)
         {
             block.setBlockBounds(cw, 0, 1f - cw, cw + rw, cw, 1f);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -579,7 +579,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[1][0][0] == 0)
         {
             block.setBlockBounds(cw, 0, 0F, cw + rw, cw, cw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -588,7 +588,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[2][0][1] == 0)
         {
             block.setBlockBounds(1f - cw, 0, cw, 1f, cw, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -597,7 +597,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[0][0][1] == 0)
         {
             block.setBlockBounds(0F, 0, cw, cw, cw, cw + rw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -607,7 +607,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[0][1][2] == 0)
         {
             block.setBlockBounds(0F, cw, 1f - cw, cw, cw + rw, 1f);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -616,7 +616,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[2][1][2] == 0)
         {
             block.setBlockBounds(1f - cw, cw, 1f - cw, 1f, cw + rw, 1f);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -625,7 +625,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[0][1][0] == 0)
         {
             block.setBlockBounds(0, cw, 0f, cw, cw + rw, cw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -634,7 +634,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         if (rut[2][1][0] == 0)
         {
             block.setBlockBounds(1f - cw, cw, 0f, 1f, cw + rw, cw);
-            rb.updateCustomBlockBounds(block);
+            rb.setRenderBoundsFromBlock(block);
             rb.renderStandardBlock(block, i, j, k);
             rendered++;
         }
@@ -680,7 +680,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
     	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         double dif = 0.001;
         int tex = 32;
-        rb.updateCustomBlockBounds(b);
+        rb.setRenderBoundsFromBlock(b);
         if(!ignore[0])
         	renderEastFace(rb, 128, b, i, j, k-dif, tex);
         if(!ignore[1])
@@ -700,7 +700,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         double dif = 0.001;
         int tex = 32;
 
-        rb.updateCustomBlockBounds(b);
+        rb.setRenderBoundsFromBlock(b);
         if(dust != horiz[x][y])
         	renderEastFace(rb, 128, b, i, j, k-dif, tex);
         if(dust != horiz[x][y+1])
@@ -726,10 +726,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        int var10 = (par8 & 15) << 4;
        int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.customMinX * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.customMaxX * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.customMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.customMinY * (double)16 - 0.01D) / 256.0D;
+       double var12 = ((double)var10 + rb.renderMinX * (double)16) / 256.0D;
+       double var14 = ((double)var10 + rb.renderMaxX * (double)16 - 0.01D) / 256.0D;
+       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
        double var20;
 
        if (rb.flipTexture)
@@ -739,13 +739,13 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
            var14 = var20;
        }
 
-       if (rb.customMinX < 0.0D || rb.customMaxX > 1.0D)
+       if (rb.renderMinX < 0.0D || rb.renderMaxX > 1.0D)
        {
            var12 = (double)(((float)var10 + 0.0F) / 256.0F);
            var14 = (double)(((float)var10 + 15.99F) / 256.0F);
        }
 
-       if (rb.customMinY < 0.0D || rb.customMaxY > 1.0D)
+       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
        {
            var16 = (double)(((float)var11 + 0.0F) / 256.0F);
            var18 = (double)(((float)var11 + 15.99F) / 256.0F);
@@ -758,10 +758,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        if (rb.uvRotateEast == 2)
        {
-           var12 = ((double)var10 + rb.customMinY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.customMinX * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.customMaxX * (double)height) / 256.0D;
+           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+           var16 = ((double)(var11 + 16) - rb.renderMinX * (double)height) / 256.0D;
+           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)(var11 + 16) - rb.renderMaxX * (double)height) / 256.0D;
            var24 = var16;
            var26 = var18;
            var20 = var12;
@@ -771,10 +771,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateEast == 1)
        {
-           var12 = ((double)(var10 + 16) - rb.customMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.customMaxX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMinX * (double)height) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+           var16 = ((double)var11 + rb.renderMaxX * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMinX * (double)height) / 256.0D;
            var20 = var14;
            var22 = var12;
            var12 = var14;
@@ -784,21 +784,21 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateEast == 3)
        {
-           var12 = ((double)(var10 + 16) - rb.customMinX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMaxX * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMinY * (double)height - 0.01D) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMinX * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMaxX * (double)height - 0.01D) / 256.0D;
+           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
            var20 = var14;
            var22 = var12;
            var24 = var16;
            var26 = var18;
        }
 
-       double var28 = par2 + rb.customMinX;
-       double var30 = par2 + rb.customMaxX;
-       double var32 = par4 + rb.customMinY;
-       double var34 = par4 + rb.customMaxY;
-       double var36 = par6 + rb.customMinZ;
+       double var28 = par2 + rb.renderMinX;
+       double var30 = par2 + rb.renderMaxX;
+       double var32 = par4 + rb.renderMinY;
+       double var34 = par4 + rb.renderMaxY;
+       double var36 = par6 + rb.renderMinZ;
 
        if (rb.enableAO)
        {
@@ -838,10 +838,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        int var10 = (par8 & 15) << 4;
        int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.customMinX * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.customMaxX * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.customMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.customMinY * (double)16 - 0.01D) / 256.0D;
+       double var12 = ((double)var10 + rb.renderMinX * (double)16) / 256.0D;
+       double var14 = ((double)var10 + rb.renderMaxX * (double)16 - 0.01D) / 256.0D;
+       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
        double var20;
 
        if (rb.flipTexture)
@@ -851,13 +851,13 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
            var14 = var20;
        }
 
-       if (rb.customMinX < 0.0D || rb.customMaxX > 1.0D)
+       if (rb.renderMinX < 0.0D || rb.renderMaxX > 1.0D)
        {
            var12 = (double)(((float)var10 + 0.0F) / 256.0F);
            var14 = (double)(((float)var10 + 15.99F) / 256.0F);
        }
 
-       if (rb.customMinY < 0.0D || rb.customMaxY > 1.0D)
+       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
        {
            var16 = (double)(((float)var11 + 0.0F) / 256.0F);
            var18 = (double)(((float)var11 + 15.99F) / 256.0F);
@@ -870,10 +870,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        if (rb.uvRotateWest == 1)
        {
-           var12 = ((double)var10 + rb.customMinY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.customMinX * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.customMaxY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.customMaxX * (double)height) / 256.0D;
+           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+           var18 = ((double)(var11 + 16) - rb.renderMinX * (double)height) / 256.0D;
+           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+           var16 = ((double)(var11 + 16) - rb.renderMaxX * (double)height) / 256.0D;
            var24 = var16;
            var26 = var18;
            var20 = var12;
@@ -883,10 +883,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateWest == 2)
        {
-           var12 = ((double)(var10 + 16) - rb.customMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.customMinX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMaxX * (double)height) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+           var16 = ((double)var11 + rb.renderMinX * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMaxX * (double)height) / 256.0D;
            var20 = var14;
            var22 = var12;
            var12 = var14;
@@ -896,21 +896,21 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateWest == 3)
        {
-           var12 = ((double)(var10 + 16) - rb.customMinX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMaxX * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMinY * (double)height - 0.01D) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMinX * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMaxX * (double)height - 0.01D) / 256.0D;
+           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
            var20 = var14;
            var22 = var12;
            var24 = var16;
            var26 = var18;
        }
 
-       double var28 = par2 + rb.customMinX;
-       double var30 = par2 + rb.customMaxX;
-       double var32 = par4 + rb.customMinY;
-       double var34 = par4 + rb.customMaxY;
-       double var36 = par6 + rb.customMaxZ;
+       double var28 = par2 + rb.renderMinX;
+       double var30 = par2 + rb.renderMaxX;
+       double var32 = par4 + rb.renderMinY;
+       double var34 = par4 + rb.renderMaxY;
+       double var36 = par6 + rb.renderMaxZ;
 
        if (rb.enableAO)
        {
@@ -950,10 +950,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        int var10 = (par8 & 15) << 4;
        int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.customMinZ * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.customMaxZ * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.customMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.customMinY * (double)16 - 0.01D) / 256.0D;
+       double var12 = ((double)var10 + rb.renderMinZ * (double)16) / 256.0D;
+       double var14 = ((double)var10 + rb.renderMaxZ * (double)16 - 0.01D) / 256.0D;
+       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
        double var20;
 
        if (rb.flipTexture)
@@ -963,13 +963,13 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
            var14 = var20;
        }
 
-       if (rb.customMinZ < 0.0D || rb.customMaxZ > 1.0D)
+       if (rb.renderMinZ < 0.0D || rb.renderMaxZ > 1.0D)
        {
            var12 = (double)(((float)var10 + 0.0F) / 256.0F);
            var14 = (double)(((float)var10 + 15.99F) / 256.0F);
        }
 
-       if (rb.customMinY < 0.0D || rb.customMaxY > 1.0D)
+       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
        {
            var16 = (double)(((float)var11 + 0.0F) / 256.0F);
            var18 = (double)(((float)var11 + 15.99F) / 256.0F);
@@ -982,10 +982,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        if (rb.uvRotateNorth == 1)
        {
-           var12 = ((double)var10 + rb.customMinY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.customMaxZ * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.customMinZ * (double)height) / 256.0D;
+           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+           var16 = ((double)(var11 + 16) - rb.renderMaxZ * (double)height) / 256.0D;
+           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)(var11 + 16) - rb.renderMinZ * (double)height) / 256.0D;
            var24 = var16;
            var26 = var18;
            var20 = var12;
@@ -995,10 +995,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateNorth == 2)
        {
-           var12 = ((double)(var10 + 16) - rb.customMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.customMinZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMaxZ * (double)height) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+           var16 = ((double)var11 + rb.renderMinZ * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMaxZ * (double)height) / 256.0D;
            var20 = var14;
            var22 = var12;
            var12 = var14;
@@ -1008,21 +1008,21 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateNorth == 3)
        {
-           var12 = ((double)(var10 + 16) - rb.customMinZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMaxZ * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMinY * (double)height - 0.01D) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMaxZ * (double)height - 0.01D) / 256.0D;
+           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
            var20 = var14;
            var22 = var12;
            var24 = var16;
            var26 = var18;
        }
 
-       double var28 = par2 + rb.customMinX;
-       double var30 = par4 + rb.customMinY;
-       double var32 = par4 + rb.customMaxY;
-       double var34 = par6 + rb.customMinZ;
-       double var36 = par6 + rb.customMaxZ;
+       double var28 = par2 + rb.renderMinX;
+       double var30 = par4 + rb.renderMinY;
+       double var32 = par4 + rb.renderMaxY;
+       double var34 = par6 + rb.renderMinZ;
+       double var36 = par6 + rb.renderMaxZ;
 
        if (rb.enableAO)
        {
@@ -1062,10 +1062,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        int var10 = (par8 & 15) << 4;
        int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.customMinZ * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.customMaxZ * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.customMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.customMinY * (double)16 - 0.01D) / 256.0D;
+       double var12 = ((double)var10 + rb.renderMinZ * (double)16) / 256.0D;
+       double var14 = ((double)var10 + rb.renderMaxZ * (double)16 - 0.01D) / 256.0D;
+       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
        double var20;
 
        if (rb.flipTexture)
@@ -1075,13 +1075,13 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
            var14 = var20;
        }
 
-       if (rb.customMinZ < 0.0D || rb.customMaxZ > 1.0D)
+       if (rb.renderMinZ < 0.0D || rb.renderMaxZ > 1.0D)
        {
            var12 = (double)(((float)var10 + 0.0F) / 256.0F);
            var14 = (double)(((float)var10 + 15.99F) / 256.0F);
        }
 
-       if (rb.customMinY < 0.0D || rb.customMaxY > 1.0D)
+       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
        {
            var16 = (double)(((float)var11 + 0.0F) / 256.0F);
            var18 = (double)(((float)var11 + 15.99F) / 256.0F);
@@ -1094,10 +1094,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
        if (rb.uvRotateSouth == 2)
        {
-           var12 = ((double)var10 + rb.customMinY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.customMinZ * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.customMaxZ * (double)height) / 256.0D;
+           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+           var16 = ((double)(var11 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)(var11 + 16) - rb.renderMaxZ * (double)height) / 256.0D;
            var24 = var16;
            var26 = var18;
            var20 = var12;
@@ -1107,10 +1107,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateSouth == 1)
        {
-           var12 = ((double)(var10 + 16) - rb.customMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.customMaxZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMinZ * (double)height) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+           var16 = ((double)var11 + rb.renderMaxZ * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMinZ * (double)height) / 256.0D;
            var20 = var14;
            var22 = var12;
            var12 = var14;
@@ -1120,21 +1120,21 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
        }
        else if (rb.uvRotateSouth == 3)
        {
-           var12 = ((double)(var10 + 16) - rb.customMinZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.customMaxZ * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.customMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.customMinY * (double)height - 0.01D) / 256.0D;
+           var12 = ((double)(var10 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+           var14 = ((double)(var10 + 16) - rb.renderMaxZ * (double)height - 0.01D) / 256.0D;
+           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
            var20 = var14;
            var22 = var12;
            var24 = var16;
            var26 = var18;
        }
 
-       double var28 = par2 + rb.customMaxX;
-       double var30 = par4 + rb.customMinY;
-       double var32 = par4 + rb.customMaxY;
-       double var34 = par6 + rb.customMinZ;
-       double var36 = par6 + rb.customMaxZ;
+       double var28 = par2 + rb.renderMaxX;
+       double var30 = par4 + rb.renderMinY;
+       double var32 = par4 + rb.renderMaxY;
+       double var34 = par6 + rb.renderMinZ;
+       double var36 = par6 + rb.renderMaxZ;
 
        if (rb.enableAO)
        {

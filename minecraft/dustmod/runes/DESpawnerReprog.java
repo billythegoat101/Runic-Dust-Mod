@@ -55,9 +55,9 @@ public class DESpawnerReprog extends DustEvent
             if (o instanceof EntityItem)
             {
                 EntityItem ei = (EntityItem)o;
-                ItemStack item = ei.func_92014_d();
+                ItemStack item = ei.getEntityItem();
 
-                if (item.itemID == Item.monsterPlacer.shiftedIndex)
+                if (item.itemID == Item.monsterPlacer.itemID)
                 {
                     entClass = item.getItemDamage();
                     item.stackSize--;
@@ -66,7 +66,7 @@ public class DESpawnerReprog extends DustEvent
                     {
                         ei.setDead();
                     }else{
-                    	ei.func_92013_a(item);
+                    	ei.func_92058_a(item);
                     }
                 }
             }

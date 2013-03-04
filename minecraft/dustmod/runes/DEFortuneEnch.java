@@ -40,20 +40,20 @@ public class DEFortuneEnch extends DustEvent
     public void onInit(EntityDust e)
     {
         List<EntityItem> sacrifice = getItems(e);
-        int item = Item.pickaxeDiamond.shiftedIndex;
+        int item = Item.pickaxeDiamond.itemID;
 
         for (EntityItem i: sacrifice)
         {
-            ItemStack is = i.func_92014_d();
+            ItemStack is = i.getEntityItem();
 
-            if (is.itemID == Item.pickaxeDiamond.shiftedIndex || is.itemID == Item.swordDiamond.shiftedIndex)
+            if (is.itemID == Item.pickaxeDiamond.itemID || is.itemID == Item.swordDiamond.itemID)
             {
                 item = is.itemID;
                 break;
             }
         }
 
-//        int gold = ((item == Item.pickaxeDiamond.shiftedIndex) ? Item.pickaxeGold.shiftedIndex:Item.swordGold.shiftedIndex);
+//        int gold = ((item == Item.pickaxeDiamond.itemID) ? Item.pickaxeGold.itemID:Item.swordGold.itemID);
         ItemStack[] req = this.sacrifice(e, new ItemStack[] {new ItemStack(item, 1, 0),
                       new ItemStack(Block.oreDiamond.blockID, 1, 0),
                       new ItemStack(Block.oreRedstone.blockID, 1, 0),
@@ -82,12 +82,12 @@ public class DEFortuneEnch extends DustEvent
             Entity en = null;
             ItemStack create =  new ItemStack((int)e.data[0], 1, 0);
 
-            if (e.data[0] == Item.swordDiamond.shiftedIndex)
+            if (e.data[0] == Item.swordDiamond.itemID)
             {
                 create.addEnchantment(Enchantment.looting, 4);
             }
 
-            if (e.data[0] == Item.pickaxeDiamond.shiftedIndex)
+            if (e.data[0] == Item.pickaxeDiamond.itemID)
             {
                 create.addEnchantment(Enchantment.fortune, 4);
             }

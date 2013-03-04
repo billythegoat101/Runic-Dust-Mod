@@ -104,7 +104,7 @@ public class ItemDust extends ItemReed
             if (world.canPlaceEntityOnSide(this.blockID, i, j, k, false, face, (Entity)null))
             {
                 Block var12 = Block.blocksList[this.blockID];
-                int var13 = var12.func_85104_a(world, i, j, k, face, x, y, z, 0);
+                int var13 = var12.onBlockPlaced(world, i, j, k, face, x, y, z, 0);
 
 
                 if (world.setBlockWithNotify(i, j, k, this.blockID))
@@ -112,7 +112,7 @@ public class ItemDust extends ItemReed
                     if (world.getBlockId(i, j, k) == this.blockID)
                     {
                         Block.blocksList[this.blockID].onBlockPlacedBy(world, i, j, k, p);
-                        Block.blocksList[this.blockID].func_85105_g(world, i, j, k, var13);
+                        Block.blocksList[this.blockID].onPostBlockPlaced(world, i, j, k, var13);
                         
                     }
                     DustMod.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);

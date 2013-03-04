@@ -6,7 +6,6 @@ package dustmod.runes;
 
 import java.util.List;
 
-import net.minecraft.entity.DustModEntityBouncer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -15,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import dustmod.DustMod;
 import dustmod.EntityDust;
 import dustmod.PoweredEvent;
 
@@ -101,7 +99,7 @@ public class DEXP extends PoweredEvent
             if (et instanceof EntityItem)
             {
                 et.setDead();
-                this.addFuel(e, ((EntityItem)et).func_92014_d().stackSize * 10);
+                this.addFuel(e, ((EntityItem)et).getEntityItem().stackSize * 10);
             }
 
             if (et instanceof EntityLiving && et != player)
@@ -118,7 +116,7 @@ public class DEXP extends PoweredEvent
                     continue;
                 }
 
-                int exp = DustModEntityBouncer.getExperiencePoints(el, null);
+                int exp = el.experienceValue;//DustModEntityBouncer.getExperiencePoints(el, null);
                 el.attackEntityFrom(DamageSource.magic, 10000000);
 
                 for (int mul = 0; mul < 2; mul++)

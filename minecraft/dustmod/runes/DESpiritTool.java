@@ -61,7 +61,7 @@ public class DESpiritTool extends DustEvent
 //        }
 //        int meatamt = 8;
 //
-//        int[] meats = new int[]{Item.porkCooked.shiftedIndex, Item.porkRaw.shiftedIndex, Item.beefCooked.shiftedIndex, Item.beefRaw.shiftedIndex, Item.chickenCooked.shiftedIndex, Item.chickenRaw.shiftedIndex, Item.rottenFlesh.shiftedIndex, Item.fishCooked.shiftedIndex, Item.fishRaw.shiftedIndex};
+//        int[] meats = new int[]{Item.porkCooked.itemID, Item.porkRaw.itemID, Item.beefCooked.itemID, Item.beefRaw.itemID, Item.chickenCooked.itemID, Item.chickenRaw.itemID, Item.rottenFlesh.itemID, Item.fishCooked.itemID, Item.fishRaw.itemID};
 //        for(int i = 0; i < itemstacks.size(); i++){
 //            EntityItem ei = itemstacks.get(i);
 //            ItemStack is = ei.item;
@@ -153,11 +153,11 @@ public class DESpiritTool extends DustEvent
 
             if (e.data[0] == 1)
             {
-                itemID = DustMod.spiritPickaxe.shiftedIndex;
+                itemID = DustMod.spiritPickaxe.itemID;
             }
             else if (e.data[0] == 2)
             {
-                itemID = DustMod.spiritSword.shiftedIndex;
+                itemID = DustMod.spiritSword.itemID;
             }
 
             ItemStack create =  new ItemStack(itemID, 1, 0);
@@ -197,7 +197,7 @@ public class DESpiritTool extends DustEvent
 //    public static HashMap<ItemStack,ItemStack> entdrops = new HashMap<ItemStack,ItemStack>();
 
 //    static{
-//        entdrops.put(new ItemStack(Item.pickaxeStone, 0, -1), new ItemStack(mod_DustMod.spiritPickaxe.shiftedIndex, 1, 0));
-//        entdrops.put(new ItemStack(Item.swordStone, 0, -1), new ItemStack(mod_DustMod.spiritSword.shiftedIndex, 1, 0));
+//        entdrops.put(new ItemStack(Item.pickaxeStone, 0, -1), new ItemStack(mod_DustMod.spiritPickaxe.itemID, 1, 0));
+//        entdrops.put(new ItemStack(Item.swordStone, 0, -1), new ItemStack(mod_DustMod.spiritSword.itemID, 1, 0));
 //    }
 }
