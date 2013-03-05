@@ -8,6 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import dustmod.BlockDust;
 import dustmod.DustItemManager;
 import dustmod.DustMod;
 import dustmod.TileEntityDust;
@@ -118,6 +119,25 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                 float ox = x * cellWidth;
                 float oz = z * (cellWidth);
 
+                col = DustItemManager.getFloorColorRGB(midArray[x][z]);
+                r = (float)col[0];
+                g = (float)col[1];
+                b = (float)col[2];
+                
+                if(meta == BlockDust.ACTIVE_DUST){
+                	r = 255f;
+                	g = 0f;
+                	b = 0f;
+                }else if( meta == BlockDust.DEAD_DUST){
+                	r = 178f;
+                	g = 178f;
+                	b = 178f;
+                }
+                
+                r = r / 255;
+                g = g / 255;
+                b = b / 255;
+                
                 //if(x < size && z < size){
                 if (midArray[x][z] != 0)
                 {
@@ -126,30 +146,12 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                     bw = 2 * px;
                     bl = 2 * px;
                     block.setBlockBounds(bx, t, bz, bx + bw, t + h, bz + bl);
-
-//                        tes.addVertexWithUV(bx, h, bz, 1, 1);
-//                        tes.addVertexWithUV(bx-bw, h, bz, 0, 1);
-//                        tes.addVertexWithUV(bx-bw, h, bz-bl, 0, 0);
-//                        tes.addVertexWithUV(bx, h, bz-bl, 1, 0);
-                    if (meta > 0 && meta != 3)
-                    {
-                        renderblocks.setRenderBoundsFromBlock(block);
-                        renderblocks.renderStandardBlock(block, i, j, k);
-                    }
-                    else
-                    {
-                        col = DustItemManager.getFloorColorRGB(midArray[x][z]);
-                        r = (float)col[0];
-                        g = (float)col[1];
-                        b = (float)col[2];
-                        r = r / 255;
-                        g = g / 255;
-                        b = b / 255;
-                        renderblocks.setRenderBoundsFromBlock(block);
-                        renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
-                    }
+                    
+                    renderblocks.setRenderBoundsFromBlock(block);
+                    renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
+                    
                     if(drawHightlight){
-                        if(meta == 3) {
+                        if(meta == BlockDust.ACTIVATING_DUST) {
                         	tes.setColorOpaque_F(1, 1, 1);
                             block.setBlockBounds(bx, t, bz, bx + bw, highlightHeight, bz + bl);
                         }
@@ -182,25 +184,11 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
                     block.setBlockBounds(bx, t, bz, bx + bw, t + h, bz + bl);
 
-                    if (meta > 0 && meta != 3)
-                    {
-                        renderblocks.setRenderBoundsFromBlock(block);
-                        renderblocks.renderStandardBlock(block, i, j, k);
-                    }
-                    else
-                    {
-                        col = DustItemManager.getFloorColorRGB(horizArray[x][z]);
-                        r = (float)col[0];
-                        g = (float)col[1];
-                        b = (float)col[2];
-                        r = r / 255;
-                        g = g / 255;
-                        b = b / 255;
-                        renderblocks.setRenderBoundsFromBlock(block);
-                        renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
-                    }
+                    renderblocks.setRenderBoundsFromBlock(block);
+                    renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
+                        
                     if(drawHightlight){
-                        if(meta == 3) {
+                        if(meta == BlockDust.ACTIVATING_DUST) {
                         	tes.setColorOpaque_F(1, 1, 1);
                             block.setBlockBounds(bx, t, bz, bx + bw, highlightHeight, bz + bl);
                         }else{
@@ -231,24 +219,10 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                     }
 
                     block.setBlockBounds(bx, t, bz, bx + bw, t + h, bz + bl);
-
-                    if (meta > 0 && meta != 3)
-                    {
-                        renderblocks.setRenderBoundsFromBlock(block);
-                        renderblocks.renderStandardBlock(block, i, j, k);
-                    }
-                    else
-                    {
-                        col = DustItemManager.getFloorColorRGB(vertArray[x][z]);
-                        r = (float)col[0];
-                        g = (float)col[1];
-                        b = (float)col[2];
-                        r = r / 255;
-                        g = g / 255;
-                        b = b / 255;
-                        renderblocks.setRenderBoundsFromBlock(block);
-                        renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
-                    }
+                    
+                    renderblocks.setRenderBoundsFromBlock(block);
+                    renderblocks.renderStandardBlockWithColorMultiplier(block, i, j, k, r, g, b);
+                    
                     if(drawHightlight){
                         if(meta == 3) {
                         	tes.setColorOpaque_F(1, 1, 1);
