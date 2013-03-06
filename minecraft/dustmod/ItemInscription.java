@@ -106,6 +106,7 @@ public class ItemInscription extends Item {
 			}
 		}
 		if(meta >= max){
+			//DUDE FUCKING LOOK AT THIS COMMENT NEXT TIME THIS DROVE ME MAD FOR 15 MINUTES****************************
 			//Get event also logs the EventID into the item's nbt
 			InscriptionEvent event = InscriptionManager.getEvent(item);
 			int id = -1;
