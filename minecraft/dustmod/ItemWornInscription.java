@@ -82,6 +82,11 @@ public class ItemWornInscription extends ItemArmor implements
 				item.setTagCompound(new NBTTagCompound());
 			item.getTagCompound().setInteger("eventID", i.id);
 			list.add(item);
+			item = new ItemStack(itemID, 1, 1001);
+			if (!item.hasTagCompound())
+				item.setTagCompound(new NBTTagCompound());
+			item.getTagCompound().setInteger("eventID", i.id);
+			list.add(item);
 		}
 		// super.getSubItems(par1, par2CreativeTabs, list);
 	}

@@ -6,6 +6,7 @@ package dustmod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.AxisAlignedBB;
@@ -438,10 +440,31 @@ public abstract class DustEvent {
 				if (c.itemID == is.itemID
 						&& (c.getItemDamage() == -1 || c.getItemDamage() == is
 								.getItemDamage())) {
+					DustMod.log("check1");
 					if(c.hasTagCompound() == is.hasTagCompound() || c.getItemDamage() == -1){
 						boolean match = false;
+						DustMod.log("check2");
 						if(c.hasTagCompound() && c.getItemDamage() != -1){
 							match = c.getTagCompound().equals(is.getTagCompound());
+							DustMod.log("check3");
+							match = c.getTagCompound().equals(is.getTagCompound());
+							NBTTagCompound cTag = c.getTagCompound();
+							NBTTagCompound isTag = is.getTagCompound();
+							if(cTag.getTags().size() == isTag.getTags().size()){
+								DustMod.log("check4");
+								match = true;
+								Object[] cCol = cTag.getTags().toArray();
+								Object[] isCol = isTag.getTags().toArray();
+								for(int t = 0; t < cCol.length; t++){
+									if(!cCol[t].equals(isCol[t])){
+										match = false;
+										DustMod.log("swabby", cCol[t], isCol[t]);
+										break;
+									}
+								}
+							}else{
+								DustMod.log("wat",cTag.getTags().size(),isTag.getTags().size());
+							}
 						}else{
 							match = true;
 						}

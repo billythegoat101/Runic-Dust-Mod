@@ -66,6 +66,19 @@ public class ItemInscription extends Item {
 		
 		return rtn;
 	}
+	
+	public static void removeDesign(ItemStack item){
+
+		if(item == null || !item.hasTagCompound()) return;
+
+		NBTTagCompound tag = item.getTagCompound();
+		for(int i = 0; i < 16; i++){
+			for(int j = 0; j < 16; j++){
+				tag.removeTag(i + "," + j);
+			}
+		}
+	}
+	
 	public static boolean isDesignEmpty(ItemStack item){
 		if(item == null || !item.hasTagCompound()) return false;
 		NBTTagCompound tag = item.getTagCompound();

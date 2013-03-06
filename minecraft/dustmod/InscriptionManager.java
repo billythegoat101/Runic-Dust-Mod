@@ -128,6 +128,13 @@ public class InscriptionManager {
 		return getEvent(item);
 	}
 
+	/**
+	 * Get the event from this ItemWornInscription. If it is not
+	 * already identified, it will be identified by the design and 
+	 * then saved in the tag.
+	 * @param item
+	 * @return
+	 */
 	public static InscriptionEvent getEvent(ItemStack item) {
 		if (item != null && item.hasTagCompound()) {
 			NBTTagCompound tag = item.getTagCompound();
@@ -167,12 +174,34 @@ public class InscriptionManager {
 				if (event != null) {
 					DustMod.log(Level.FINER, "Inscription Identified: " + event.idName);
 //					System.out.println("[DustMod] Inscription Identified: " + event.idName);
+					tag = new NBTTagCompound();
+					item.setTagCompound(tag);
 					tag.setInteger("eventID", event.id);
 					return event;
 				}
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Rewrites/sets the inscription type of this inscription item 
+	 * @param item
+	 * @param inscription
+	 */
+	public static void setEvent(ItemStack item, String inscription){
+		InscriptionEvent evt = null;
+		for(InscriptionEvent e:events){
+			if(e != null && e.idName.equals(inscription)){
+				evt = e;
+				break;
+			}
+		}
+		if(evt != null){
+			if(!item.hasTagCompound()) item.setTagCompound(new NBTTagCompound());
+			NBTTagCompound tag = item.getTagCompound();
+			tag.setInteger("eventID", evt.id);
+		}
 	}
 
 	public static InscriptionEvent getEventInOrder(int ind) {

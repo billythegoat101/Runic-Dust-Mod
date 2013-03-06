@@ -118,29 +118,31 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
             {
                 float ox = x * cellWidth;
                 float oz = z * (cellWidth);
-
-                col = DustItemManager.getFloorColorRGB(midArray[x][z]);
-                r = (float)col[0];
-                g = (float)col[1];
-                b = (float)col[2];
-                
-                if(meta == BlockDust.ACTIVE_DUST){
-                	r = 255f;
-                	g = 0f;
-                	b = 0f;
-                }else if( meta == BlockDust.DEAD_DUST){
-                	r = 178f;
-                	g = 178f;
-                	b = 178f;
-                }
-                
-                r = r / 255;
-                g = g / 255;
-                b = b / 255;
                 
                 //if(x < size && z < size){
                 if (midArray[x][z] != 0)
                 {
+
+                    col = DustItemManager.getFloorColorRGB(midArray[x][z]);
+                    r = (float)col[0];
+                    g = (float)col[1];
+                    b = (float)col[2];
+                    
+                    if(meta == BlockDust.ACTIVE_DUST){
+                    	r = 255f;
+                    	g = 0f;
+                    	b = 0f;
+                    }else if( meta == BlockDust.DEAD_DUST){
+                    	r = 178f;
+                    	g = 178f;
+                    	b = 178f;
+                    }
+                    
+                    r = r / 255;
+                    g = g / 255;
+                    b = b / 255;
+                    
+                    
                     bx = ox + px;
                     bz = oz + px;
                     bw = 2 * px;
@@ -166,6 +168,27 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
                 if (horizArray[x][z] != 0)
                 {
+
+                    col = DustItemManager.getFloorColorRGB(horizArray[x][z]);
+                    r = (float)col[0];
+                    g = (float)col[1];
+                    b = (float)col[2];
+                    
+                    if(meta == BlockDust.ACTIVE_DUST){
+                    	r = 255f;
+                    	g = 0f;
+                    	b = 0f;
+                    }else if( meta == BlockDust.DEAD_DUST){
+                    	r = 178f;
+                    	g = 178f;
+                    	b = 178f;
+                    }
+                    
+                    r = r / 255;
+                    g = g / 255;
+                    b = b / 255;
+                    
+                    
                     bx = ox + px;
                     bz = oz - px;
                     bw = 2 * px;
@@ -202,6 +225,27 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 
                 if (vertArray[x][z] != 0)
                 {
+
+                    col = DustItemManager.getFloorColorRGB(vertArray[x][z]);
+                    r = (float)col[0];
+                    g = (float)col[1];
+                    b = (float)col[2];
+                    
+                    if(meta == BlockDust.ACTIVE_DUST){
+                    	r = 255f;
+                    	g = 0f;
+                    	b = 0f;
+                    }else if( meta == BlockDust.DEAD_DUST){
+                    	r = 178f;
+                    	g = 178f;
+                    	b = 178f;
+                    }
+                    
+                    r = r / 255;
+                    g = g / 255;
+                    b = b / 255;
+                    
+                    
                     bx = ox - px;
                     bz = oz + px;
                     bw = 2 * px;

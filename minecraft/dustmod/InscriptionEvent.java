@@ -142,4 +142,9 @@ public class InscriptionEvent {
 //			ent.inventory.armorInventory[2] = null;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + " InscriptionID:[" + this.idName + ":" + this.id + "]";
+	}
 }
