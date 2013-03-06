@@ -1,4 +1,4 @@
-package dustmodtestpack.inscriptions;
+package dustmod.inscriptions;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -14,28 +14,22 @@ import dustmod.EntityDust;
 import dustmod.InscriptionEvent;
 import dustmod.InscriptionManager;
 
-public class BlinkerInscription extends InscriptionEvent {
-
-	
-	public BlinkerInscription(int[][] design, String idName, String properName,
+public class EnderInscription extends InscriptionEvent {
+	public EnderInscription(int[][] design, String idName, String properName,
 			int id) {
 		super(design, idName, properName, id);
 		this.setAuthor("billythegoat101");
 		this.setDescription("Description:\n" +
-				"Blink like an enderman! Shift+RightClick with a bare hand to teleport. It will cost 1 heart per blink but you will not take fall damage." +
-				"Level II enables precision teleporting and extra duration.");
+				"Blink like an enderman! Shift+RightClick with a bare hand to teleport randomly in that direction. Safety not guaranteed. It will cost 1 heart per blink but you will not take fall damage.");
 		this.setNotes("Sacrifice:\n" +
-				"-1xBlinkI (Fully charged) + 8xEnderPearl, 4xObsidian, 8xEndStone + 10XP");
+				"-16xEnderPearl + 2xBlazeRod + 10XP");
 	}
 	
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
 		ItemStack[] req = new ItemStack[0];
 		int xp = 10;
-		
-		ItemStack blinkI = new ItemStack(DustMod.wornInscription.itemID, 1, 0);
-		InscriptionManager.setEvent(blinkI, "leapI");
-		req = new ItemStack[]{blinkI, new ItemStack(Item.enderPearl, 8)};
+		req = new ItemStack[]{new ItemStack(Item.enderPearl,16), new ItemStack(Item.blazeRod, 2)};
 		
 		req = rune.sacrifice(e, req);
 		if(!rune.checkSacrifice(req)) return false;
@@ -59,12 +53,15 @@ public class BlinkerInscription extends InscriptionEvent {
 			wearer.fallDistance = 5F;
 		}
 		
-		if (((EntityPlayer)wearer).getCurrentEquippedItem() == null && wearer.isSneaking()) {
+		if (((EntityPlayer)wearer).getCurrentEquippedItem() == null && wearer.isSneaking() && buttons[0] && !getLastMouse(item)) {
+			boolean canTele = canTele(item,wearer);
 			double[] testLoc = new double[3];
 			
 			Vec3 look = wearer.getLookVec();
-			double dist = 11D;
-			System.out.println();
+			look = Vec3.createVectorHelper(look.xCoord + Math.random()*1-0.5, look.yCoord, look.zCoord + Math.random()*1-0.5);
+			double dist = Math.random()*6+9D;
+
+			
 			testLoc[0] = wearer.posX + dist*look.xCoord; 
 			testLoc[1] = wearer.posY + dist*look.yCoord + wearer.getEyeHeight(); 
 			testLoc[2] = wearer.posZ + dist*look.zCoord;
@@ -103,13 +100,8 @@ public class BlinkerInscription extends InscriptionEvent {
 			}
 			
 			double rad =0.5;
-			boolean canTele = canTele(item,wearer);
 			canTele &= dist > 2.5;
-			
-			DustMod.spawnParticles(wearer.worldObj, "reddust", testLoc, canTele ? -1:1, canTele ? 0.6:0, canTele ? 1:0, 6 / (dist < 3 ? 6:1), 0.1, 0.1,0.1);
-			DustMod.spawnParticles(wearer.worldObj, "reddust", Math.floor(testLoc[0]) +0.5, newY, Math.floor(testLoc[2]) +0.5, canTele ? -1:0, canTele ? 0.8:0, canTele ? 0.8:0, 2, 0.5, 0.1,0.5);
-			
-			if(buttons[0] && !getLastMouse(item) && canTele){
+			if(canTele){
 				onTele(item,wearer);
 				//Play at both before and after
 	            wearer.worldObj.playSoundEffect(wearer.posX, wearer.posY, wearer.posZ, "mob.endermen.portal", 1.0F, 1.0F);
@@ -120,9 +112,12 @@ public class BlinkerInscription extends InscriptionEvent {
 				
 	            wearer.worldObj.playSoundEffect(wearer.posX, wearer.posY, wearer.posZ, "mob.endermen.portal", 1.0F, 1.0F);
 	            wearer.playSound("mob.endermen.portal", 1.0F, 1.0F);
-	            this.damage((EntityPlayer)wearer, item, 10);
+	            
+	            this.damage((EntityPlayer)wearer, item, 20);
 				setFalling(item,true);
 			}
+			recordMouseClick(item,buttons[0]);
+		}else if(!buttons[0]){
 			recordMouseClick(item,buttons[0]);
 		}
 	}

@@ -39,7 +39,7 @@ public int level;
 					"It will protect from fall damage but only that which is caused by the launch\n" +
 					"Level II provides extra height and duration as well as adding an extra half block to your normal jumping height.");
 			this.setNotes("Sacrifice:\n" +
-					"-1xLeapI (fully charged) + 1xSlimeEgg + 7XP");
+					"-1xLeapI (Fully charged) + 1xSlimeEgg + 7XP");
 			break;
 		}
 	}

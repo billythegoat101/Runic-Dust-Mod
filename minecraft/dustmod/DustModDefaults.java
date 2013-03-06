@@ -6,6 +6,7 @@ import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import dustmod.inscriptions.BounceInscription;
+import dustmod.inscriptions.EnderInscription;
 import dustmod.inscriptions.RespawnInscription;
 import dustmod.inscriptions.RocketLaunch;
 import dustmod.runes.DEBomb;
@@ -51,6 +52,7 @@ import dustmod.runes.DEVoid;
 import dustmod.runes.DEWall;
 import dustmod.runes.DEXP;
 import dustmod.runes.DEXPStore;
+import dustmodtestpack.inscriptions.BlinkerInscription;
 import dustmodtestpack.inscriptions.VoidInscription;
 
 /**
@@ -247,6 +249,30 @@ public class DustModDefaults {
 		};
 		evt = new BounceInscription(design, "bouncy",
 				"Bounce I", 5);
+		InscriptionManager.registerInscriptionEvent(evt);
+
+		design = new int[][] { 
+				{0, 0, 0, 0, G, 0, 0, 0, G, 0, 0, 0 },
+				{0, 0, 0, G, P, P, 0, P, P, G, 0, 0 },
+				{0, P, P, P, P, G, G, P, P, P, P, P },
+				{G, G, G, G, G, P, P, G, G, G, G, 0 },
+				{0, 0, P, G, G, 0, G, G, P, 0, 0, 0 },
+				{0, 0, 0, P, 0, 0, 0, P, 0, 0, 0, 0 }
+		};
+		evt = new EnderInscription(design, "blinkI",
+				"Blink I", 6);
+		InscriptionManager.registerInscriptionEvent(evt);
+
+		design = new int[][] { 
+				{0, 0, 0, 0, G, G, 0, G, G, G, 0, 0 },
+				{0, 0, L, L, G, G, L, L, 0, G, 0, 0 },
+				{0, G, G, G, G, L, G, L, L, L, L, L },
+				{L, L, L, L, L, G, L, G, G, G, G, 0 },
+				{0, G, 0, 0, L, L, G, G, L, L, 0, 0 },
+				{0, G, G, G, 0, 0, G, G, 0, 0, 0, 0 }
+		};
+		evt = new BlinkerInscription(design, "blinkII",
+				"Blink II", 7);
 		InscriptionManager.registerInscriptionEvent(evt);
 	}
 

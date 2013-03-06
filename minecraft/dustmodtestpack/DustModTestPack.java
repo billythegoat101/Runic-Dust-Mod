@@ -96,12 +96,6 @@ public class DustModTestPack {
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
-		design = new int[][] { { 0, G, G, 0 }, { G, L, L, G }, { G, L, L, G },
-				{ 0, G, G, 0 } };
-		evt = new BlinkerInscription(design, "blinker", "Blinker", 103, 110);
-		evt.setAuthor("billythegoat101 -TestPack");
-		InscriptionManager.registerInscriptionEvent(evt);
-
 		design = new int[][] { { 0, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
 				{ 0, G, G, 0 } };
 		evt = new FireballInscription(design, "fireball", "Fire Ball", 105);
