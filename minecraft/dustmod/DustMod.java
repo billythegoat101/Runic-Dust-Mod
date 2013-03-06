@@ -52,7 +52,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 		PacketHandler.CHANNEL_UseInk, PacketHandler.CHANNEL_SetInscription,
 		PacketHandler.CHANNEL_DeclareInscription,
 		PacketHandler.CHANNEL_SpawnParticles,
-		PacketHandler.CHANNEL_SetEntVelocity })
+		PacketHandler.CHANNEL_SetEntVelocity,
+		PacketHandler.CHANNEL_RendBrokenTool })
 public class DustMod {
 
 	@Instance("DustMod")
@@ -537,6 +538,12 @@ public class DustMod {
 	public static void sendEntMotionTraits(EntityLiving e) {
 		PacketDispatcher.sendPacketToAllInDimension(PacketHandler
 				.getSetVelocityPacket(e), e.worldObj.getWorldInfo()
+				.getDimension());
+	}
+	
+	public static void sendRenderBreakItem(EntityPlayer ent, ItemStack tool){
+		PacketDispatcher.sendPacketToAllInDimension(PacketHandler
+				.getRenderBrokenToolPacket(ent, tool), ent.worldObj.getWorldInfo()
 				.getDimension());
 	}
 

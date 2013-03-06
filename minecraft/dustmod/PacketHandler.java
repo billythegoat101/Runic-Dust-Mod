@@ -24,6 +24,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
@@ -47,6 +48,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
     public static final String CHANNEL_SetInscription = "DustSetInsc";
     public static final String CHANNEL_SpawnParticles = "DustParticles"; 
     public static final String CHANNEL_SetEntVelocity = "DustModSetVel";
+    public static final String CHANNEL_RendBrokenTool = "DustModBreakTool";
 //    public static final String CHANNEL_UpdatePlayerInv = "DustModUpdInv";
     
     public static Packet getTEDPacket(TileEntityDust ted)
@@ -434,6 +436,29 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 
         Packet250CustomPayload pkt = new Packet250CustomPayload();
         pkt.channel = CHANNEL_SetEntVelocity;
+        pkt.data = bos.toByteArray();
+        pkt.length = bos.size();
+        pkt.isChunkDataPacket = false;
+        return pkt;
+    }
+
+    public static Packet getRenderBrokenToolPacket(EntityPlayer ent, ItemStack tool){
+    	ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
+        DataOutputStream dos = new DataOutputStream(bos);
+
+        try
+        {
+        	dos.writeInt(ent.entityId);
+        	dos.writeInt(tool.itemID);
+        	dos.writeInt(tool.getItemDamage());
+        }
+        catch (IOException e)
+        {
+            // UNPOSSIBLE? -cpw
+        }
+
+        Packet250CustomPayload pkt = new Packet250CustomPayload();
+        pkt.channel = CHANNEL_RendBrokenTool;
         pkt.data = bos.toByteArray();
         pkt.length = bos.size();
         pkt.isChunkDataPacket = false;
@@ -888,6 +913,32 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
             return;
         }
     }
+    private static void onRenderBrokenToolPacket(byte[] data, Player player){
+
+    	if(data == null || data.length == 0) return;
+    	DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+    	int entID;
+    	int item;
+    	int meta;
+        try
+        {
+        	entID = dis.readInt();
+        	item = dis.readInt();
+        	meta = dis.readInt();
+        	
+        	EntityPlayer ent = (EntityPlayer)((EntityPlayer)player).worldObj.getEntityByID(entID);
+        	
+        	if(ent != null){
+    			ent.renderBrokenItemStack(new ItemStack(item,1,meta));
+                ent.addStat(StatList.objectBreakStats[item], 1);
+                ent.sendPlayerAbilities();
+        	}
+        }
+        catch (IOException e)
+        {
+            return;
+        }
+    }
     
     
     @Override
@@ -920,6 +971,8 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
         	onParticlePacket(data,player);
         }else if(channel.equals(CHANNEL_SetEntVelocity)){
         	onSetVelocityPacket(data,player);
+        }else if(channel.equals(CHANNEL_RendBrokenTool)){
+        	onRenderBrokenToolPacket(data,player);
         }
     }
 

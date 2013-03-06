@@ -83,7 +83,7 @@ public class InscriptionManager {
 	public static void tickInscription(Player p, boolean[] buttons, ItemStack item) {
 
 //		tick(p, buttons, item);
-		if(item == null || item.getItemDamage() == 1001){
+		if(item == null || item.getItemDamage() == ItemInscription.max){
 			return;
 		}
 		InscriptionEvent event = getEvent(p);
@@ -96,7 +96,7 @@ public class InscriptionManager {
 	}
 	
 	public static void tick(Player p, boolean[] buttons, ItemStack item){
-		if(item == null || item.getItemDamage() == 1001){
+		if(item == null || item.getItemDamage() == ItemInscription.max){
 			return;
 		}
 		InscriptionEvent event = getEvent(item);

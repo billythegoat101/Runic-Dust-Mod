@@ -127,7 +127,7 @@ public class ItemInscription extends Item {
 				id = event.id;
 				InscriptionManager.onCreate((EntityPlayer)ent, item);
 				item.itemID = DustMod.getWornInscription().itemID;
-				item.setItemDamage(1001);
+				item.setItemDamage(ItemInscription.max);
 			}else{
 				setDried(item);
 			}

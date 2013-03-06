@@ -46,10 +46,10 @@ public class DEChargeInscription extends DustEvent {
         		ItemStack i = ei.getEntityItem();
         		if(i.itemID == DustMod.getWornInscription().itemID && i.getItemDamage() != 0){ //If the inscription is charged, it is ignored
         			InscriptionEvent evt = InscriptionManager.getEvent(i);
-        			DustMod.log("Charge ins found", evt);
+//        			DustMod.log("Charge ins found", evt);
         			if(evt != null){
         				boolean sucess = evt.callSacrifice(this,e, i);
-        				DustMod.log("Charging:", sucess);
+//        				DustMod.log("Charging:", sucess);
         				ei.func_92058_a(i);
         				if(sucess) {
         					e.fade();

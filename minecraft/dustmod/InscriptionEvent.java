@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 
 public class InscriptionEvent {
@@ -136,9 +137,14 @@ public class InscriptionEvent {
 			amt = (item.getMaxDamage()-curDamage) -1;
 		}
 		item.damageItem(amt, ent);
+		DustMod.log("grah " + item.getMaxDamage() + " " + item.getItemDamage());
+		if(item.getItemDamage() >= ItemWornInscription.max-1){
+			DustMod.sendRenderBreakItem(ent, item);
+            DustMod.log("CRACK");
+		}
 		if(item.stackSize <= 0){
 			item.stackSize = 1;
-			item.setItemDamage(1001);
+			item.setItemDamage(ItemInscription.max);
 //			ent.inventory.armorInventory[2] = null;
 		}
 	}

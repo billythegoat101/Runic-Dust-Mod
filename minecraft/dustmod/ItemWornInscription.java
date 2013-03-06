@@ -22,6 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemWornInscription extends ItemArmor implements
 		IArmorTextureProvider, ISpecialArmor {
 
+	public static final int max = 1001;
+	
 	public ItemWornInscription(int id) {
 		super(id, EnumArmorMaterial.CLOTH, 0, 1);
 		this.setTextureFile(DustMod.path + "/dustItems.png");
