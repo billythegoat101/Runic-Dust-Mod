@@ -1,6 +1,7 @@
 package dustmod.inscriptions;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import dustmod.DustEvent;
@@ -18,16 +19,14 @@ public class BounceInscription extends InscriptionEvent {
 				+ "Greatly reduce your fall damage by automatically bouncing back up upon landing.\n" +
 				"Cancel the effect by crouching.");
 		this.setNotes("Sacrifice:\n" +
-				"-4xFeathers + 1xFirework + 5XP");
+				"-8xFeathers + 1xLeatherBoots");
 	}
 
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
-		DustMod.log("Bitch " + Item.fireballCharge.itemID, Item.firework.itemID);
-		ItemStack[] req = new ItemStack[]{new ItemStack(Item.feather,4), new ItemStack(Item.firework.itemID, 1, -1)};
+		ItemStack[] req = new ItemStack[]{new ItemStack(Item.slimeBall,8), new ItemStack(Item.bootsLeather, 1)};
 		req = rune.sacrifice(e, req);
 		if(!rune.checkSacrifice(req)) return false;
-		if(!rune.takeXP(e, 5));
 		item.setItemDamage(0);
 		return true;
 	}
@@ -49,6 +48,8 @@ public class BounceInscription extends InscriptionEvent {
 			wearer.motionZ = -getLastZVel(item)*0.76D;
 			DustMod.sendEntMotionTraits(wearer);
 			setFalling(item,false,0,0,0,0);
+			
+			this.damage((EntityPlayer)wearer, item, 8);
 		}
 	}
 	
