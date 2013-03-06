@@ -137,10 +137,8 @@ public class InscriptionEvent {
 			amt = (item.getMaxDamage()-curDamage) -1;
 		}
 		item.damageItem(amt, ent);
-		DustMod.log("grah " + item.getMaxDamage() + " " + item.getItemDamage());
 		if(item.getItemDamage() >= ItemWornInscription.max-1){
 			DustMod.sendRenderBreakItem(ent, item);
-            DustMod.log("CRACK");
 		}
 		if(item.stackSize <= 0){
 			item.stackSize = 1;

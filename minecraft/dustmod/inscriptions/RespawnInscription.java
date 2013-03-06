@@ -45,6 +45,8 @@ public class RespawnInscription extends InscriptionEvent {
 			y = tag.getInteger("RespawnY");
 			z = tag.getInteger("RespawnZ");
 			
+			if(wearer.getDistanceSq(x, y, z) <= 1) return;
+			
 			wearer.setPositionAndUpdate(x+0.5, y, z+0.5);
 			wearer.fallDistance = 0;
 			this.damage((EntityPlayer)wearer, item, 20);
