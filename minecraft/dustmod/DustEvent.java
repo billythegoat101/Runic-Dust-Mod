@@ -438,9 +438,17 @@ public abstract class DustEvent {
 				if (c.itemID == is.itemID
 						&& (c.getItemDamage() == -1 || c.getItemDamage() == is
 								.getItemDamage())) {
-					while (c.stackSize > 0 && is.stackSize > 0) {
-						is.stackSize--;
-						c.stackSize--;
+					if(c.hasTagCompound() == is.hasTagCompound() || c.getItemDamage() == -1){
+						boolean match = false;
+						if(c.hasTagCompound() && c.getItemDamage() != -1){
+							match = c.getTagCompound().equals(is.getTagCompound());
+						}else{
+							match = true;
+						}
+						while (match && c.stackSize > 0 && is.stackSize > 0) {
+							is.stackSize--;
+							c.stackSize--;
+						}
 					}
 				}
 			}
