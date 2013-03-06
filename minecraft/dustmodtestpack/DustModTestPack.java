@@ -10,13 +10,13 @@ import dustmod.DustManager;
 import dustmod.DustShape;
 import dustmod.InscriptionEvent;
 import dustmod.InscriptionManager;
+import dustmod.inscriptions.RespawnInscription;
+import dustmod.inscriptions.RocketLaunch;
 import dustmodtestpack.inscriptions.BlinkerInscription;
 import dustmodtestpack.inscriptions.ErfBendInscription;
 import dustmodtestpack.inscriptions.FireballInscription;
 import dustmodtestpack.inscriptions.GlideInscription;
 import dustmodtestpack.inscriptions.MountainCutterInscription;
-import dustmodtestpack.inscriptions.RespawnInscription;
-import dustmodtestpack.inscriptions.RocketLaunch;
 import dustmodtestpack.inscriptions.VoidInscription;
 import dustmodtestpack.inscriptions.WaterAffinity;
 import dustmodtestpack.runes.LaunchTestRune;
@@ -86,50 +86,25 @@ public class DustModTestPack {
 
 		design = new int[][] { { 0, P, P, 0 }, { P, G, G, P }, { P, G, G, P },
 				{ 0, P, P, 0 } };
-		evt = new MountainCutterInscription(design, "cut", "Moutain Cutter", 0);
+		evt = new MountainCutterInscription(design, "cut", "Moutain Cutter", 100);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { 0, P, P, 0 }, { P, L, L, P }, { P, L, L, P },
 				{ 0, P, P, 0 } };
-		evt = new ErfBendInscription(design, "erfbendin", "ERF BENDIN", 2);
-		evt.setAuthor("billythegoat101 -TestPack");
-		InscriptionManager.registerInscriptionEvent(evt);
-
-		design = new int[][] {
-
-		{ 0, 0, 0, 0, B, B, B, B, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, B, G, G, B, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, G, G, G, G, 0, 0, 0, 0 },
-				{ 0, 0, 0, G, B, G, G, B, G, 0, 0, 0 },
-				{ B, B, G, B, B, G, G, B, B, G, B, B },
-				{ B, G, G, G, G, B, B, G, G, G, G, B },
-				{ B, G, G, G, G, B, B, G, G, G, G, B },
-				{ B, B, G, B, B, G, G, B, B, G, B, B },
-				{ 0, 0, 0, G, B, G, G, B, G, 0, 0, 0 },
-				{ 0, 0, 0, 0, G, G, G, G, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, B, G, G, B, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, B, B, B, B, 0, 0, 0, 0 } };
-		evt = new RespawnInscription(design, "respawn", "Respawn", 1);
+		evt = new ErfBendInscription(design, "erfbendin", "ERF BENDIN", 1002);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { 0, G, G, 0 }, { G, L, L, G }, { G, L, L, G },
 				{ 0, G, G, 0 } };
-		evt = new BlinkerInscription(design, "blinker", "Blinker", 3, 10);
-		evt.setAuthor("billythegoat101 -TestPack");
-		InscriptionManager.registerInscriptionEvent(evt);
-
-		design = new int[][] { { 0, P, P, 0 }, { P, B, B, P }, { P, B, B, P },
-				{ 0, P, P, 0 } };
-		evt = new VoidInscription(design, "voidinscription",
-				"Auto-Void Storage", 4);
+		evt = new BlinkerInscription(design, "blinker", "Blinker", 103, 110);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { 0, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
 				{ 0, G, G, 0 } };
-		evt = new FireballInscription(design, "fireball", "Fire Ball", 5);
+		evt = new FireballInscription(design, "fireball", "Fire Ball", 105);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
@@ -137,7 +112,7 @@ public class DustModTestPack {
 				{ 0, G, G, P, P, 0, 0, P, P, G, G, 0 },
 				{ 0, 0, 0, G, P, G, G, P, G, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, G, G, 0, 0, 0, 0, 0 } };
-		evt = new GlideInscription(1, design, "glideI1", "Glide I", 6);
+		evt = new GlideInscription(1, design, "glideI1", "Glide I", 106);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
@@ -146,19 +121,13 @@ public class DustModTestPack {
 				{ 0, 0, G, G, G, L, L, L, L, G, G, G, 0, 0 },
 				{ 0, 0, 0, 0, 0, G, L, L, G, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, L, L, 0, 0, 0, 0, 0, 0 } };
-		evt = new GlideInscription(2, design, "glideII1", "Glide II", 9);
+		evt = new GlideInscription(2, design, "glideII1", "Glide II", 109);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { G, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
 				{ 0, G, G, 0 } };
-		evt = new WaterAffinity(design, "watertest", "Water Affinity", 7);
-		evt.setAuthor("billythegoat101 -TestPack");
-		InscriptionManager.registerInscriptionEvent(evt);
-
-		design = new int[][] { { L, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
-				{ 0, G, G, 0 } };
-		evt = new RocketLaunch(design, "jumptest", "Rocket", 8, 0);
+		evt = new WaterAffinity(design, "watertest", "Water Affinity", 107);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 

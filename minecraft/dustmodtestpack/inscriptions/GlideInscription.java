@@ -78,13 +78,13 @@ public class GlideInscription extends InscriptionEvent {
 //				player.motionY = -motionYMul;
 //			}
 //			player.motionY *= motionYMul;
-			if(player.motionY < -0.2){
-				player.motionY *= 0.88;
-			}
+//			if(player.motionY < -0.1){
+//				player.motionY *= 0.78;
+//				player.setVelocity(player.motionX, player.motionY*0.88, player.motionZ);
+//			}
 			player.fallDistance = 0;
 			player.jumpMovementFactor = jumpFactor;
 			DustMod.sendEntMotionTraits(wearer);
-			
 			this.damage((EntityPlayer)wearer, item, 2/power);
 		} 
 		else if(player.jumpMovementFactor == jumpFactor){

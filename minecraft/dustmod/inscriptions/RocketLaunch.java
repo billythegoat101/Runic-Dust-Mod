@@ -1,35 +1,67 @@
-package dustmodtestpack.inscriptions;
+package dustmod.inscriptions;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumMovingObjectType;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import dustmod.DustEvent;
 import dustmod.DustMod;
 import dustmod.EntityDust;
 import dustmod.InscriptionEvent;
+import dustmod.InscriptionManager;
 
 public class RocketLaunch extends InscriptionEvent {
-public int power;
+public double power;
+public int level;
 	
 	public RocketLaunch(int[][] design, String idName, String properName,
-			int id, int power) {
+			int id, int level) {
 		super(design, idName, properName, id);
-		this.power = power;
+		
+		this.level = level;
+		
 		this.setAuthor("billythegoat101");
-		this.setDescription("Description:\n" +
-				"Fire away!");
-		this.setNotes("Sacrifice:\n" +
-				"TBD");
+		
+		switch(level){
+		case 1:
+			this.power = 1.15;
+			this.setDescription("Description:\n" +
+					"Shift+Left Click with a bare hand to launch yourself in that direction!\n" +
+					"It will protect from fall damage but only that which is caused by the launch");
+			this.setNotes("Sacrifice:\n" +
+					"-4xFeathers + 1xFirework + 5XP");
+			break;
+		case 2:
+			this.power = 1.85;
+			this.setDescription("Description:\n" +
+					"Shift+Left Click with a bare hand to launch yourself in that direction!\n" +
+					"It will protect from fall damage but only that which is caused by the launch\n" +
+					"Level II provides extra height and duration as well as adding an extra half block to your normal jumping height.");
+			this.setNotes("Sacrifice:\n" +
+					"-1xLeapI (charged) , 1xSlimeEgg, 7XP");
+			break;
+		}
 	}
 	
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
-		// TODO Auto-generated method stub
-		return super.callSacrifice(rune, e, item);
+		ItemStack[] req = new ItemStack[0];
+		int xp = 0;
+		if(level == 1){
+			req = new ItemStack[]{new ItemStack(Item.feather,4), new ItemStack(Item.firework.itemID, 1, -1)};
+			xp = 5;
+		}else if(level == 2){
+			ItemStack leapI = new ItemStack(DustMod.wornInscription.itemID, 1, 0);
+			InscriptionManager.setEvent(leapI, "leapI");
+			req = new ItemStack[]{leapI, new ItemStack(Item.monsterPlacer.itemID, 1, 55)};
+			xp = 7;
+		}
+		req = rune.sacrifice(e, req);
+		if(!rune.checkSacrifice(req)) return false;
+		if(!rune.takeXP(e, xp));
+		item.setItemDamage(0);
+		return true;
 	}
 	
 	@Override
@@ -54,46 +86,26 @@ public int power;
 			double[] testLoc = new double[3];
 			
 			Vec3 look = wearer.getLookVec();
-			double dist = 9D;
 			testLoc[0] = look.xCoord; 
 			testLoc[1] = look.yCoord; 
 			testLoc[2] = look.zCoord;
-			double strength = 3.12D;
+			double strength = power;
 			if(buttons[0]){
-				System.out.println("hrm " + wearer.motionY + " " + wearer.worldObj.isRemote);
-				onTele(item,wearer);
+				onLaunch(item,wearer);
 				wearer.addVelocity(
 						-wearer.motionX+testLoc[0]*strength*1.000000000000000000000000006, 
 						-wearer.motionY+testLoc[1]*strength, 
 						-wearer.motionZ+testLoc[2]*strength*1.000000000000000000000000006);
-//				wearer.addVelocity(-wearer.motionX, -wearer.motionY, -wearer.motionZ);
-//				wearer.motionX = testLoc[0]*strength*1.6;
-//				wearer.motionY = testLoc[1]*strength;
-//				wearer.motionZ = testLoc[2]*strength*1.6;
-
-				System.out.println("grr " + wearer.motionY);
+				
 				wearer.fallDistance = 0.0F;
 				setFalling(item,true);
-//				if(!wearer.worldObj.isRemote){
-//					((WorldServer)wearer.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(wearer, new Packet28EntityVelocity(wearer));
-//				}
 				DustMod.sendEntMotionTraits(wearer);
+				
+				this.damage((EntityPlayer)wearer, item, level == 1 ? 5:2);
 			}
 			recordMouseClick(item,buttons[0]);
 		}
 	}
-	
-	@Override
-		public void onRemoval(EntityLiving wearer, ItemStack item) {
-			super.onRemoval(wearer, item);
-			System.out.println("REMOVED");
-		}
-	
-	@Override
-		public void onEquip(EntityLiving wearer, ItemStack item) {
-			super.onEquip(wearer, item);
-			System.out.println("EQUIP");
-		}
 	
 	private void recordMouseClick(ItemStack item, boolean mouse){
 		item.getTagCompound().setBoolean("mouse", mouse);
@@ -107,29 +119,8 @@ public int power;
 		}
 	}
 	
-	private void onTele(ItemStack item, EntityLiving wearer){
+	private void onLaunch(ItemStack item, EntityLiving wearer){
 		item.getTagCompound().setInteger("lastTele", wearer.ticksExisted);
-	}
-	private boolean canTele(ItemStack item, EntityLiving wearer){
-		int last = 0;
-		if(item.getTagCompound().hasKey("mouse"))
-			last = item.getTagCompound().getInteger("lastTele");
-		else {
-			item.getTagCompound().setInteger("lastTele", wearer.ticksExisted);
-			last = wearer.ticksExisted;
-		}
-		
-		if(wearer.ticksExisted - last > 10){
-			return true;
-		}else {
-//			System.out.println("penis " + wearer.ticksExisted + " " + last);
-			if(wearer.ticksExisted < last){
-				onTele(item,wearer);
-				return true;
-			}
-			return false;
-		}
-
 	}
 	
 	private void setFalling(ItemStack item, boolean val){
@@ -143,17 +134,6 @@ public int power;
 			item.getTagCompound().setBoolean("falling", false);
 			return false;
 		}
-	}
-	
-	public int[] getClickedBlock(Entity wearer, ItemStack item){
-		MovingObjectPosition click = DustMod.getWornInscription().getMovingObjectPositionFromPlayer(wearer.worldObj, (EntityPlayer)wearer, false);
-		if(click != null && click.typeOfHit == EnumMovingObjectType.TILE){
-			int tx = click.blockX;
-			int ty = click.blockY;
-			int tz = click.blockZ;
-			return new int[]{tx,ty,tz};
-		}
-		return null;
 	}
 
 }

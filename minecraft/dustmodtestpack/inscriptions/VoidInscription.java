@@ -13,10 +13,11 @@ public class VoidInscription extends InscriptionEvent {
 	public VoidInscription(int[][] design, String idName, String properName,
 			int id) {
 		super(design, idName, properName, id);
-		this.setAuthor("billythegoat101 -TestPack");
+		this.setAuthor("billythegoat101");
 		this.setDescription("Description:\n"
 				+ "Automatically store all picked-up items into the void. Use the Void Storage rune to summon them back.");
-		this.setNotes("Sacrifice:\n" + "TBD");
+		this.setNotes("Sacrifice:\n" +
+				"TBD");
 	}
 
 	@Override
@@ -31,6 +32,7 @@ public class VoidInscription extends InscriptionEvent {
 		VoidStorageManager.addItemToVoidInventory(
 				((EntityPlayer) wearer).username, pickedup);
 		ItemStack rtn = pickedup.copy();
+		this.damage((EntityPlayer)wearer, insc, pickedup.stackSize);
 		rtn.stackSize = 0;
 		return rtn;
 	}

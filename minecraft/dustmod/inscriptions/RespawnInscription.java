@@ -1,4 +1,4 @@
-package dustmodtestpack.inscriptions;
+package dustmod.inscriptions;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
