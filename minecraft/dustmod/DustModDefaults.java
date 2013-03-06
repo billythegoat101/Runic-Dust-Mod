@@ -5,7 +5,9 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import dustmod.runes.DEBait;
+import dustmod.inscriptions.BounceInscription;
+import dustmod.inscriptions.RespawnInscription;
+import dustmod.inscriptions.RocketLaunch;
 import dustmod.runes.DEBomb;
 import dustmod.runes.DEBounce;
 import dustmod.runes.DECage;
@@ -21,16 +23,13 @@ import dustmod.runes.DEFireRain;
 import dustmod.runes.DEFireSprite;
 import dustmod.runes.DEFireTrap;
 import dustmod.runes.DEFlatten;
-import dustmod.runes.DEFog;
 import dustmod.runes.DEForcefield;
 import dustmod.runes.DEFortuneEnch;
 import dustmod.runes.DEHeal;
 import dustmod.runes.DEHideout;
-import dustmod.runes.DEHunterVision;
 import dustmod.runes.DELiftTerrain;
 import dustmod.runes.DELightning;
 import dustmod.runes.DELillyBridge;
-import dustmod.runes.DELoyaltySprite;
 import dustmod.runes.DELumberjack;
 import dustmod.runes.DELunar;
 import dustmod.runes.DEMiniTele;
@@ -52,6 +51,7 @@ import dustmod.runes.DEVoid;
 import dustmod.runes.DEWall;
 import dustmod.runes.DEXP;
 import dustmod.runes.DEXPStore;
+import dustmodtestpack.inscriptions.VoidInscription;
 
 /**
  * This pack is meant for testing runes & inscriptions as a separate download to
@@ -174,6 +174,80 @@ public class DustModDefaults {
 	}
 
 	public void registerInscriptions() {
+		int N = -1;
+		int P = 100;
+		int G = 200;
+		int L = 300;
+		int B = 400;
+
+		InscriptionEvent evt = null;
+		int[][] design;
+
+
+		design = new int[][] {
+				{ 0, 0, 0, G, G, 0, 0, 0 }, 
+				{ 0, 0, 0, G, G, 0, 0, 0 }, 
+				{ 0, 0, G, 0, 0, G, 0, 0 }, 
+				{ 0, P, G, G, G, G, P, 0 }, 
+				{ 0, 0, P, G, G, P, 0, 0 }, 
+				{ 0, P, P, 0, 0, P, P, 0 }, 
+				{ 0, P, P, 0, 0, P, P, 0 }, 
+				{ P, 0, 0, 0, 0, 0, 0, P } };
+		evt = new RocketLaunch(design, "leapI", "Leap I", 0, 1);
+		InscriptionManager.registerInscriptionEvent(evt);
+
+
+		design = new int[][] {
+				{ 0, L, 0, 0, L, 0 }, 
+				{ 0, L, G, G, L, 0 }, 
+				{ L, 0, G, G, 0, L }, 
+				{ 0, G, L, L, G, 0 }, 
+				{ L, G, 0, 0, G, L }, 
+				{ L, L, 0, 0, L, L }, 
+				{ L, L, 0, 0, L, L }, 
+				{ G, L, 0, 0, L, G } };
+		evt = new RocketLaunch(design, "leapII", "Leap II", 1, 2);
+		InscriptionManager.registerInscriptionEvent(evt);
+
+
+		design = new int[][] {
+
+				{ 0, 0, 0, G, L, L, 0, L, 0, 0, 0, 0 },
+				{ 0, 0, G, G, L, G, L, L, L, L, 0, 0 },
+				{ G, G, G, G, L, G, G, 0, G, 0, L, 0 },
+				{ 0, L, 0, G, 0, G, G, L, G, G, G, G },
+				{ 0, 0, L, L, L, L, G, L, G, G, 0, 0 },
+				{ 0, 0, 0, 0, L, 0, L, L, G, 0, 0, 0 }, };
+		evt = new RespawnInscription(design, "respawn", "Return I", 3);
+		InscriptionManager.registerInscriptionEvent(evt);
+
+		design = new int[][] { 
+				{0, 0, L, 0, 0, 0, 0, L, 0, 0 },
+				{0, G, L, L, 0, 0, L, L, G, 0 },
+				{G, G, L, G, L, L, G, L, G, G },
+				{0, L, G, 0, G, G, 0, G, L, 0 },
+				{0, L, G, 0, G, G, 0, G, L, 0 },
+				{G, G, L, G, L, L, G, L, G, G },
+				{0, G, L, L, 0, 0, L, L, G, 0 },
+				{0, 0, L, 0, 0, 0, 0, L, 0, 0 }
+		};
+		evt = new VoidInscription(design, "voidinscription",
+				"Void I", 4);
+		InscriptionManager.registerInscriptionEvent(evt);
+
+		design = new int[][] { 
+				{0, 0, 0, P, P, 0, 0, 0 },
+				{0, G, G, G, P, P, P, 0 },
+				{0, G, P, G, G, P, P, 0 },
+				{P, P, G, P, 0, G, G, G },
+				{P, P, P, 0, G, P, G, G },
+				{0, G, G, P, P, G, P, 0 },
+				{0, G, G, G, P, P, P, 0 },
+				{0, 0, 0, G, G, 0, 0, 0 }
+		};
+		evt = new BounceInscription(design, "bouncy",
+				"Bounce I", 5);
+		InscriptionManager.registerInscriptionEvent(evt);
 	}
 
 }
