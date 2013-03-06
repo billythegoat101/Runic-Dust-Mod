@@ -1,11 +1,15 @@
 package dustmod.inscriptions;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
+import dustmod.DustEvent;
+import dustmod.EntityDust;
 import dustmod.InscriptionEvent;
 
 public class RespawnInscription extends InscriptionEvent {
@@ -15,11 +19,20 @@ public class RespawnInscription extends InscriptionEvent {
 		super(design, idName, properName, id);
 		this.setAuthor("billythegoat101");
 		this.setDescription("Description:\n" +
-				"Set a temporary hope-point where you can teleport back to. " +
+				"Set a temporary home-point where you can teleport back to. " +
 				"The coordinates are set to wherever you are standing when you put it on. " +
 				"Shift+RightClick the ground at your feet with a bare hand to activate");
 		this.setNotes("Sacrifice:\n" +
-				"TBD");
+				"-1xLapisBlock + 2xEnderPearl");
+	}
+	
+	@Override
+	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
+		ItemStack[] req = new ItemStack[]{new ItemStack(Block.blockLapis,1), new ItemStack(Item.enderPearl, 2)};
+		req = rune.sacrifice(e, req);
+		if(!rune.checkSacrifice(req)) return false;
+		item.setItemDamage(0);
+		return true;
 	}
 	
 	public void onUpdate(EntityLiving wearer, ItemStack item, boolean[] buttons){
@@ -32,8 +45,9 @@ public class RespawnInscription extends InscriptionEvent {
 			y = tag.getInteger("RespawnY");
 			z = tag.getInteger("RespawnZ");
 			
-			wearer.setPositionAndUpdate(x, y, z);
+			wearer.setPositionAndUpdate(x+0.5, y, z+0.5);
 			wearer.fallDistance = 0;
+			this.damage((EntityPlayer)wearer, item, 20);
 		}
 	}
 
@@ -53,20 +67,11 @@ public class RespawnInscription extends InscriptionEvent {
 		item.getTagCompound().setInteger("RespawnZ" , z);
 	}
 	
-//	@Override
-//	public int getPreventedDamage(EntityLiving wearer, ItemStack item,
-//			DamageSource source, int damage) {
-//		int dmg = damage;
-//		int rem = damage - wearer.getHealth() +1;
-//		if(wearer.getHealth() - damage <= 1){
-////			System.out.println("GO!");
-//			wearer.heal(rem);
-//			respawn(wearer,item);
-//		}
-////		System.out.println("damage " + damage + " " + rem + " " + wearer.getHealth() + " " + dmg);
-//		return damage;
-//	}
-	
+	/**
+	 * Actually respawns someone instead of bringing to pseudo respawn point 
+	 * @param wearer
+	 * @param item
+	 */
 	public void respawn(EntityLiving wearer, ItemStack item){
 		NBTTagCompound tag = item.getTagCompound();
 		double x = 0,y = 128,z = 0;
