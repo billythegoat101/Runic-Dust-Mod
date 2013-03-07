@@ -41,7 +41,6 @@ public class EnderInscription extends InscriptionEvent {
 	@Override
 	public void onUpdate(EntityLiving wearer, ItemStack item, boolean[] buttons) {
 		super.onUpdate(wearer, item, buttons);
-		
 //		System.out.println("huh " + wasFalling(item) +  " " + wearer.posY + " " + wearer.isCollidedVertically + " " + wearer.onGround);
 
 		if(wasFalling(item) && wearer.ticksExisted - item.getTagCompound().getInteger("lastTele") > 20){
@@ -58,8 +57,8 @@ public class EnderInscription extends InscriptionEvent {
 			double[] testLoc = new double[3];
 			
 			Vec3 look = wearer.getLookVec();
-			look = Vec3.createVectorHelper(look.xCoord + Math.random()*1-0.5, look.yCoord, look.zCoord + Math.random()*1-0.5);
-			double dist = Math.random()*6+9D;
+			look = Vec3.createVectorHelper(look.xCoord + Math.random()*2-1, look.yCoord, look.zCoord + Math.random()*2-1);
+			double dist = Math.random()*9+9D;
 
 			
 			testLoc[0] = wearer.posX + dist*look.xCoord; 

@@ -84,64 +84,28 @@ public class ItemWornInscription extends ItemArmor implements
 				item.setTagCompound(new NBTTagCompound());
 			item.getTagCompound().setInteger("eventID", i.id);
 			list.add(item);
-			item = new ItemStack(itemID, 1, 1001);
-			if (!item.hasTagCompound())
-				item.setTagCompound(new NBTTagCompound());
-			item.getTagCompound().setInteger("eventID", i.id);
-			list.add(item);
 		}
 		// super.getSubItems(par1, par2CreativeTabs, list);
 	}
 
-//	@Override
-//	public ItemStack onItemRightClick(ItemStack item, World world,
-//			EntityPlayer p) {
-//		p.setItemInUse(item, this.getMaxItemUseDuration(item));
-//		System.out.println("RIGHT");
-//		return item;
-//	}
-
-//	@Override
-//	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player,
-//			World world, int x, int y, int z, int side, float hitX, float hitY,
-//			float hitZ) {
-//		System.out.println("USE1");
-//		return super.onItemUseFirst(stack, player, world, x, y, z, side, hitX,
-//				hitY, hitZ);
-//	}
-
-//	@Override
-//	public boolean onItemUse(ItemStack par1ItemStack,
-//			EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
-//			int par6, int par7, float par8, float par9, float par10) {
-//
-//		return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World,
-//				par4, par5, par6, par7, par8, par9, par10);
-//	}
-
-//	@Override
-//	public void onPlayerStoppedUsing(ItemStack item, World world,
-//			EntityPlayer p, int use) {
-//		super.onPlayerStoppedUsing(item, world, p, use);
-//
-//		if(world.isRemote) return;
-//		System.out.println("RAWR");
-//		ItemStack armor = p.getCurrentArmor(2);
-////		p.inventory.consumeInventoryItem(p.inventory.currentItem);
-////		p.inventory.setInventorySlotContents(38, null);
-//		p.inventory.setInventorySlotContents(38, item);
-//		p.inventory.setInventorySlotContents(p.inventory.currentItem, armor);
-////		if(armor != null) p.inventory.addItemStackToInventory(armor);
-////		DustMod.sendPlayerInventory(p);
-//		
-////		p.setCurrentItemOrArmor(2, item);
-////		p.inventory.onInventoryChanged();
-////		p.inventoryContainer.onCraftMatrixChanged(p.inventory);
-//		p.sendChatToPlayer("Swapping inscription to " + item.getDisplayName());
-//		System.out.println("RIGHTCLICK - " + p.getCurrentItemOrArmor(3).getDisplayName());
-////		InscriptionManager.tick((Player)p, new boolean[3], item);
-////		InscriptionManager.lastArmor.put(p.username, item);
-//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack item,
+			EntityPlayer par2EntityPlayer, List list, boolean par4) {
+		super.addInformation(item, par2EntityPlayer, list, par4);
+		if(item.hasTagCompound() && item.getTagCompound().hasKey("description")){
+			String desc = item.getTagCompound().getString("description");
+			for(String s:desc.split("\n")){
+				list.add(s);
+			}
+		}
+	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack item, World world,
+			EntityPlayer p) {
+		return InscriptionManager.onItemRightClick(p, item);
+	}
 
 	protected MovingObjectPosition lastMOP = null;
 	protected long lastCheck = 0;

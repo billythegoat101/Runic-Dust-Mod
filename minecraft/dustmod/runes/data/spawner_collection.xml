@@ -10,6 +10,8 @@
 	<description>
 		Description:
 		Collects a spawner that it is placed around.
+		Note:
+		No matter what spawner you collect, it can only ever be placed as a pig spawner. 
 	</description>
 	<design width="8" height="7" ox="2" oy="3" cx="2" cy="3">
 		300,	200,	200,	200,	200,	200,	200,	300

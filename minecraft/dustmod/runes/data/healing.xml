@@ -4,20 +4,17 @@
 	<solid value="true" />
 	<sacrifices>
 		Sacrifice:
-		-None: Normal torch spawn.
-		-1xFlint: Beacon rune.
-		Notes:
-		=Sacrificing a dye to an existing beacon will change its color.
+		-2xCoal + 2XP
 	</sacrifices>
 	<description>
 		Description:
-		Spawns a torch or, if a piece of flint is sacrficed, a beacon.
+		Heals any nearby entities' hearts with regeneration.
 	</description>
 	<design width="4" height="4" ox="0" oy="0" cx="0" cy="0">
-		0,	0,	0,	0
 		0,	-1,	-1,	0
+		-1,	-1,	-1,	-1
+		-1,	-1,	-1,	-1
 		0,	-1,	-1,	0
-		0,	0,	0,	0
 	</design>
 	<rotationMatrix>
 		<rot0 x="0" z="0" />

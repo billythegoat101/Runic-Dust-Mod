@@ -123,6 +123,15 @@ public class InscriptionEvent {
 	}
 	
 	/**
+	 * Called when the item right-clicked while in hand
+	 * @param player
+	 * @param item
+	 */
+	public ItemStack onItemRightClick(EntityPlayer player, ItemStack item){
+		return item;
+	}
+	
+	/**
 	 * Called when the player picks up an item in the world
 	 * returns the mutated item to be put in the inventory
 	 * @param wearer

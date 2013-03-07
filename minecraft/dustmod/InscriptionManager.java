@@ -81,7 +81,8 @@ public class InscriptionManager {
 	}
 
 	public static void tickInscription(Player p, boolean[] buttons, ItemStack item) {
-
+		if(((EntityPlayer)p).worldObj.isRemote) return;
+		
 //		tick(p, buttons, item);
 		if(item == null || item.getItemDamage() == ItemInscription.max){
 			return;
@@ -231,6 +232,7 @@ public class InscriptionManager {
 
 	public static void onDamage(EntityLiving entity, ItemStack item,
 			DamageSource source, int damage) {
+		if(entity.worldObj.isRemote) return;
 
 		InscriptionEvent event = getEvent(item);
 		if (event == null)
@@ -240,6 +242,7 @@ public class InscriptionManager {
 
 	public static int getPreventedDamage(EntityLiving entity, ItemStack item,
 			DamageSource source, int damage) {
+		if(entity.worldObj.isRemote) return damage;
 
 		InscriptionEvent event = getEvent(item);
 //		System.out.println("Hey wtf " + event);
@@ -249,6 +252,7 @@ public class InscriptionManager {
 	}
 
 	public static void onEquip(EntityPlayer player, ItemStack item) {
+		if(player.worldObj.isRemote) return;
 		InscriptionEvent event = getEvent(item);
 		if (event == null)
 			return;
@@ -256,6 +260,7 @@ public class InscriptionManager {
 	}
 
 	public static void onRemoval(EntityPlayer player, ItemStack item) {
+		if(player.worldObj.isRemote) return;
 		InscriptionEvent event = getEvent(item);
 		if (event == null)
 			return;
@@ -263,6 +268,7 @@ public class InscriptionManager {
 	}
 
 	public static void onCreate(EntityPlayer player, ItemStack item) {
+		if(player.worldObj.isRemote) return;
 		InscriptionEvent event = getEvent(item);
 		if (event == null)
 			return;
@@ -270,6 +276,7 @@ public class InscriptionManager {
 	}
 
 	public static ItemStack onItemPickup(EntityPlayer player, ItemStack item) {
+		if(player.worldObj.isRemote) return item;
 		Player p = (Player) player;
 		InscriptionEvent event = getEvent(p);
 		InscriptionEvent last = getEvent(lastArmor.get(p));
@@ -279,6 +286,13 @@ public class InscriptionManager {
 		return event.onItemPickup(player, insc, item);
 	}
 
+	public static ItemStack onItemRightClick(EntityPlayer player, ItemStack item) {
+		if(player.worldObj.isRemote) return item;
+		InscriptionEvent evt = getEvent(item);
+		if(evt != null) return evt.onItemRightClick(player, item);
+		return item;
+	}
+	
 	public static void shield(EntityPlayer ep) {
 		if (ep.getCurrentEquippedItem() == null && ep.isSneaking()) {
 			float ticks = 1F;

@@ -26,7 +26,7 @@ public class RenderDustTable extends TileEntitySpecialRenderer
         field_40448_a = GLAllocation.createDirectFloatBuffer(16);
     }
 
-    public void func_40449_a(TileEntityDustTable tedt, double d, double d1, double d2,
+    public void render(TileEntityDustTable tedt, double d, double d1, double d2,
             float f)
     {
         float f4 = tedt.prevPageFlipping + (tedt.pageFlipping - tedt.prevPageFlipping) * f + 0.25F;
@@ -104,7 +104,7 @@ public class RenderDustTable extends TileEntitySpecialRenderer
     public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2,
             float f)
     {
-        func_40449_a((TileEntityDustTable)tileentity, d, d1, d2, f);
+        render((TileEntityDustTable)tileentity, d, d1, d2, f);
     }
 
     public static String getRunePageName(int page)

@@ -62,7 +62,7 @@ import dustmodtestpack.inscriptions.VoidInscription;
  * @author billythegoat101
  * 
  */
-@Mod(modid = "DustModDefaults", name = "Dust mod default Rune Pack", version = "1.5.1", dependencies = "after:DustMod")
+@Mod(modid = "DustModDefaults", name = "Dust mod default Rune Pack", version = "1.6", dependencies = "after:DustMod")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModDefaults {
 
