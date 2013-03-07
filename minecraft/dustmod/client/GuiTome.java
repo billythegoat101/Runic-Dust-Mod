@@ -103,7 +103,7 @@ public class GuiTome extends GuiScreen
     		"Hope you enjoy!", "Make some runes!","Space for rent.", 
     		"Modders: Make custom runes!", "Insert joke here.","Direwolf20 is cool!",
     		"Notch is cool!","Jeb_ is cool!", "Stop annoying LexManos!","Go play Thaumcraft.", 
-    		"The QubeTubers are cool!", "Try Ars Magica!", "Play outside!"};
+    		"The QubeTubers are cool!", "Try Minecraft:Ars Magica!", "Play outside!"};
     int randAuthor = (int)(Math.random()*derp.length);
     /**
      * Draw the foreground layer for the GuiContainer (everythin in front of the items)
@@ -326,20 +326,20 @@ public class GuiTome extends GuiScreen
 //        System.out.println("Scale " + scalex + " " + scaley);
         if(isRunes()){
 	        if(getRunePage() == 0){
-//	        	if(DustManager.isEmpty()){
-//	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/no_runes.png"));
-//	        	}else {
+	        	if(DustManager.isEmpty()){
+	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/no_runes.png"));
+	        	}else {
 	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages/info.png"));
-//	        	}
+	        	}
 	        }
 	        else PageHelper.bindPage(RenderDustTable.getRunePageName(getRunePage()));
         }else {
 	        if(getInsPage() == 0){
-//	        	if(InscriptionManager.isEmpty()){
-//	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/no_inscriptions.png"));
-//	        	}else {
+	        	if(InscriptionManager.isEmpty()){
+	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/no_inscriptions.png"));
+	        	}else {
 	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/info.png"));
-//	        	}
+	        	}
 	        }
 	        else PageHelper.bindPage(InscriptionManager.getEventInOrder(getInsPage() -1).getIDName());
         }

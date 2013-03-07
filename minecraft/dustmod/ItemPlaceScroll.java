@@ -126,6 +126,7 @@ public class ItemPlaceScroll extends Item
     		EntityPlayer player, List list, boolean flag) {
     	super.addInformation(item, player, list, flag);
     	DustShape shape = DustManager.getShapeFromID(item.getItemDamage());
+    	if(shape == null) return;
     	String sacr = shape.getNotes().replace("Sacrifice:\n", "");
     	String[] split = sacr.split("\n");
     	list.add("Requires:");
