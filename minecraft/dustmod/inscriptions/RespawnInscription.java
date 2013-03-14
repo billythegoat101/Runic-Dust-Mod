@@ -24,12 +24,12 @@ public class RespawnInscription extends InscriptionEvent {
 				"Right-Click with the item in hand to set the coordinates. " +
 				"Shift+RightClick with a bare hand while looking at the ground to activate");
 		this.setNotes("Sacrifice:\n" +
-				"-1xLapisBlock + 2xEnderPearl");
+				"-1xQuartzBlock + 2xEnderPearl");
 	}
 	
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
-		ItemStack[] req = new ItemStack[]{new ItemStack(Block.blockLapis,1), new ItemStack(Item.enderPearl, 2)};
+		ItemStack[] req = new ItemStack[]{new ItemStack(Block.field_94339_ct,1), new ItemStack(Item.enderPearl, 2)};
 		req = rune.sacrifice(e, req);
 		if(!rune.checkSacrifice(req)) return false;
 		item.setItemDamage(0);

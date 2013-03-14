@@ -1,9 +1,10 @@
-package dustmodtestpack.inscriptions;
+package dustmod.inscriptions;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import dustmod.DustEvent;
@@ -20,12 +21,16 @@ public class ForesightInscription extends InscriptionEvent {
 		this.setDescription("Description:\n" +
 				"Enables you to anticipate the coming of mobs in the dark. Ground on which they are able to spawn will shine.");
 		this.setNotes("Sacrifice:\n" +
-				"2xFeather + 1xGoldIngot + 7XP");
+				"-1xLapisBlock + 20XP");
 	}
 	
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
-		
+		ItemStack[] req = new ItemStack[]{new ItemStack(Block.blockLapis,1)};
+		req = rune.sacrifice(e, req);
+		if(!rune.checkSacrifice(req)) return false;
+		if(!rune.takeXP(e, 20));
+		item.setItemDamage(0);
 		return true;
 	}
 	

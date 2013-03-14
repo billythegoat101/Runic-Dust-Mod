@@ -1,5 +1,6 @@
 package dustmod.inscriptions;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,14 +23,14 @@ public class EnderInscription extends InscriptionEvent {
 		this.setDescription("Description:\n" +
 				"Blink like an enderman! Shift+RightClick with a bare hand to teleport randomly in that direction. Safety not guaranteed. It will cost 1 heart per blink but you will not take fall damage.");
 		this.setNotes("Sacrifice:\n" +
-				"-16xEnderPearl + 2xBlazeRod + 10XP");
+				"-8xEnderPearl + 1xQuartzBlock + 2xBlazeRod + 10XP");
 	}
 	
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
 		ItemStack[] req = new ItemStack[0];
 		int xp = 10;
-		req = new ItemStack[]{new ItemStack(Item.enderPearl,16), new ItemStack(Item.blazeRod, 2)};
+		req = new ItemStack[]{new ItemStack(Item.enderPearl,8), new ItemStack(Block.field_94339_ct,1), new ItemStack(Item.blazeRod, 2)};
 		
 		req = rune.sacrifice(e, req);
 		if(!rune.checkSacrifice(req)) return false;

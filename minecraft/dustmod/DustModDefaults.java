@@ -7,8 +7,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import dustmod.inscriptions.BounceInscription;
 import dustmod.inscriptions.EnderInscription;
+import dustmod.inscriptions.ForesightInscription;
 import dustmod.inscriptions.RespawnInscription;
 import dustmod.inscriptions.RocketLaunch;
+import dustmod.inscriptions.VoidInscription;
 import dustmod.runes.DEBomb;
 import dustmod.runes.DEBounce;
 import dustmod.runes.DECage;
@@ -53,7 +55,6 @@ import dustmod.runes.DEWall;
 import dustmod.runes.DEXP;
 import dustmod.runes.DEXPStore;
 import dustmodtestpack.inscriptions.BlinkerInscription;
-import dustmodtestpack.inscriptions.VoidInscription;
 
 /**
  * This pack is meant for testing runes & inscriptions as a separate download to
@@ -274,6 +275,14 @@ public class DustModDefaults {
 		evt = new BlinkerInscription(design, "blinkII",
 				"Blink II", 7);
 		InscriptionManager.registerInscriptionEvent(evt);
+
+		design = new int[][] { { G, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
+				{ 0, G, G, 0 } };
+		evt = new ForesightInscription(design, "foresight", "Foresight I", 8);
+		evt.setAuthor("billythegoat101");
+		InscriptionManager.registerInscriptionEvent(evt);
+		
+		//Last ID  used: 8
 	}
 
 }
