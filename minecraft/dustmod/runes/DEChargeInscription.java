@@ -50,7 +50,7 @@ public class DEChargeInscription extends DustEvent {
         			if(evt != null){
         				boolean sucess = evt.callSacrifice(this,e, i);
 //        				DustMod.log("Charging:", sucess);
-        				ei.func_92058_a(i);
+        				ei.setEntityItemStack(i);
         				if(sucess) {
         					e.fade();
         					return;

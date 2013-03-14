@@ -2,6 +2,7 @@ package dustmod;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -26,9 +28,7 @@ public class ItemWornInscription extends ItemArmor implements
 	
 	public ItemWornInscription(int id) {
 		super(id, EnumArmorMaterial.CLOTH, 0, 1);
-		this.setTextureFile(DustMod.path + "/dustItems.png");
-		this.setIconIndex(39);
-		// this.hasSubtypes = true;
+//		 this.hasSubtypes = true;
 		this.setMaxDamage(1001);
 	}
 
@@ -63,16 +63,13 @@ public class ItemWornInscription extends ItemArmor implements
 		return DustMod.path + "/wornInscription.png";
 	}
 
-	public String getItemNameIS(ItemStack itemstack) {
+	@Override
+	public String getUnlocalizedName(ItemStack itemstack) {
 		if (itemstack.getItemDamage() == -1
 				|| InscriptionManager.getEvent(itemstack) == null) {
 			return "inscblank";
 		}
 		return "insc." + InscriptionManager.getEvent(itemstack).idName;
-	}
-
-	public String getLocalItemName(ItemStack itemstack) {
-		return getItemNameIS(itemstack);
 	}
 
 	@Override
@@ -154,5 +151,17 @@ public class ItemWornInscription extends ItemArmor implements
 				* var21, (double) var20 * var21);
 		lastMOP = world.rayTraceBlocks_do_do(var13, var23, par3, !par3);
 		return lastMOP;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIconFromDamageForRenderPass(int par1, int par2) {
+		return this.iconIndex;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void func_94581_a(IconRegister par1IconRegister) {
+		this.iconIndex = par1IconRegister.func_94245_a(DustMod.resPath + "wornInscription");
 	}
 }

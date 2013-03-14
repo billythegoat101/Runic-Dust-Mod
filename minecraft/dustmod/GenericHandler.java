@@ -73,7 +73,7 @@ public class GenericHandler implements ICraftingHandler{
 			}
 		}
 		
-		evt.item.func_92058_a(InscriptionManager.onItemPickup(player, item));
+		evt.item.setEntityItemStack(InscriptionManager.onItemPickup(player, item));
 	}
 	
 	

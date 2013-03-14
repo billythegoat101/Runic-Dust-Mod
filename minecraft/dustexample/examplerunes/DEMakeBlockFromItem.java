@@ -123,8 +123,8 @@ public class DEMakeBlockFromItem extends DustEvent
                     break;
             }
             
-            world.setBlockWithNotify(x,y,z,0); //clears the block first. Sometimes a good idea since it could be a TileEntity
-            world.setBlockWithNotify(x,y,z,blockID);
+            world.setBlockAndMetadataWithNotify(x,y,z,0,0,3); //clears the block first. Sometimes a good idea since it could be a TileEntity
+            world.setBlockAndMetadataWithNotify(x,y,z,blockID,0,3);
             e.data[1] ++;
         }
         else if(e.data[1] >= 8){

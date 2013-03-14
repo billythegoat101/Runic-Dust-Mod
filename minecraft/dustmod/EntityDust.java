@@ -343,6 +343,7 @@ public class EntityDust extends Entity
 
         eventName = tag.getString("eventname");
         renderBeam = tag.getBoolean("rendBeam");
+        if(tag.hasKey("beamType")) beamType = tag.getInteger("beamType");
         renderStar = tag.getBoolean("rendStar");
 
         if (tag.hasKey("renderFlamesDust"))
@@ -475,6 +476,7 @@ public class EntityDust extends Entity
         tag.setString("eventname", eventName);
         tag.setInteger("ticksexist", ticksExisted);
         tag.setBoolean("rendBeam", renderBeam);
+        tag.setInteger("beamType",beamType);
         tag.setBoolean("rendStar", renderStar);
         tag.setBoolean("renderFlamesDust", renderFlamesDust);
         tag.setBoolean("renderFlamesRut", renderFlamesRut);
@@ -586,7 +588,7 @@ public class EntityDust extends Entity
 //            }
 
 
-            if (!ignoreRune || ticksExisted < birthLength)
+            if (!ignoreRune || (ticksExisted < birthLength && justBorn))
             {
                 for (Integer[] i : dustPoints)
                 {
@@ -616,7 +618,7 @@ public class EntityDust extends Entity
             	ticksExisted = 0;
             	for(Integer[] loc:dustPoints){
             		if(worldObj.getBlockId(loc[0],loc[1], loc[2]) == DustMod.dust.blockID)
-            			worldObj.setBlockMetadataWithNotify(loc[0], loc[1], loc[2], BlockDust.ACTIVE_DUST);
+            			worldObj.setBlockMetadataWithNotify(loc[0], loc[1], loc[2], BlockDust.ACTIVE_DUST,3);
             	}
             }
             if(doFizzle){
@@ -664,7 +666,7 @@ public class EntityDust extends Entity
 
                     if (DustMod.isDust(id))
                     {
-                        worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], BlockDust.UNUSED_DUST);
+                        worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], BlockDust.UNUSED_DUST,3);
                     }
                 }
 
@@ -725,7 +727,7 @@ public class EntityDust extends Entity
 
                 super.onEntityUpdate();
                 return;
-            } else
+            } else 
             {
                 event.tick(this);
             }
@@ -761,6 +763,18 @@ public class EntityDust extends Entity
 			}
     		
     	}
+    }
+    
+    /**
+     * Returns true if any dust block under this entity's wing is powered by redstone
+     * @return
+     */
+    public boolean isPowered(){
+    	for(Integer[] i:dustPoints){
+    		TileEntityDust ted = (TileEntityDust)worldObj.getBlockTileEntity(i[0], i[1], i[2]);
+    		if(ted.isPowered()) return true;
+    	}
+    	return false;
     }
     
     private boolean hasDustPoint(int x,int y,int z){
@@ -917,7 +931,7 @@ public class EntityDust extends Entity
 
             if (DustMod.isDust(id))
             {
-                worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], BlockDust.DEAD_DUST);
+                worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2], BlockDust.DEAD_DUST,3);
             }
         }
 

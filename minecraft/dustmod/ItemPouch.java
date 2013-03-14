@@ -3,27 +3,31 @@ package dustmod;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemReed;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemPouch extends ItemReed {
+public class ItemPouch extends DustModItem {
 
 	public static final int max = 6400;
 
     private int blockID;
     private ItemStack container = null;
+    
+    private Icon bagIcon;
+    private Icon mainIcon;
+    private Icon subIcon;
 	public ItemPouch(int par1, Block block) {
-		super(par1, block);
+		super(par1);
         blockID = block.blockID;
-		this.setTextureFile(DustMod.path + "/dustItems.png");
 		this.hasSubtypes = true;
 		this.setMaxStackSize(1);
 	}
@@ -82,16 +86,16 @@ public class ItemPouch extends ItemReed {
         }
         else
         {
-            if (world.canPlaceEntityOnSide(this.blockID, i, j, k, false, face, (Entity)null))
+            if (world.canPlaceEntityOnSide(this.blockID, i, j, k, false, face, (Entity)null, item))
             {
                 Block var12 = Block.blocksList[this.blockID];
                 int var13 = var12.onBlockPlaced(world, i, j, k, face, x, y, z, 0);
 
-                if (world.setBlockWithNotify(i, j, k, this.blockID))
+                if (world.setBlockAndMetadataWithNotify(i, j, k, this.blockID, 0, 3))
                 {
                     if (world.getBlockId(i, j, k) == this.blockID)
                     {
-                        Block.blocksList[this.blockID].onBlockPlacedBy(world, i, j, k, p);
+                        Block.blocksList[this.blockID].onBlockPlacedBy(world, i, j, k, p, item);
                         Block.blocksList[this.blockID].onPostBlockPlaced(world, i, j, k, var13);
                     }
                     DustMod.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
@@ -105,10 +109,9 @@ public class ItemPouch extends ItemReed {
         }
     }
     
-
-
+	
     @Override
-    public String getItemNameIS(ItemStack itemstack)
+    public String getUnlocalizedName(ItemStack itemstack)
     {
 		int dust = getValue(itemstack);
     	String id = DustItemManager.getIDS()[dust];
@@ -124,12 +127,6 @@ public class ItemPouch extends ItemReed {
     	super.addInformation(item, player, list, flag);
     	int amt = ItemPouch.getDustAmount(item);
     	if(amt != 0) list.add("Contains " + amt + " dust");
-    }
-
-    @Override
-    public String getLocalItemName(ItemStack itemstack)
-    {
-    	return getItemNameIS(itemstack);
     }
     
     @SideOnly(Side.CLIENT)
@@ -162,18 +159,16 @@ public class ItemPouch extends ItemReed {
     {
         return true;
     }
-
+    
+    @Override
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Gets an icon index based on an item's damage value and the given render pass
-     */
-    public int getIconFromDamageForRenderPass(int meta, int rend)
-    {
-    	if(rend < 3){
-    		return 51 + rend*16;
+    public Icon getIconFromDamageForRenderPass(int par1, int rend) {
+    	switch(rend){
+    	case 0: return bagIcon;
+    	case 1: return mainIcon;
+    	case 2: return subIcon;
     	}
-        return 0;
+        return subIcon;
     }
     
 
@@ -321,4 +316,11 @@ public class ItemPouch extends ItemReed {
     	return damage >> 1;
     }
     
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void func_94581_a(IconRegister iconRegister) {
+    	this.bagIcon = iconRegister.func_94245_a(DustMod.resPath + "dustPouch_back");
+    	this.mainIcon = iconRegister.func_94245_a(DustMod.resPath + "dustPouch_main");
+    	this.subIcon = iconRegister.func_94245_a(DustMod.resPath + "dustPouch_sub");
+    }
 }

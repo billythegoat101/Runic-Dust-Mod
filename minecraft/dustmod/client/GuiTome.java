@@ -74,9 +74,9 @@ public class GuiTome extends GuiScreen
         drawGuiContainerBackgroundLayer(par3, par1, par2);
         drawGuiContainerForegroundLayer();
 
-        for (int i = 0; i < controlList.size(); i++)
+        for (int i = 0; i < buttonList.size(); i++)
         {
-            GuiButton guibutton = (GuiButton)controlList.get(i);
+            GuiButton guibutton = (GuiButton)buttonList.get(i);
             guibutton.drawButton(mc, par1, par2);
         }
     }
@@ -87,7 +87,7 @@ public class GuiTome extends GuiScreen
         super.initGui();
         guiLeft = (width - xSize) / 2;
         guiTop = (height - ySize) / 2;
-        this.controlList.add(button = new GuiButton(1, (width + xSize) / 2 + 2 - offX, (height - ySize) / 2 + 2 + ySize - 20, (width - xSize) / 2 + offX - 2, 20, "Description >"));
+        this.buttonList.add(button = new GuiButton(1, (width + xSize) / 2 + 2 - offX, (height - ySize) / 2 + 2 + ySize - 20, (width - xSize) / 2 + offX - 2, 20, "Description >"));
 //        nameField = new GuiTextField(this.fontRenderer, (width-xSize)/2 - offX,(height-ySize)/2-fontRenderer.FONT_HEIGHT-2, xSize,12);
     }
 
@@ -305,7 +305,7 @@ public class GuiTome extends GuiScreen
 //    	System.out.println("RAWR " + DustManager.isEmpty() + " " + InscriptionManager.isEmpty());
         int i = mc.renderEngine.getTexture(DustMod.path + "/tomeGui.png");
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine.bindTexture(i);
+        mc.renderEngine.func_98187_b(DustMod.path + "/tomeGui.png");
 //        mc.renderEngine.bindTexture(mc.renderEngine.getTexture(RenderDustTable.getPagePath(page)));
         int j = (width - xSize) / 2 - offX;
         int k = (height - ySize) / 2;
@@ -327,18 +327,18 @@ public class GuiTome extends GuiScreen
         if(isRunes()){
 	        if(getRunePage() == 0){
 	        	if(DustManager.isEmpty()){
-	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/no_runes.png"));
+	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages" + "/no_runes.png");
 	        	}else {
-	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages/info.png"));
+	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages/info.png");
 	        	}
 	        }
 	        else PageHelper.bindPage(RenderDustTable.getRunePageName(getRunePage()));
         }else {
 	        if(getInsPage() == 0){
 	        	if(InscriptionManager.isEmpty()){
-	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/no_inscriptions.png"));
+	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages" + "/no_inscriptions.png");
 	        	}else {
-	        		mc.renderEngine.bindTexture(mc.renderEngine.getTexture(DustMod.path + "/pages" + "/info.png"));
+	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages" + "/info.png");
 	        	}
 	        }
 	        else PageHelper.bindPage(InscriptionManager.getEventInOrder(getInsPage() -1).getIDName());
@@ -348,10 +348,10 @@ public class GuiTome extends GuiScreen
         GL11.glPopMatrix();
         
         if(isRunes()){
-        	mc.renderEngine.bindTexture(i);
+        	mc.renderEngine.func_98187_b(DustMod.path + "/tomeGui.png");
         	drawTexturedModalRect(j-6,k,12,0,12,ySize);
         }else {
-        	mc.renderEngine.bindTexture(i);
+        	mc.renderEngine.func_98187_b(DustMod.path + "/tomeGui.png");
         	drawTexturedModalRect(j-6,k,0,0,12,ySize);
         }
     }

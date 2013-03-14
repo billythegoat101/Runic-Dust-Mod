@@ -64,7 +64,7 @@ public class DEBait extends PoweredEvent
                         ei.setDead();
                     }
                 }
-                ei.func_92058_a(item);
+                ei.setEntityItemStack(item);
             }
         }
 

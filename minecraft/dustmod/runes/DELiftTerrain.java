@@ -229,9 +229,9 @@ public class DELiftTerrain extends DustEvent
                         //                        e.fade();
                         //                        return;
                         //                    }
-                        world.setBlockAndMetadataWithNotify(x, y + c + 1, z, 0, 0);
-                        world.setBlockAndMetadataWithNotify(x, y + c + 1, z, b, m);
-                        world.setBlockWithNotify(x, y + c, z, Block.stone.blockID);
+                        world.setBlockAndMetadataWithNotify(x, y + c + 1, z, 0, 0,3);
+                        world.setBlockAndMetadataWithNotify(x, y + c + 1, z, b, m,3);
+                        world.setBlockAndMetadataWithNotify(x, y + c, z, Block.stone.blockID,0,3);
 
                         if (isContainer)
                         {
@@ -262,7 +262,7 @@ public class DELiftTerrain extends DustEvent
 //                            System.out.println("Validating " + (world.getBlockTileEntity(x,y+c+1,z)==te));
                         }
 
-                        world.setBlockMetadataWithNotify(x, y + c + 1, z, m);
+                        world.setBlockMetadataWithNotify(x, y + c + 1, z, m,3);
                     }
                     else
                     {

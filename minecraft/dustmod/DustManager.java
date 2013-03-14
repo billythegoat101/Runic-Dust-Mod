@@ -209,7 +209,7 @@ public class DustManager
         }
             if (!eventInstance.secret)
             {
-            	String permission = config.get( "RUNES", "Allow-" + shape.getRuneName().replace(' ', '_'),eventInstance.permission).value.toUpperCase();
+            	String permission = config.get( "RUNES", "Allow-" + shape.getRuneName().replace(' ', '_'),eventInstance.permission).getString().toUpperCase();
 
             	if(permission.equals("TRUE")) permission = "ALL"; //For backwards-compatibilities sake. Permission used to be a boolean
             	else if(permission.equals("FALSE")) permission = "OPS";
@@ -340,7 +340,7 @@ public class DustManager
 
 						if (id == DustMod.dust.blockID) {
 							world.setBlockMetadataWithNotify(p[0], p[1], p[2],
-									BlockDust.DEAD_DUST);
+									BlockDust.DEAD_DUST,3);
 						}
 					}
 
@@ -374,7 +374,7 @@ public class DustManager
 				int id = world.getBlockId(p[0], p[1], p[2]);
 
 				if (id == DustMod.dust.blockID) {
-					world.setBlockMetadataWithNotify(p[0], p[1], p[2], BlockDust.DEAD_DUST);
+					world.setBlockMetadataWithNotify(p[0], p[1], p[2], BlockDust.DEAD_DUST,3);
 				}
 			}
 

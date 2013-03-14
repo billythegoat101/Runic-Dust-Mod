@@ -63,7 +63,7 @@ public class DEMakeBlockFromDustLevel extends DustEvent
             int x = i[0];
             int y = i[1] -1;
             int z = i[2];
-            world.setBlockWithNotify(x, y, z, blockID);
+            world.setBlockAndMetadataWithNotify(x, y, z, blockID,0,3);
         }
         
         e.fade();

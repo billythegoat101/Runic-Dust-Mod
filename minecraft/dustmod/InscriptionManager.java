@@ -46,7 +46,7 @@ public class InscriptionManager {
         }
             if (!evt.secret)
             {
-            	String permission = config.get( "INSCRIPTIONS", "Allow-" + evt.getInscriptionName().replace(' ', '_'), evt.permission).value.toUpperCase();
+            	String permission = config.get( "INSCRIPTIONS", "Allow-" + evt.getInscriptionName().replace(' ', '_'), evt.permission).getString().toUpperCase();
             	
             	if(permission.equals("ALL") || permission.equals("NONE") || permission.equals("OPS")){
             		evt.permission = permission;
@@ -291,61 +291,6 @@ public class InscriptionManager {
 		InscriptionEvent evt = getEvent(item);
 		if(evt != null) return evt.onItemRightClick(player, item);
 		return item;
-	}
-	
-	public static void shield(EntityPlayer ep) {
-		if (ep.getCurrentEquippedItem() == null && ep.isSneaking()) {
-			float ticks = 1F;
-			double distance = 64D;
-			Vec3 pos = ep.worldObj.getWorldVec3Pool().getVecFromPool(ep.posX, ep.posY,
-					ep.posZ);
-
-			pos.yCoord += ep.getEyeHeight();
-			Vec3 look = ep.getLook(ticks);
-			Vec3 result = pos.addVector(look.xCoord * distance, look.yCoord
-					* distance, look.zCoord * distance);
-
-			if (look.yCoord < -0.95) {
-//				System.out.println("Shield");
-				int x = (int) Math.round(ep.posX);
-				int y = (int) Math.round(ep.posY);
-				int z = (int) Math.round(ep.posZ);
-
-				World world = ep.worldObj;
-
-				int r = 2;
-				for (int i = -r; i <= r; i++) {
-					for (int k = -r; k <= r; k++) {
-						if (i == -r || k == -r || i == r || k == r) {
-							world.setBlockWithNotify(x + i, y, z + k,
-									Block.dirt.blockID);
-						}
-					}
-				}
-				r++;
-				for (int i = -r; i <= r; i++) {
-					for (int k = -r; k <= r; k++) {
-						if (i == -r || k == -r || i == r || k == r) {
-							world.setBlockWithNotify(x + i, y, z + k,
-									Block.dirt.blockID);
-							world.setBlockWithNotify(x + i, y + 1, z + k,
-									Block.dirt.blockID);
-						}
-					}
-				}
-				r++;
-				for (int i = -r; i <= r; i++) {
-					for (int k = -r; k <= r; k++) {
-						if (i == -r || k == -r || i == r || k == r) {
-							world.setBlockWithNotify(x + i, y - 1, z + k, 0);
-						}
-					}
-				}
-			}
-
-			// System.out.println(look.xCoord + " " + look.yCoord + " "
-			// + look.zCoord);
-		}
 	}
 	
 

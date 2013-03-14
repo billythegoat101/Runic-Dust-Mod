@@ -8,9 +8,12 @@ import java.util.Random;
 import java.util.logging.Level;
 
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -33,13 +36,6 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 		super(i, enumtoolmaterial);
 		setMaxDamage(250);
 		efficiencyOnProperMaterial = 16F;
-
-		// [non-forge]
-		// this.setIconIndex(ModLoader.addOverride("/gui/items.png",
-		// mod_DustMod.path + "/spiritpick.png"));
-		// [forge]
-		this.setIconCoord(0, 1);
-		this.setTextureFile(DustMod.path + "/dustItems.png");
 	}
 
 	public EnumRarity func_40398_f(ItemStack itemstack) {
@@ -150,8 +146,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 										block.onBlockDestroyedByPlayer(world, x
 												+ i, y + j, z + k, meta);
 									}
-									world.setBlockWithNotify(i + x, j + y, k
-											+ z, 0); // update world
+									world.setBlockAndMetadataWithNotify(i + x, j + y, k
+											+ z, 0,0,3); // update world
 									block.onBlockDestroyedByPlayer(world,
 											i + x, j + y, k + z, world
 													.getBlockMetadata(i + x, j
@@ -165,13 +161,20 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 							}
 						} catch (Exception e) {
 							DustMod.log(Level.WARNING, "Error breaking block "
-									+ block.getBlockName(), e.getMessage());
+									+ block.func_94330_A(), e.getMessage());
 							e.printStackTrace();
 						}// fracking mods
 					}
 				}
 			}
 		}
+	}
+
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void func_94581_a(IconRegister par1IconRegister) {
+		this.iconIndex = par1IconRegister.func_94245_a(DustMod.resPath + this.getUnlocalizedName().replace("item.", ""));
 	}
 
 }

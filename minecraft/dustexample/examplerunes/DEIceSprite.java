@@ -127,11 +127,11 @@ public class DEIceSprite extends PoweredEvent
                         //Check if the checked block is water and the block above it is not
                         //(That way you are not freezing anything but the surface)
                         if(isWater(blockID) && !isWater(blockAbove) && blockAbove != Block.ice.blockID){
-                            world.setBlockWithNotify(x+i,y+j,z+k,Block.ice.blockID);
+                            world.setBlockAndMetadataWithNotify(x+i,y+j,z+k,Block.ice.blockID,0,3);
                         }
                         //Same for lava, but change to obsidian
                         if(isLava(blockID) && !isLava(blockAbove) && blockAbove != Block.obsidian.blockID){
-                            world.setBlockWithNotify(x+i,y+j,z+k,Block.obsidian.blockID);
+                            world.setBlockAndMetadataWithNotify(x+i,y+j,z+k,Block.obsidian.blockID,0,3);
                         }
                     }
                 }

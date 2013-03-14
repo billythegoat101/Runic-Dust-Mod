@@ -1,25 +1,19 @@
 package dustmodtestpack;
 
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import dustmod.DustManager;
 import dustmod.DustShape;
 import dustmod.InscriptionEvent;
 import dustmod.InscriptionManager;
-import dustmod.inscriptions.RespawnInscription;
-import dustmod.inscriptions.RocketLaunch;
-import dustmodtestpack.inscriptions.BlinkerInscription;
 import dustmodtestpack.inscriptions.ErfBendInscription;
 import dustmodtestpack.inscriptions.FireballInscription;
+import dustmodtestpack.inscriptions.ForesightInscription;
 import dustmodtestpack.inscriptions.GlideInscription;
 import dustmodtestpack.inscriptions.MountainCutterInscription;
-import dustmodtestpack.inscriptions.VoidInscription;
 import dustmodtestpack.inscriptions.WaterAffinity;
-import dustmodtestpack.runes.LaunchTestRune;
 
 /**
  * This pack is meant for testing runes & inscriptions as a separate download to
@@ -122,6 +116,12 @@ public class DustModTestPack {
 		design = new int[][] { { G, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
 				{ 0, G, G, 0 } };
 		evt = new WaterAffinity(design, "watertest", "Water Affinity", 107);
+		evt.setAuthor("billythegoat101 -TestPack");
+		InscriptionManager.registerInscriptionEvent(evt);
+
+		design = new int[][] { { G, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
+				{ 0, G, G, 0 } };
+		evt = new ForesightInscription(design, "foresight", "Foresight I", 108);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 

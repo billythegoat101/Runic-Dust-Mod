@@ -92,7 +92,7 @@ public class DEPit extends DustEvent
             {
                 block.onBlockDestroyedByPlayer(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z));
                 block.dropBlockAsItem(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z), 0);
-                world.setBlockWithNotify(x, y - dy, z, 0);
+                world.setBlockAndMetadataWithNotify(x, y - dy, z, 0,0,3);
             }
         }
 

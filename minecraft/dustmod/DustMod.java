@@ -68,6 +68,7 @@ public class DustMod {
 	public static int blazeDID = 4;
 
 	public static String path = "/dust";
+	public static String resPath = "dustmod:";
 	public static File suggestedConfig;
 	public static int[] tex;
 	public static int groundTex;
@@ -104,14 +105,14 @@ public class DustMod {
 	public static Block dust;
 	protected static Block dustTable;
 	public static Block rutBlock;
-	public static Item idust;
-	public static Item tome;
-	public static Item dustScroll;
+	public static DustModItem idust;
+	public static DustModItem tome;
+	public static DustModItem dustScroll;
 	public static Item spiritPickaxe;
 	public static Item spiritSword;
-	public static Item chisel;
-	public static Item negateSacrifice;
-	public static Item runicPaper;
+	public static DustModItem chisel;
+	public static DustModItem negateSacrifice;
+	public static DustModItem runicPaper;
 	public static ItemInscription inscription;
 	public static ItemInk ink;
 	public static ItemWornInscription wornInscription;
@@ -199,40 +200,29 @@ public class DustMod {
 			config.save();
 		}
 
-		dust = new BlockDust(BLOCK_DustID, 164);
-		idust = (new ItemDust(ITEM_DustID, dust)).setItemName("idust")
+		dust = new BlockDust(BLOCK_DustID);
+		idust = (DustModItem)(new ItemDust(ITEM_DustID, dust)).setUnlocalizedName("idust")
 				.setCreativeTab(creativeTab);
 		dustTable = ((Block) new BlockDustTable(BLOCK_DustTableID))
 				.setCreativeTab(creativeTab);
-		tome = (new ItemRunicTome(ITEM_RunicTomeID)).setItemName("dustlibrary")
+		tome = (DustModItem)(new ItemRunicTome(ITEM_RunicTomeID)).setUnlocalizedName("dustlibrary")
 				.setCreativeTab(creativeTab);
-		negateSacrifice = new Item(ITEM_SacrificeNegationID).setItemName(
-				"negateSacrifice").setCreativeTab(creativeTab);// .setIconIndex(ModLoader.addOverride("/gui/items.png",
-																// path +
-																// "/cancel.png"));
-																// //[non-forge]
-		negateSacrifice.setIconCoord(3, 2).setTextureFile(
-				path + "/dustItems.png");// [forge]
-		runicPaper = (new Item(ITEM_RunicPaperID)).setItemName("runicPaper")
-				.setCreativeTab(creativeTab)/* [forge] */.setIconCoord(1, 2);// [non-forge].setIconIndex(ModLoader.addOverride("/gui/items.png",
-																				// path
-																				// +
-																				// "/runicPaper.png"));
-		runicPaper.setTextureFile(path + "/dustItems.png");// [forge];
-		dustScroll = (new ItemPlaceScroll(ITEM_DustScrollID)).setItemName(
-				"dustscroll").setCreativeTab(creativeTab);
-		rutBlock = new BlockRut(BLOCK_RutID).setBlockName("dustrutblock")
+		negateSacrifice = (DustModItem)new DustModItem(ITEM_SacrificeNegationID).setUnlocalizedName(
+				"negateSacrifice").setCreativeTab(creativeTab);
+		runicPaper = (DustModItem)(new DustModItem(ITEM_RunicPaperID)).setUnlocalizedName("runicPaper")
+				.setCreativeTab(creativeTab);
+		dustScroll = (DustModItem)(new ItemPlaceScroll(ITEM_DustScrollID)).setUnlocalizedName("dustscroll").setCreativeTab(creativeTab);
+		rutBlock = new BlockRut(BLOCK_RutID).setUnlocalizedName("dustrutblock")
 				.setHardness(3.0F).setResistance(5.0F);
-		chisel = new ItemChisel(ITEM_ChiselID).setItemName("itemdustchisel")
+		chisel = (DustModItem)new ItemChisel(ITEM_ChiselID).setUnlocalizedName("itemdustchisel")
 				.setCreativeTab(creativeTab);
-		spiritPickaxe = (Item) (new ItemSpiritPickaxe(ITEM_SpiritPickID,
-				EnumToolMaterial.EMERALD)).setItemName("dustpickaxeSpirit")
+		spiritPickaxe = (new ItemSpiritPickaxe(ITEM_SpiritPickID,
+				EnumToolMaterial.EMERALD)).setUnlocalizedName("spiritPickaxe")
 				.setCreativeTab(creativeTab);
-		spiritSword = (Item) (new ItemSpiritSword(ITEM_SpiritSwordID))
-				.setItemName("dustswordSpirit").setCreativeTab(creativeTab);
+		spiritSword = (new ItemSpiritSword(ITEM_SpiritSwordID))
+				.setUnlocalizedName("spiritSword").setCreativeTab(creativeTab);
 		inscription = (ItemInscription) (new ItemInscription(ITEM_InscriptionID))
-				.setItemName("runicinscription").setCreativeTab(creativeTab);
-		inscription.setTextureFile(path + "/dustItems.png");
+				.setUnlocalizedName("runicinscription").setCreativeTab(creativeTab);
 		ink = new ItemInk(ITEM_InkID);
 		wornInscription = new ItemWornInscription(ITEM_WornInscriptionID);
 		wornInscription.setCreativeTab(creativeTab);
@@ -250,9 +240,9 @@ public class DustMod {
 
 		proxy.registerEventHandlers();
 
-		GameRegistry.registerBlock(dust, ItemBlock.class, dust.getBlockName());
-		GameRegistry.registerBlock(dustTable, ItemBlock.class, dustTable.getBlockName());
-		GameRegistry.registerBlock(rutBlock, ItemBlock.class, rutBlock.getBlockName());
+		GameRegistry.registerBlock(dust, ItemBlock.class, dust.func_94330_A());
+		GameRegistry.registerBlock(dustTable, ItemBlock.class, dustTable.func_94330_A());
+		GameRegistry.registerBlock(rutBlock, ItemBlock.class, rutBlock.func_94330_A());
 
 		GameRegistry.registerTileEntity(TileEntityDust.class, "dusttileentity");
 		GameRegistry.registerTileEntity(TileEntityDustTable.class,
@@ -266,19 +256,19 @@ public class DustMod {
 		lang.addStringLocalization("tile.dust.name", "en_US",
 				"[DustMod] :Do not use this");
 
-		lang.addStringLocalization(dustTable.getBlockName() + ".name", "en_US",
+		lang.addStringLocalization(dustTable.func_94330_A() + ".name", "en_US",
 				"Runic Lexicon");
-		lang.addStringLocalization(tome.getItemName() + ".name", "en_US",
+		lang.addStringLocalization(tome.getUnlocalizedName() + ".name", "en_US",
 				"Runic Tome");
-		lang.addStringLocalization(negateSacrifice.getItemName() + ".name",
+		lang.addStringLocalization(negateSacrifice.getUnlocalizedName() + ".name",
 				"en_US", "Negate Rune Sacrifice");
-		lang.addStringLocalization(runicPaper.getItemName() + ".name", "en_US",
+		lang.addStringLocalization(runicPaper.getUnlocalizedName() + ".name", "en_US",
 				"Scroll Paper");
-		lang.addStringLocalization(spiritPickaxe.getItemName() + ".name",
+		lang.addStringLocalization(spiritPickaxe.getUnlocalizedName() + ".name",
 				"en_US", "Spirit Pickaxe");
-		lang.addStringLocalization(spiritSword.getItemName() + ".name",
+		lang.addStringLocalization(spiritSword.getUnlocalizedName() + ".name",
 				"en_US", "Spirit Sword");
-		lang.addStringLocalization(chisel.getItemName() + ".name", "en_US",
+		lang.addStringLocalization(chisel.getUnlocalizedName() + ".name", "en_US",
 				"Hammer&Chisel");
 		lang.addStringLocalization("pouchblank.name", "en_US",
 				"ERROR Runic Pouch");

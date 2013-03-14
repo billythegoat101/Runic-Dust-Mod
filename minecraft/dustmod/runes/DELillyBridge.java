@@ -82,7 +82,7 @@ public class DELillyBridge extends DustEvent
                 if (world.getBlockMaterial(x, y + i - 1, z) == Material.water &&
                         world.getBlockId(x, y + i, z) == 0)
                 {
-                    world.setBlockWithNotify(x, y + i, z, Block.waterlily.blockID);
+                    world.setBlockAndMetadataWithNotify(x, y + i, z, Block.waterlily.blockID,0,3);
                 }
             }
 

@@ -169,8 +169,8 @@ public class ErfBendInscription extends InscriptionEvent {
 					int toMeta = world.getBlockMetadata(tx+i,ty+k+launch,tz+j);
 					if(bid == 0 && k != 0) bid = Block.cobblestone.blockID;
 					if(!isSolid(toBid,toMeta)/* && Block.blocksList[bid].isOpaqueCube()*/){
-						world.setBlockAndMetadataWithNotify(tx+i, ty+k+launch, tz+j, bid,meta);
-						world.setBlockWithNotify(tx+i, ty+k, tz+j, getFillerMaterial(bid,meta));
+						world.setBlockAndMetadataWithNotify(tx+i, ty+k+launch, tz+j, bid,meta,3);
+						world.setBlockAndMetadataWithNotify(tx+i, ty+k, tz+j, getFillerMaterial(bid,meta),0,3);
 					}
 				}
 			}
@@ -193,8 +193,8 @@ public class ErfBendInscription extends InscriptionEvent {
 					int toMeta = world.getBlockMetadata(tx+i,ty+k+launch,tz+j);
 					if(bid == 0) continue;//bid = Block.cobblestone.blockID;
 					if(!isSolid(toBid,toMeta)/* && Block.blocksList[bid].isOpaqueCube()*/){
-						world.setBlockAndMetadataWithNotify(tx+i, ty+k-launch, tz+j, bid,meta);
-						world.setBlockWithNotify(tx+i, ty+k, tz+j, 0);
+						world.setBlockAndMetadataWithNotify(tx+i, ty+k-launch, tz+j, bid,meta,3);
+						world.setBlockAndMetadataWithNotify(tx+i, ty+k, tz+j, 0,0,3);
 					}
 				}
 			}
@@ -394,7 +394,7 @@ public class ErfBendInscription extends InscriptionEvent {
 						for(int k = 1; k >= -1; k--){
 							int bid = world.getBlockId(bPos[0]+i, bPos[1]+j, bPos[2]+k);
 							int meta = world.getBlockMetadata(bPos[0]+i, bPos[1]+j, bPos[2]+k);
-							world.setBlockWithNotify(bPos[0]+i, bPos[1]+j, bPos[2]+k,getCompressedMaterial(bid,meta));
+							world.setBlockAndMetadataWithNotify(bPos[0]+i, bPos[1]+j, bPos[2]+k,getCompressedMaterial(bid,meta),0,3);
 						}
 					}
 				}
@@ -458,7 +458,7 @@ public class ErfBendInscription extends InscriptionEvent {
 //						block.setVelocity(vel.xCoord/1,vel.yCoord/1,vel.zCoord/1);
 //						block.noClip = true;
 //						world.spawnEntityInWorld(block);
-						world.setBlockWithNotify(x,y,z,0);
+						world.setBlockAndMetadataWithNotify(x,y,z,0,0,3);
 						
 
 						EntityBlock eb = new EntityBlock(world,(double)x+0.5,(double)y+0.5,(double)z+0.5,bid);
@@ -531,8 +531,8 @@ public class ErfBendInscription extends InscriptionEvent {
 									meta = 0;
 								}
 								
-								world.setBlockAndMetadataWithNotify(tx+i+mx, ty+j+my, tz+k+mz,bid,meta);
-								world.setBlockWithNotify(tx+i, ty+j, tz+k,0);
+								world.setBlockAndMetadataWithNotify(tx+i+mx, ty+j+my, tz+k+mz,bid,meta,3);
+								world.setBlockAndMetadataWithNotify(tx+i, ty+j, tz+k,0,0,3);
 							}
 						}
 					}
@@ -641,7 +641,7 @@ public class ErfBendInscription extends InscriptionEvent {
 					blocks[i+1][j+1][k+1][0] = bid;
 					blocks[i+1][j+1][k+1][1] = meta;
 //					world.setBlockAndMetadataWithNotify(tx+i, ty+j+h, tz+k,bid,meta);
-					world.setBlockWithNotify(bPos[0]+i, bPos[1]+j, bPos[2]+k,0);
+					world.setBlockAndMetadataWithNotify(bPos[0]+i, bPos[1]+j, bPos[2]+k,0,0,3);
 				}
 			}
 		}
@@ -650,7 +650,7 @@ public class ErfBendInscription extends InscriptionEvent {
 				for(int k = 1; k >= -1; k--){
 					int bid = blocks[i+1][j+1][k+1][0];
 					int meta = blocks[i+1][j+1][k+1][1];
-					world.setBlockAndMetadataWithNotify(bPos[0]+i+ax, bPos[1]+j+ay, bPos[2]+k+az,bid,meta);
+					world.setBlockAndMetadataWithNotify(bPos[0]+i+ax, bPos[1]+j+ay, bPos[2]+k+az,bid,meta,3);
 				}
 			}
 		}

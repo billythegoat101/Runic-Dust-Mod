@@ -104,8 +104,8 @@ public class DECage extends DETrap
                                 continue;
                             }
 
-                            world.setBlockWithNotify(x + ix, y + iy, z + iz, 0);
-                            world.setBlockWithNotify(x + ix, y + iy, z + iz, Block.fenceIron.blockID);
+                            world.setBlockAndMetadataWithNotify(x + ix, y + iy, z + iz, 0,0,3);
+                            world.setBlockAndMetadataWithNotify(x + ix, y + iy, z + iz, Block.fenceIron.blockID,0,3);
                         }
 
                 if (world.getBlockId(x, y - 1, z) == 0)
@@ -117,8 +117,8 @@ public class DECage extends DETrap
                         if (ted.getDusts()[3])
                         {
                             int id = world.getBlockId(p[0], p[1] - 1, p[2]);
-                            world.setBlockWithNotify(p[0], p[1] - 1, p[2], 0);
-                            world.setBlockWithNotify(x, y - 1, z, id);
+                            world.setBlockAndMetadataWithNotify(p[0], p[1] - 1, p[2], 0,0,3);
+                            world.setBlockAndMetadataWithNotify(x, y - 1, z, id,0,3);
                         }
                     }
                 }

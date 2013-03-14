@@ -67,8 +67,8 @@ public class MountainCutterInscription extends InscriptionEvent {
 					for (int i = -r; i <= r; i++) {
 						for (int j = -r; j <= r; j++) {
 							for (int k = -r; k <= r; k++) {
-								ep.worldObj.setBlockWithNotify(x + i, y + j, z
-										+ k, 0);
+								ep.worldObj.setBlockAndMetadataWithNotify(x + i, y + j, z
+										+ k, 0,0,3);
 							}
 						}
 					}

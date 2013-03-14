@@ -726,15 +726,15 @@ public class DustShape
                     continue;
                 }//return false;
 
-                w.setBlockWithNotify(si + x, j, sk + z, 0);
-                w.setBlockWithNotify(si + x, j, sk + z, DustMod.dust.blockID);
+                w.setBlockAndMetadataWithNotify(si + x, j, sk + z, 0,0,3);
+                w.setBlockAndMetadataWithNotify(si + x, j, sk + z, DustMod.dust.blockID,0,3);
                 TileEntityDust ted;
                 TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);
 
                 if (te != null && te instanceof TileEntityDust)
                 {
                     ted = (TileEntityDust)te;
-                    w.setBlockMetadata(si + x, j, sk + z, 0);
+                    w.setBlockAndMetadataWithNotify(si + x, j, sk + z, 0,0,3);
                 }
                 else
                 {
@@ -769,7 +769,7 @@ public class DustShape
 
                     if (ted.isEmpty())
                     {
-                        w.setBlockWithNotify(si + x, j, sk + z, 0);
+                        w.setBlockAndMetadataWithNotify(si + x, j, sk + z, 0,0,3);
                     }
                     else
                     {
@@ -828,6 +828,7 @@ public class DustShape
     
     public boolean drawOnWorldPart(World w, int i, int j, int k, EntityPlayer p, int r, int itemUse)
     {
+    	if(w.isRemote) return false;
 
         int si = i, sk = k;
         int tcx = cy, tcy = cx, tox = oy, toy = ox;
@@ -888,7 +889,6 @@ public class DustShape
         int[] temp = this.getBlockCoord(tcx, tcy, tox, toy);
         si -= temp[0];
         sk -= temp[1];
-//        System.out.println("DICKS offest:" + temp[0] + " " + temp[1] + " do:" + tox + "," + toy + " dim:" + width + "," + length + " r:" + r) ;
         int[] pDustAmount = new int[1000];
 
         for (ItemStack is: p.inventory.mainInventory)
@@ -904,14 +904,6 @@ public class DustShape
             	}
             }
         }
-
-//        if (!hasEnough(pDustAmount) && !p.capabilities.isCreativeMode)
-//        {
-//            p.addChatMessage("Not enough dust!");
-////            data = backup;
-////            updateData();
-//            return false;
-//        }
 
         int[] reduceDustAmount = new int[1000];
 
@@ -938,26 +930,21 @@ public class DustShape
             int meta = w.getBlockMetadata(si + x, j, sk + z);
             if (blockID != 0 && !(DustMod.isDust(blockID)/* && meta == 2*/) && blockID != Block.tallGrass.blockID)
             {
-//            	System.out.println("Check1");
                 continue;
-            }//return false;
+            }
 
             if (w.getBlockId(si + x, j - 1, sk + z) == 0)
             {
-//            	System.out.println("Check2");
                 continue;
-            }//return false;
+            }
 
             if (!DustMod.dust.canPlaceBlockAt(w, si+x, j, sk+z))
             {
-//            	System.out.println("Check3");
                 continue;
-            }//return false;
+            }
             
             if(blockID != DustMod.dust.blockID){
-//            	System.out.println("check4 " + blockID);
-	            w.setBlockWithNotify(si + x, j, sk + z, 0);
-	            w.setBlockWithNotify(si + x, j, sk + z, DustMod.dust.blockID);
+	            w.setBlockAndMetadataWithNotify(si + x, j, sk + z, DustMod.dust.blockID,0,2);
             }
             TileEntityDust ted;
             TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);
@@ -965,7 +952,6 @@ public class DustShape
             if (te != null && te instanceof TileEntityDust)
             {
                 ted = (TileEntityDust)te;
-                w.setBlockMetadata(si + x, j, sk + z, 0);
             }
             else
             {
@@ -978,95 +964,29 @@ public class DustShape
             int ix = rand.nextInt(4);
             int iz = rand.nextInt(4);
 
-            if(ted.getDust(ix,iz) != 0 && block[ix][iz] == 0){
-//            	System.out.println("wat");
+            int check2 = 16;
+            while((ted.getDust(ix,iz) != 0 || block[ix][iz] == 0) && check2 > 0){
+            	ix = rand.nextInt(4);
+                iz = rand.nextInt(4);
+            	check2--;
             	continue;
             }
-            
-
-            for (int ii = 0; ii < 4; ii++)
-                for (int ij = 0; ij < 4; ij++)
-                {
-//                    System.out.println("blargh [" + ii + "," + ij + "] " + block[ii][ij]);
-                    ted.setDust(p, ii, ij, block[ii][ij]);
-
-                    if (block[ii][ij] > 0)
-                    {
-                        reduceDustAmount[block[ii][ij]]++;
-                    }
-                }
-//            if (block[ix][iz] > 0 && ted.getDust(ix, iz) == 0)
-//            {
-//            	System.out.println("PLACE [" + ix + "," + iz + "] " + ted.getDust(ix,iz) + " > " + block[ix][iz]);
-//            	int dust = block[ix][iz];
-//            	
-//            	if(pDustAmount[dust] <= 0) {
-//            		continue;
-//            	}else {
-//	            	hasDrawn--;
-//	                ted.setDust(ix, iz, dust);
-//	                reduceDustAmount[dust]++;
-//	                float red,green,blue;
-//	                int[] color = DustItemManager.getFloorColorRGB(dust);
-//	                red = (float)color[0]/255F;
-//	                green = (float)color[1]/255F;
-//	                blue = (float)color[2]/255F;
-//	                w.spawnParticle("reddust", si+x+((double)ix/4D), j, sk+z+((double)iz/4D), -1 + red, green, blue);
-//            	}
-//            }
+            int dust = block[ix][iz];
+            if(ted.getDust(ix,iz) == 0 && dust != 0){
+            	boolean canDraw = true;
+            	if(dust > 0 && !p.capabilities.isCreativeMode) {
+            		if(pDustAmount[dust] > 0){
+	            		reduceDustAmount[dust]++;
+	            		pDustAmount[dust] --;
+            		}else{
+            			canDraw = false;
+            		}
+            	}
+            	if(canDraw){
+                	ted.setDust(p, ix, iz, dust);
+            	}
+            }
         }
-        
-//        for (int x = 0; x < tblocks.size(); x++)
-//        {
-//            for (int z = 0; z < tblocks.get(0).size(); z++)
-//            {
-//                if (w.getBlockId(si + x, j, sk + z) != 0 && !(DustMod.isDust(w.getBlockId(si + x, j, sk + z)) && w.getBlockMetadata(si + x, j, sk + z) == 2) && w.getBlockId(si + x, j, sk + z) != Block.tallGrass.blockID)
-//                {
-//                    continue;
-//                }//return false;
-//
-//                if (w.getBlockId(si + x, j - 1, sk + z) == 0)
-//                {
-//                    continue;
-//                }//return false;
-//
-//                if (!DustMod.dust.canPlaceBlockAt(w, si+x, j, sk+z))
-//                {
-//                    continue;
-//                }//return false;
-//
-//                w.setBlockWithNotify(si + x, j, sk + z, 0);
-//                w.setBlockWithNotify(si + x, j, sk + z, DustMod.dust.blockID);
-//                TileEntityDust ted;
-//                TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);
-//
-//                if (te != null && te instanceof TileEntityDust)
-//                {
-//                    ted = (TileEntityDust)te;
-//                    w.setBlockMetadata(si + x, j, sk + z, 0);
-//                }
-//                else
-//                {
-//                    ted = new TileEntityDust();
-//                    w.setBlockTileEntity(si + i, j, sk + k, ted);
-//                }
-//
-//                ted.empty();
-//                int[][] block = tblocks.get(x).get(z);
-//
-//                for (int ii = 0; ii < 4; ii++)
-//                    for (int ij = 0; ij < 4; ij++)
-//                    {
-////                        System.out.println("blargh [" + ii + "," + ij + "] " + block[ii][ij]);
-//                        ted.setDust(ii, ij, block[ii][ij]);
-//
-//                        if (block[ii][ij] > 0)
-//                        {
-//                            pDustAmount[block[ii][ij]]++;
-//                        }
-//                    }
-//            }
-//        }
 
         for (int x = 0; x < tblocks.size(); x++)
         {
@@ -1078,7 +998,7 @@ public class DustShape
 
                     if (ted.isEmpty())
                     {
-                        w.setBlockWithNotify(si + x, j, sk + z, 0);
+                        w.setBlockAndMetadataWithNotify(si + x, j, sk + z, 0,0,3);
                     }
                     else
                     {
@@ -1087,8 +1007,7 @@ public class DustShape
                 }
             }
         }
-
-//        System.out.println("Dust Used " + Arrays.toString(reduceDustAmount));
+        
         if (!p.capabilities.isCreativeMode)
         {
             for (int id = 1; id < 1000; id++)
@@ -1133,9 +1052,6 @@ public class DustShape
         }
         p.inventory.inventoryChanged = true;
         
-        
-        
-//        data = backup;
         updateData();
         return true;
     }

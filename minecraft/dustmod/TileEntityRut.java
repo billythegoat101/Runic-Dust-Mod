@@ -76,14 +76,14 @@ public class TileEntityRut extends TileEntity
         if (isEmpty() || (Block.blocksList[maskBlock] instanceof BlockSand && BlockSand.canFallBelow(worldObj, xCoord, yCoord - 1, zCoord)))
         {
             isDead = true;
-            worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, maskBlock, maskMeta);
+            worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
             this.invalidate();
             return;
         }
 
         if (worldObj.getWorldTime() % 14 == 0 && prevFluid == fluid && fluidIsFluid())
         {
-            worldObj.setBlockMetadata(xCoord, yCoord, zCoord, maskMeta);
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, maskMeta,0);
             int i = xCoord, j = yCoord, k = zCoord;
             super.updateEntity();
 
@@ -343,7 +343,7 @@ public class TileEntityRut extends TileEntity
     public void resetBlock()
     {
         isDead = true;
-        worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, maskBlock, maskMeta);
+        worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
     }
 
     public boolean fluidIsFluid()

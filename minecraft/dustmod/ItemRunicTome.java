@@ -5,7 +5,6 @@
 package dustmod;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -14,7 +13,7 @@ import net.minecraft.world.World;
  *
  * @author billythegoat101
  */
-public class ItemRunicTome  extends Item
+public class ItemRunicTome  extends DustModItem
 {
     private int blockID;
     private int tex;
@@ -27,8 +26,6 @@ public class ItemRunicTome  extends Item
         //[non-forge]
 //        this.setIconIndex(ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/notebook.png"));
         //[forge]
-        this.setIconCoord(2,2);
-        this.setTextureFile(DustMod.path + "/dustItems.png");
         this.setMaxStackSize(1);
     }
 
@@ -56,12 +53,6 @@ public class ItemRunicTome  extends Item
     	
 
     	int page = itemstack.getItemDamage();
-    	
-//		if (world.getBlockId(i, j, k) == DustMod.dustTable.blockID)
-//        {
-//            TileEntityDustTable tel = (TileEntityDustTable)world.getBlockTileEntity(i, j, k);
-//            page = tel.page;
-//        }
 
         if (world.isRemote || page == 0 || p.isSneaking() || !p.capabilities.isCreativeMode)
         {
@@ -71,14 +62,11 @@ public class ItemRunicTome  extends Item
         DustShape ds = DustManager.getShape(page - 1);
         int r = (MathHelper.floor_double((double)(p.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3);
 
-//        if (world.canBlockBePlacedAt(blockID, i, j, k, false, l))
-//        {
-//        System.out.println("derp " + world.getBlockMetadata(i, j, k) + " " + mod_DustMod.DustMetaUsed);
         if (DustMod.isDust(world.getBlockId(i, j, k)))
         {
             if (world.getBlockMetadata(i, j, k) == DustMod.DustMetaUsed)
             {
-                world.setBlockWithNotify(i, j, k, 0);
+                world.setBlockAndMetadataWithNotify(i, j, k, 0,0,3);
                 j--;
             }
             else

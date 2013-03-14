@@ -32,6 +32,8 @@ public class TileEntityDust extends TileEntity implements IInventory
     private int toDestroy = -1;
     private int ticksExisted = 0;
     private EntityDust entityDust = null;
+    private boolean isPowered = false;
+    private boolean hasMadeFirstPoweredCheck = false;
     
     public int dustEntID;
     
@@ -118,9 +120,11 @@ public class TileEntityDust extends TileEntity implements IInventory
         	float g =  (float)c.getGreen()/255F;
         	float b =  (float)c.getBlue()/255F;
         	if(r == 0) r-=1;
-        	for(int d = 0; d < Math.random()*3; d++){
-        		worldObj.spawnParticle("reddust", xCoord+ (double)i/4D + Math.random()*0.15, yCoord, zCoord+ (double)j/4D + Math.random()*0.15, r,g,b);
-        	}
+        	
+        	if(Math.random() < 0.25)
+	        	for(int d = 0; d < Math.random()*3; d++){
+	        		worldObj.spawnParticle("reddust", xCoord+ (double)i/4D + Math.random()*0.15, yCoord, zCoord+ (double)j/4D + Math.random()*0.15, r,g,b);
+	        	}
         }
         worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
         worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
@@ -149,8 +153,8 @@ public class TileEntityDust extends TileEntity implements IInventory
 //        if(worldObj.isRemote) return;
         if (ticksExisted > 2 && isEmpty() && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 10)
         {
-            worldObj.setBlockWithNotify(xCoord, yCoord, zCoord, 0);
-//            System.out.println("Killing, empty");
+            worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, 0,0,3);
+//            DustMod.log("Killing, empty");
             this.invalidate();
             return;
         }
@@ -223,6 +227,11 @@ public class TileEntityDust extends TileEntity implements IInventory
 
 //            System.out.println("else " + worldObj.getBlockMetadata(xCoord, yCoord, zCoord) + " " + toDestroy);
         }
+        
+        if(!this.hasMadeFirstPoweredCheck){
+        	this.isPowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+        	this.hasMadeFirstPoweredCheck = true;
+        }
     }
 
     public void onRightClick(EntityPlayer p)
@@ -232,6 +241,13 @@ public class TileEntityDust extends TileEntity implements IInventory
             entityDust.onRightClick(this, p);
         }
     }
+
+	public void onNeighborBlockChange() {
+    	this.isPowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+	}
+	public boolean isPowered(){
+		return this.isPowered;
+	}
 
     public int[][][] getRendArrays()
     {
@@ -421,7 +437,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         int tx = ted.xCoord;
         int ty = ted.yCoord;
         int tz = ted.zCoord;
-        ted.worldObj.setBlockMetadata(tx, ty, tz, worldObj.getBlockMetadata(xCoord, yCoord, zCoord));
+        ted.worldObj.setBlockAndMetadataWithNotify(tx, ty, tz, worldObj.getBlockMetadata(xCoord, yCoord, zCoord),0,3);
     }
 
     @Override
@@ -429,13 +445,6 @@ public class TileEntityDust extends TileEntity implements IInventory
     {
         super.onDataPacket(net, pkt);
 //        System.out.println("DataPacket");
-    }
-
-    @Override
-    public void receiveClientEvent(int par1, int par2)
-    {
-        super.receiveClientEvent(par1, par2);
-//        System.out.println("ClientEvent");
     }
 
     @Override
@@ -549,4 +558,16 @@ public class TileEntityDust extends TileEntity implements IInventory
     {
         return PacketHandler.getTEDPacket(this);
     }
+
+	@Override
+	public boolean func_94042_c() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean func_94041_b(int i, ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

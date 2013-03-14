@@ -69,7 +69,7 @@ public class Sacrifice
                 }
 
                 e.data[15] = in.itemID;
-                ((EntityItem)ent).func_92058_a(in);
+                ((EntityItem)ent).setEntityItemStack(in);
                 return true;
             }
         }

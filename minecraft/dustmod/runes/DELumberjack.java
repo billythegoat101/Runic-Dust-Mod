@@ -194,7 +194,7 @@ public class DELumberjack extends DustEvent
         }
 
         Block.wood.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 1);
-        world.setBlockWithNotify(x, y, z, 0);
+        world.setBlockAndMetadataWithNotify(x, y, z, 0,0,3);
 
         for (int i = -2; i <= 2; i++)
         {
@@ -265,7 +265,7 @@ public class DELumberjack extends DustEvent
         }
 
 //        Block.wood.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 1);
-        world.setBlockWithNotify(x, y, z, 0);
+        world.setBlockAndMetadataWithNotify(x, y, z, 0,0,3);
 
         for (int i = -2; i <= 2; i++)
         {

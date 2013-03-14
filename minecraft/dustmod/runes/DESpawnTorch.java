@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import dustmod.DustEvent;
+import dustmod.DustMod;
 import dustmod.EntityDust;
 
 /**
@@ -67,14 +68,13 @@ public class DESpawnTorch extends DustEvent
     protected void onTick(EntityDust e)
     {
         super.onTick(e);
-
         if(e.data[0] == 0 && e.ticksExisted == 0){
             World world = e.worldObj;
             int x = e.getX();
             int y = e.getY();
             int z = e.getZ();
-            world.setBlock(x, y, z, 0);
-            world.setBlockAndMetadataWithNotify(x, y, z, Block.torchWood.blockID, 0);
+            world.setBlockAndMetadataWithNotify(x, y, z, 0,0,0);
+            world.setBlockAndMetadataWithNotify(x, y, z, Block.torchWood.blockID, 0,3);
         }
         
         if(e.data[0] == 1 && e.ticksExisted%10 == 0){
@@ -90,15 +90,24 @@ public class DESpawnTorch extends DustEvent
                         i.setDead();
                         break;
                     }else{
-                    	i.func_92058_a(item);
+                    	i.setEntityItemStack(item);
                     }
                 }
+            }
+            
+            if(e.getRenderBeam() && e.isPowered()){
+            	e.setRenderBeam(false);
+            	e.updateDataWatcher();
+            }else if(!e.getRenderBeam() && !e.isPowered()){
+            	e.setRenderBeam(true);
+            	e.updateDataWatcher();
             }
         }
         if (e.data[0] == 0)
         {
             if (e.worldObj.getBlockId(e.getX(), e.getY(), e.getZ()) != Block.torchWood.blockID)
             {
+            	DustMod.log("KILL" + Block.blocksList[e.worldObj.getBlockId(e.getX(), e.getY(), e.getZ())]);
                 e.fade();
                 e.kill();
             }

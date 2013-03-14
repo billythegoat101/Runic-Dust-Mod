@@ -104,7 +104,7 @@ public class DEResurrection extends DustEvent
                             {
                                 ent.setDead();
                             }else{
-                            	ent.func_92058_a(item);
+                            	ent.setEntityItemStack(item);
                             }
                         }
                     }

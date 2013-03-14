@@ -7,11 +7,11 @@ package dustmod;
 import java.util.List;
 import java.util.logging.Level;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  * @author billythegoat101
  */
-public class ItemPlaceScroll extends Item
+public class ItemPlaceScroll extends DustModItem
 {
     private int blockID;
 
@@ -37,13 +37,6 @@ public class ItemPlaceScroll extends Item
         setMaxDamage(0);
         setHasSubtypes(true);
         this.setMaxStackSize(4);
-        
-        
-        //[non-forge]
-        //this.setIconIndex(ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/scroll.png"));
-        //[forge]
-        this.setIconCoord(0,2);
-        this.setTextureFile(DustMod.path + "/dustItems.png");
     }
 
     @Override
@@ -74,7 +67,7 @@ public class ItemPlaceScroll extends Item
             }
 
             try{
-            if (ds.drawOnWorldWhole(world, i, j, k, (EntityPlayer)wielder, r/*, ((EntityPlayer)wielder).getItemInUseCount()*/))
+            if (ds.drawOnWorldPart(world, i, j, k, (EntityPlayer)wielder, r, ((EntityPlayer)wielder).getItemInUseCount()))
             {
 //                itemstack.stackSize--;
 //                    System.out.println("Drawing success!");
@@ -111,7 +104,7 @@ public class ItemPlaceScroll extends Item
 		return false;
 	}
     
-    public String getItemNameIS(ItemStack itemstack)
+    public String getUnlocalizedName(ItemStack itemstack)
     {
     	DustShape shape = DustManager.getShapeFromID(itemstack.getItemDamage());
     	if(shape != null)
@@ -155,11 +148,6 @@ public class ItemPlaceScroll extends Item
     			}
     		}
     	}
-    }
-
-    public String getLocalItemName(ItemStack itemstack)
-    {
-        return getItemNameIS(itemstack);
     }
     
     @Override
@@ -226,5 +214,11 @@ public class ItemPlaceScroll extends Item
         Vec3 var23 = var13.addVector((double)var18 * var21, (double)var17 * var21, (double)var20 * var21);
         lastMOP = world.rayTraceBlocks_do_do(var13, var23, par3, !par3);
         return lastMOP;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void func_94581_a(IconRegister iconRegister) {
+    	this.iconIndex = iconRegister.func_94245_a(DustMod.resPath + "/dustScroll");
     }
 }

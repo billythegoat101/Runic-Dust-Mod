@@ -9,12 +9,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -29,10 +31,8 @@ public class BlockRut extends BlockContainer
 {
     public BlockRut(int i)
     {
-        super(i, 7, Material.wood);
+        super(i, Material.wood);
         this.setLightOpacity(0);
-//        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
-//        standTex = ModLoader.addOverride("/terrain.png", mod_DustMod.path + "/standTop.png");
     }
 
     @Override
@@ -294,7 +294,7 @@ public class BlockRut extends BlockContainer
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBlockTexture(IBlockAccess world, int i,
+    public Icon getBlockTexture(IBlockAccess world, int i,
     		int j, int k, int meta) {
     	TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
     	Block b = Block.blocksList[ter.maskBlock];
@@ -355,5 +355,10 @@ public class BlockRut extends BlockContainer
         	if(fLight > light) light = fLight;
         }
         return light;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void func_94332_a(IconRegister par1IconRegister) {
     }
 }

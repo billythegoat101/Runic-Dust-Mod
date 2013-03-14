@@ -101,7 +101,7 @@ public class DEChestNom extends DustEvent
         //If we've made it here then the sacrifice must have been fulfilled.
         //so now we place that chest
         World world = e.worldObj;
-        world.setBlockWithNotify(e.getX(), e.getY(), e.getZ(), Block.chest.blockID);
+        world.setBlockAndMetadataWithNotify(e.getX(), e.getY(), e.getZ(), Block.chest.blockID,0,3);
         
     }
     
@@ -184,7 +184,7 @@ public class DEChestNom extends DustEvent
                         break;
                     }
                 }
-                ei.func_92058_a(item);
+                ei.setEntityItemStack(item);
             }
         }
         

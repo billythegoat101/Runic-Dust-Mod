@@ -3,6 +3,7 @@ package dustmod.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -10,7 +11,6 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import dustmod.BlockDust;
 import dustmod.DustItemManager;
-import dustmod.DustMod;
 import dustmod.TileEntityDust;
 import dustmod.TileEntityRut;
 
@@ -128,7 +128,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                     g = (float)col[1];
                     b = (float)col[2];
                     
-                    if(meta == BlockDust.ACTIVE_DUST){
+                    if(meta == BlockDust.ACTIVE_DUST || meta == BlockDust.ACTIVATING_DUST){
                     	r = 255f;
                     	g = 0f;
                     	b = 0f;
@@ -174,7 +174,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                     g = (float)col[1];
                     b = (float)col[2];
                     
-                    if(meta == BlockDust.ACTIVE_DUST){
+                    if(meta == BlockDust.ACTIVE_DUST || meta == BlockDust.ACTIVATING_DUST){
                     	r = 255f;
                     	g = 0f;
                     	b = 0f;
@@ -231,7 +231,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
                     g = (float)col[1];
                     b = (float)col[2];
                     
-                    if(meta == BlockDust.ACTIVE_DUST){
+                    if(meta == BlockDust.ACTIVE_DUST || meta == BlockDust.ACTIVATING_DUST){
                     	r = 255f;
                     	g = 0f;
                     	b = 0f;
@@ -290,7 +290,7 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
 //        tes.draw();
 //        tes.startDrawingQuads();
 //        Block.lightValue[block.blockID] = light;
-        renderblocks.overrideBlockTexture = -1;
+        renderblocks.overrideBlockTexture = null;
         block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, h, 1.0F);
         return true;
     }
@@ -671,512 +671,513 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
     }
     
     
+    //Derped due to TextureFX change
     private void renderGlow(RenderBlocks rb, Block block, int i, int j, int k){
 
-    	GL11.glPushMatrix();
-    	GL11.glScalef(1, 0.2f, 0);
-    	
-    	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
-        Tessellator var8 = Tessellator.instance;
-        var8.setColorOpaque_F(1, 1, 1);
-        var8.setBrightness(15728880);
-//        var8.disableColor();
-        double dif = 0.001;
-        int tex = 32;
-    	renderEastFace(rb, 32, block, i, j, k-dif, tex);
-    	renderWestFace(rb, 32, block, i, j, k+dif, tex);
-    	renderNorthFace(rb, 32, block, i-dif, j, k, tex);
-    	renderSouthFace(rb, 32, block, i+dif, j, k, tex);
-    	GL11.glPopAttrib();
-    	
-    	GL11.glPopMatrix();
+//    	GL11.glPushMatrix();
+//    	GL11.glScalef(1, 0.2f, 0);
+//    	
+//    	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+//        Tessellator var8 = Tessellator.instance;
+//        var8.setColorOpaque_F(1, 1, 1);
+//        var8.setBrightness(15728880);
+////        var8.disableColor();
+//        double dif = 0.001;
+//        int tex = 32;
+//    	renderEastFace(rb, 32, block, i, j, k-dif, tex);
+//    	renderWestFace(rb, 32, block, i, j, k+dif, tex);
+//    	renderNorthFace(rb, 32, block, i-dif, j, k, tex);
+//    	renderSouthFace(rb, 32, block, i+dif, j, k, tex);
+//    	GL11.glPopAttrib();
+//    	
+//    	GL11.glPopMatrix();
     }
     
     private void renderGlowIgnoreSide(RenderBlocks rb, Block b, int i, int j, int k, boolean[] ignore){
-    	GL11.glPushMatrix();
-    	GL11.glScalef(1, 0.2f, 0);
-    	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
-        double dif = 0.001;
-        int tex = 32;
-        rb.setRenderBoundsFromBlock(b);
-        if(!ignore[0])
-        	renderEastFace(rb, 128, b, i, j, k-dif, tex);
-        if(!ignore[1])
-        	renderWestFace(rb, 128, b, i, j, k+dif, tex);
-        if(!ignore[2])
-        	renderNorthFace(rb, 128, b, i-dif, j, k, tex);
-        if(!ignore[3])
-        	renderSouthFace(rb, 128, b, i+dif, j, k, tex);
-    	GL11.glPopAttrib();
-    	
-    	GL11.glPopMatrix();
+//    	GL11.glPushMatrix();
+//    	GL11.glScalef(1, 0.2f, 0);
+//    	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+//        double dif = 0.001;
+//        int tex = 32;
+//        rb.setRenderBoundsFromBlock(b);
+//        if(!ignore[0])
+//        	renderEastFace(rb, 128, b, i, j, k-dif, tex);
+//        if(!ignore[1])
+//        	renderWestFace(rb, 128, b, i, j, k+dif, tex);
+//        if(!ignore[2])
+//        	renderNorthFace(rb, 128, b, i-dif, j, k, tex);
+//        if(!ignore[3])
+//        	renderSouthFace(rb, 128, b, i+dif, j, k, tex);
+//    	GL11.glPopAttrib();
+//    	
+//    	GL11.glPopMatrix();
     }
-
-    
+//
+//    
     private void renderGlowPoint(RenderBlocks rb, Block b, int i, int j, int k, int x, int y, int dust, int[][] horiz, int[][] vert){
-
-        double dif = 0.001;
-        int tex = 32;
-
-        rb.setRenderBoundsFromBlock(b);
-        if(dust != horiz[x][y])
-        	renderEastFace(rb, 128, b, i, j, k-dif, tex);
-        if(dust != horiz[x][y+1])
-        	renderWestFace(rb, 128, b, i, j, k+dif, tex);
-        if(dust != vert[x][y])
-        	renderNorthFace(rb, 128, b, i-dif, j, k, tex);
-        if(dust != vert[x+1][y])
-        	renderSouthFace(rb, 128, b, i+dif, j, k, tex);
+//
+//        double dif = 0.001;
+//        int tex = 32;
+//
+//        rb.setRenderBoundsFromBlock(b);
+//        if(dust != horiz[x][y])
+//        	renderEastFace(rb, 128, b, i, j, k-dif, tex);
+//        if(dust != horiz[x][y+1])
+//        	renderWestFace(rb, 128, b, i, j, k+dif, tex);
+//        if(dust != vert[x][y])
+//        	renderNorthFace(rb, 128, b, i-dif, j, k, tex);
+//        if(dust != vert[x+1][y])
+//        	renderSouthFace(rb, 128, b, i+dif, j, k, tex);
     }
-
-    
-    /*
-    * Renders the given texture to the east (z-negative) face of the block.  Args: block, x, y, z, texture
-    */
-   public void renderEastFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
-   {
-       Tessellator var9 = Tessellator.instance;
-
-       if (rb.overrideBlockTexture >= 0)
-       {
-           par8 = rb.overrideBlockTexture;
-       }
-
-       int var10 = (par8 & 15) << 4;
-       int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.renderMinX * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.renderMaxX * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
-       double var20;
-
-       if (rb.flipTexture)
-       {
-           var20 = var12;
-           var12 = var14;
-           var14 = var20;
-       }
-
-       if (rb.renderMinX < 0.0D || rb.renderMaxX > 1.0D)
-       {
-           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
-           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
-       }
-
-       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
-       {
-           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
-           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
-       }
-
-       var20 = var14;
-       double var22 = var12;
-       double var24 = var16;
-       double var26 = var18;
-
-       if (rb.uvRotateEast == 2)
-       {
-           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.renderMinX * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.renderMaxX * (double)height) / 256.0D;
-           var24 = var16;
-           var26 = var18;
-           var20 = var12;
-           var22 = var14;
-           var16 = var18;
-           var18 = var24;
-       }
-       else if (rb.uvRotateEast == 1)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.renderMaxX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMinX * (double)height) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var12 = var14;
-           var14 = var22;
-           var24 = var18;
-           var26 = var16;
-       }
-       else if (rb.uvRotateEast == 3)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMinX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMaxX * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var24 = var16;
-           var26 = var18;
-       }
-
-       double var28 = par2 + rb.renderMinX;
-       double var30 = par2 + rb.renderMaxX;
-       double var32 = par4 + rb.renderMinY;
-       double var34 = par4 + rb.renderMaxY;
-       double var36 = par6 + rb.renderMinZ;
-
-       if (rb.enableAO)
-       {
-           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
-           var9.setBrightness(rb.brightnessTopLeft);
-           var9.addVertexWithUV(var28, var34, var36, var20, var24);
-           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
-           var9.setBrightness(rb.brightnessBottomLeft);
-           var9.addVertexWithUV(var30, var34, var36, var12, var16);
-           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
-           var9.setBrightness(rb.brightnessBottomRight);
-           var9.addVertexWithUV(var30, var32, var36, var22, var26);
-           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
-           var9.setBrightness(rb.brightnessTopRight);
-           var9.addVertexWithUV(var28, var32, var36, var14, var18);
-       }
-       else
-       {
-           var9.addVertexWithUV(var28, var34, var36, var20, var24);
-           var9.addVertexWithUV(var30, var34, var36, var12, var16);
-           var9.addVertexWithUV(var30, var32, var36, var22, var26);
-           var9.addVertexWithUV(var28, var32, var36, var14, var18);
-       }
-   }
-
-   /**
-    * Renders the given texture to the west (z-positive) face of the block.  Args: block, x, y, z, texture
-    */
-   public void renderWestFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
-   {
-       Tessellator var9 = Tessellator.instance;
-
-       if (rb.overrideBlockTexture >= 0)
-       {
-           par8 = rb.overrideBlockTexture;
-       }
-
-       int var10 = (par8 & 15) << 4;
-       int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.renderMinX * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.renderMaxX * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
-       double var20;
-
-       if (rb.flipTexture)
-       {
-           var20 = var12;
-           var12 = var14;
-           var14 = var20;
-       }
-
-       if (rb.renderMinX < 0.0D || rb.renderMaxX > 1.0D)
-       {
-           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
-           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
-       }
-
-       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
-       {
-           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
-           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
-       }
-
-       var20 = var14;
-       double var22 = var12;
-       double var24 = var16;
-       double var26 = var18;
-
-       if (rb.uvRotateWest == 1)
-       {
-           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.renderMinX * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.renderMaxX * (double)height) / 256.0D;
-           var24 = var16;
-           var26 = var18;
-           var20 = var12;
-           var22 = var14;
-           var16 = var18;
-           var18 = var24;
-       }
-       else if (rb.uvRotateWest == 2)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.renderMinX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMaxX * (double)height) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var12 = var14;
-           var14 = var22;
-           var24 = var18;
-           var26 = var16;
-       }
-       else if (rb.uvRotateWest == 3)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMinX * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMaxX * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var24 = var16;
-           var26 = var18;
-       }
-
-       double var28 = par2 + rb.renderMinX;
-       double var30 = par2 + rb.renderMaxX;
-       double var32 = par4 + rb.renderMinY;
-       double var34 = par4 + rb.renderMaxY;
-       double var36 = par6 + rb.renderMaxZ;
-
-       if (rb.enableAO)
-       {
-           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
-           var9.setBrightness(rb.brightnessTopLeft);
-           var9.addVertexWithUV(var28, var34, var36, var12, var16);
-           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
-           var9.setBrightness(rb.brightnessBottomLeft);
-           var9.addVertexWithUV(var28, var32, var36, var22, var26);
-           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
-           var9.setBrightness(rb.brightnessBottomRight);
-           var9.addVertexWithUV(var30, var32, var36, var14, var18);
-           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
-           var9.setBrightness(rb.brightnessTopRight);
-           var9.addVertexWithUV(var30, var34, var36, var20, var24);
-       }
-       else
-       {
-           var9.addVertexWithUV(var28, var34, var36, var12, var16);
-           var9.addVertexWithUV(var28, var32, var36, var22, var26);
-           var9.addVertexWithUV(var30, var32, var36, var14, var18);
-           var9.addVertexWithUV(var30, var34, var36, var20, var24);
-       }
-   }
-
-   /**
-    * Renders the given texture to the north (x-negative) face of the block.  Args: block, x, y, z, texture
-    */
-   public void renderNorthFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
-   {
-       Tessellator var9 = Tessellator.instance;
-
-       if (rb.overrideBlockTexture >= 0)
-       {
-           par8 = rb.overrideBlockTexture;
-       }
-
-       int var10 = (par8 & 15) << 4;
-       int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.renderMinZ * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.renderMaxZ * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
-       double var20;
-
-       if (rb.flipTexture)
-       {
-           var20 = var12;
-           var12 = var14;
-           var14 = var20;
-       }
-
-       if (rb.renderMinZ < 0.0D || rb.renderMaxZ > 1.0D)
-       {
-           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
-           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
-       }
-
-       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
-       {
-           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
-           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
-       }
-
-       var20 = var14;
-       double var22 = var12;
-       double var24 = var16;
-       double var26 = var18;
-
-       if (rb.uvRotateNorth == 1)
-       {
-           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.renderMaxZ * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.renderMinZ * (double)height) / 256.0D;
-           var24 = var16;
-           var26 = var18;
-           var20 = var12;
-           var22 = var14;
-           var16 = var18;
-           var18 = var24;
-       }
-       else if (rb.uvRotateNorth == 2)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.renderMinZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMaxZ * (double)height) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var12 = var14;
-           var14 = var22;
-           var24 = var18;
-           var26 = var16;
-       }
-       else if (rb.uvRotateNorth == 3)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMinZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMaxZ * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var24 = var16;
-           var26 = var18;
-       }
-
-       double var28 = par2 + rb.renderMinX;
-       double var30 = par4 + rb.renderMinY;
-       double var32 = par4 + rb.renderMaxY;
-       double var34 = par6 + rb.renderMinZ;
-       double var36 = par6 + rb.renderMaxZ;
-
-       if (rb.enableAO)
-       {
-           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
-           var9.setBrightness(rb.brightnessTopLeft);
-           var9.addVertexWithUV(var28, var32, var36, var20, var24);
-           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
-           var9.setBrightness(rb.brightnessBottomLeft);
-           var9.addVertexWithUV(var28, var32, var34, var12, var16);
-           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
-           var9.setBrightness(rb.brightnessBottomRight);
-           var9.addVertexWithUV(var28, var30, var34, var22, var26);
-           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
-           var9.setBrightness(rb.brightnessTopRight);
-           var9.addVertexWithUV(var28, var30, var36, var14, var18);
-       }
-       else
-       {
-           var9.addVertexWithUV(var28, var32, var36, var20, var24);
-           var9.addVertexWithUV(var28, var32, var34, var12, var16);
-           var9.addVertexWithUV(var28, var30, var34, var22, var26);
-           var9.addVertexWithUV(var28, var30, var36, var14, var18);
-       }
-   }
-
-   /**
-    * Renders the given texture to the south (x-positive) face of the block.  Args: block, x, y, z, texture
-    */
-   public void renderSouthFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
-   {
-       Tessellator var9 = Tessellator.instance;
-
-       if (rb.overrideBlockTexture >= 0)
-       {
-           par8 = rb.overrideBlockTexture;
-       }
-
-       int var10 = (par8 & 15) << 4;
-       int var11 = par8 & 240;
-       double var12 = ((double)var10 + rb.renderMinZ * (double)16) / 256.0D;
-       double var14 = ((double)var10 + rb.renderMaxZ * (double)16 - 0.01D) / 256.0D;
-       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
-       double var20;
-
-       if (rb.flipTexture)
-       {
-           var20 = var12;
-           var12 = var14;
-           var14 = var20;
-       }
-
-       if (rb.renderMinZ < 0.0D || rb.renderMaxZ > 1.0D)
-       {
-           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
-           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
-       }
-
-       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
-       {
-           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
-           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
-       }
-
-       var20 = var14;
-       double var22 = var12;
-       double var24 = var16;
-       double var26 = var18;
-
-       if (rb.uvRotateSouth == 2)
-       {
-           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
-           var16 = ((double)(var11 + 16) - rb.renderMinZ * (double)height) / 256.0D;
-           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)(var11 + 16) - rb.renderMaxZ * (double)height) / 256.0D;
-           var24 = var16;
-           var26 = var18;
-           var20 = var12;
-           var22 = var14;
-           var16 = var18;
-           var18 = var24;
-       }
-       else if (rb.uvRotateSouth == 1)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
-           var16 = ((double)var11 + rb.renderMaxZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMinZ * (double)height) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var12 = var14;
-           var14 = var22;
-           var24 = var18;
-           var26 = var16;
-       }
-       else if (rb.uvRotateSouth == 3)
-       {
-           var12 = ((double)(var10 + 16) - rb.renderMinZ * (double)height) / 256.0D;
-           var14 = ((double)(var10 + 16) - rb.renderMaxZ * (double)height - 0.01D) / 256.0D;
-           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
-           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
-           var20 = var14;
-           var22 = var12;
-           var24 = var16;
-           var26 = var18;
-       }
-
-       double var28 = par2 + rb.renderMaxX;
-       double var30 = par4 + rb.renderMinY;
-       double var32 = par4 + rb.renderMaxY;
-       double var34 = par6 + rb.renderMinZ;
-       double var36 = par6 + rb.renderMaxZ;
-
-       if (rb.enableAO)
-       {
-           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
-           var9.setBrightness(rb.brightnessTopLeft);
-           var9.addVertexWithUV(var28, var30, var36, var22, var26);
-           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
-           var9.setBrightness(rb.brightnessBottomLeft);
-           var9.addVertexWithUV(var28, var30, var34, var14, var18);
-           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
-           var9.setBrightness(rb.brightnessBottomRight);
-           var9.addVertexWithUV(var28, var32, var34, var20, var24);
-           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
-           var9.setBrightness(rb.brightnessTopRight);
-           var9.addVertexWithUV(var28, var32, var36, var12, var16);
-       }
-       else
-       {
-           var9.addVertexWithUV(var28, var30, var36, var22, var26);
-           var9.addVertexWithUV(var28, var30, var34, var14, var18);
-           var9.addVertexWithUV(var28, var32, var34, var20, var24);
-           var9.addVertexWithUV(var28, var32, var36, var12, var16);
-       }
-   }
+//
+//    
+//    /*
+//    * Renders the given texture to the east (z-negative) face of the block.  Args: block, x, y, z, texture
+//    */
+//   public void renderEastFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, Icon par8)
+//   {
+//       Tessellator var9 = Tessellator.instance;
+//
+//       if (rb.overrideBlockTexture != null)
+//       {
+//           par8 = rb.overrideBlockTexture;
+//       }
+//
+//       int var10 = (par8 & 15) << 4;
+//       int var11 = par8 & 240;
+//       double var12 = ((double)var10 + rb.renderMinX * (double)16) / 256.0D;
+//       double var14 = ((double)var10 + rb.renderMaxX * (double)16 - 0.01D) / 256.0D;
+//       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
+//       double var20;
+//
+//       if (rb.flipTexture)
+//       {
+//           var20 = var12;
+//           var12 = var14;
+//           var14 = var20;
+//       }
+//
+//       if (rb.renderMinX < 0.0D || rb.renderMaxX > 1.0D)
+//       {
+//           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
+//           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
+//       }
+//
+//       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
+//       {
+//           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
+//           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
+//       }
+//
+//       var20 = var14;
+//       double var22 = var12;
+//       double var24 = var16;
+//       double var26 = var18;
+//
+//       if (rb.uvRotateEast == 2)
+//       {
+//           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+//           var16 = ((double)(var11 + 16) - rb.renderMinX * (double)height) / 256.0D;
+//           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)(var11 + 16) - rb.renderMaxX * (double)height) / 256.0D;
+//           var24 = var16;
+//           var26 = var18;
+//           var20 = var12;
+//           var22 = var14;
+//           var16 = var18;
+//           var18 = var24;
+//       }
+//       else if (rb.uvRotateEast == 1)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMaxX * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMinX * (double)height) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var12 = var14;
+//           var14 = var22;
+//           var24 = var18;
+//           var26 = var16;
+//       }
+//       else if (rb.uvRotateEast == 3)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMinX * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMaxX * (double)height - 0.01D) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var24 = var16;
+//           var26 = var18;
+//       }
+//
+//       double var28 = par2 + rb.renderMinX;
+//       double var30 = par2 + rb.renderMaxX;
+//       double var32 = par4 + rb.renderMinY;
+//       double var34 = par4 + rb.renderMaxY;
+//       double var36 = par6 + rb.renderMinZ;
+//
+//       if (rb.enableAO)
+//       {
+//           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
+//           var9.setBrightness(rb.brightnessTopLeft);
+//           var9.addVertexWithUV(var28, var34, var36, var20, var24);
+//           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
+//           var9.setBrightness(rb.brightnessBottomLeft);
+//           var9.addVertexWithUV(var30, var34, var36, var12, var16);
+//           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
+//           var9.setBrightness(rb.brightnessBottomRight);
+//           var9.addVertexWithUV(var30, var32, var36, var22, var26);
+//           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
+//           var9.setBrightness(rb.brightnessTopRight);
+//           var9.addVertexWithUV(var28, var32, var36, var14, var18);
+//       }
+//       else
+//       {
+//           var9.addVertexWithUV(var28, var34, var36, var20, var24);
+//           var9.addVertexWithUV(var30, var34, var36, var12, var16);
+//           var9.addVertexWithUV(var30, var32, var36, var22, var26);
+//           var9.addVertexWithUV(var28, var32, var36, var14, var18);
+//       }
+//   }
+//
+//   /**
+//    * Renders the given texture to the west (z-positive) face of the block.  Args: block, x, y, z, texture
+//    */
+//   public void renderWestFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
+//   {
+//       Tessellator var9 = Tessellator.instance;
+//
+//       if (rb.overrideBlockTexture >= 0)
+//       {
+//           par8 = rb.overrideBlockTexture;
+//       }
+//
+//       int var10 = (par8 & 15) << 4;
+//       int var11 = par8 & 240;
+//       double var12 = ((double)var10 + rb.renderMinX * (double)16) / 256.0D;
+//       double var14 = ((double)var10 + rb.renderMaxX * (double)16 - 0.01D) / 256.0D;
+//       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
+//       double var20;
+//
+//       if (rb.flipTexture)
+//       {
+//           var20 = var12;
+//           var12 = var14;
+//           var14 = var20;
+//       }
+//
+//       if (rb.renderMinX < 0.0D || rb.renderMaxX > 1.0D)
+//       {
+//           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
+//           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
+//       }
+//
+//       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
+//       {
+//           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
+//           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
+//       }
+//
+//       var20 = var14;
+//       double var22 = var12;
+//       double var24 = var16;
+//       double var26 = var18;
+//
+//       if (rb.uvRotateWest == 1)
+//       {
+//           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+//           var18 = ((double)(var11 + 16) - rb.renderMinX * (double)height) / 256.0D;
+//           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+//           var16 = ((double)(var11 + 16) - rb.renderMaxX * (double)height) / 256.0D;
+//           var24 = var16;
+//           var26 = var18;
+//           var20 = var12;
+//           var22 = var14;
+//           var16 = var18;
+//           var18 = var24;
+//       }
+//       else if (rb.uvRotateWest == 2)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMinX * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMaxX * (double)height) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var12 = var14;
+//           var14 = var22;
+//           var24 = var18;
+//           var26 = var16;
+//       }
+//       else if (rb.uvRotateWest == 3)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMinX * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMaxX * (double)height - 0.01D) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var24 = var16;
+//           var26 = var18;
+//       }
+//
+//       double var28 = par2 + rb.renderMinX;
+//       double var30 = par2 + rb.renderMaxX;
+//       double var32 = par4 + rb.renderMinY;
+//       double var34 = par4 + rb.renderMaxY;
+//       double var36 = par6 + rb.renderMaxZ;
+//
+//       if (rb.enableAO)
+//       {
+//           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
+//           var9.setBrightness(rb.brightnessTopLeft);
+//           var9.addVertexWithUV(var28, var34, var36, var12, var16);
+//           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
+//           var9.setBrightness(rb.brightnessBottomLeft);
+//           var9.addVertexWithUV(var28, var32, var36, var22, var26);
+//           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
+//           var9.setBrightness(rb.brightnessBottomRight);
+//           var9.addVertexWithUV(var30, var32, var36, var14, var18);
+//           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
+//           var9.setBrightness(rb.brightnessTopRight);
+//           var9.addVertexWithUV(var30, var34, var36, var20, var24);
+//       }
+//       else
+//       {
+//           var9.addVertexWithUV(var28, var34, var36, var12, var16);
+//           var9.addVertexWithUV(var28, var32, var36, var22, var26);
+//           var9.addVertexWithUV(var30, var32, var36, var14, var18);
+//           var9.addVertexWithUV(var30, var34, var36, var20, var24);
+//       }
+//   }
+//
+//   /**
+//    * Renders the given texture to the north (x-negative) face of the block.  Args: block, x, y, z, texture
+//    */
+//   public void renderNorthFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
+//   {
+//       Tessellator var9 = Tessellator.instance;
+//
+//       if (rb.overrideBlockTexture >= 0)
+//       {
+//           par8 = rb.overrideBlockTexture;
+//       }
+//
+//       int var10 = (par8 & 15) << 4;
+//       int var11 = par8 & 240;
+//       double var12 = ((double)var10 + rb.renderMinZ * (double)16) / 256.0D;
+//       double var14 = ((double)var10 + rb.renderMaxZ * (double)16 - 0.01D) / 256.0D;
+//       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
+//       double var20;
+//
+//       if (rb.flipTexture)
+//       {
+//           var20 = var12;
+//           var12 = var14;
+//           var14 = var20;
+//       }
+//
+//       if (rb.renderMinZ < 0.0D || rb.renderMaxZ > 1.0D)
+//       {
+//           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
+//           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
+//       }
+//
+//       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
+//       {
+//           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
+//           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
+//       }
+//
+//       var20 = var14;
+//       double var22 = var12;
+//       double var24 = var16;
+//       double var26 = var18;
+//
+//       if (rb.uvRotateNorth == 1)
+//       {
+//           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+//           var16 = ((double)(var11 + 16) - rb.renderMaxZ * (double)height) / 256.0D;
+//           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)(var11 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+//           var24 = var16;
+//           var26 = var18;
+//           var20 = var12;
+//           var22 = var14;
+//           var16 = var18;
+//           var18 = var24;
+//       }
+//       else if (rb.uvRotateNorth == 2)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMinZ * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMaxZ * (double)height) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var12 = var14;
+//           var14 = var22;
+//           var24 = var18;
+//           var26 = var16;
+//       }
+//       else if (rb.uvRotateNorth == 3)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMaxZ * (double)height - 0.01D) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var24 = var16;
+//           var26 = var18;
+//       }
+//
+//       double var28 = par2 + rb.renderMinX;
+//       double var30 = par4 + rb.renderMinY;
+//       double var32 = par4 + rb.renderMaxY;
+//       double var34 = par6 + rb.renderMinZ;
+//       double var36 = par6 + rb.renderMaxZ;
+//
+//       if (rb.enableAO)
+//       {
+//           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
+//           var9.setBrightness(rb.brightnessTopLeft);
+//           var9.addVertexWithUV(var28, var32, var36, var20, var24);
+//           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
+//           var9.setBrightness(rb.brightnessBottomLeft);
+//           var9.addVertexWithUV(var28, var32, var34, var12, var16);
+//           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
+//           var9.setBrightness(rb.brightnessBottomRight);
+//           var9.addVertexWithUV(var28, var30, var34, var22, var26);
+//           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
+//           var9.setBrightness(rb.brightnessTopRight);
+//           var9.addVertexWithUV(var28, var30, var36, var14, var18);
+//       }
+//       else
+//       {
+//           var9.addVertexWithUV(var28, var32, var36, var20, var24);
+//           var9.addVertexWithUV(var28, var32, var34, var12, var16);
+//           var9.addVertexWithUV(var28, var30, var34, var22, var26);
+//           var9.addVertexWithUV(var28, var30, var36, var14, var18);
+//       }
+//   }
+//
+//   /**
+//    * Renders the given texture to the south (x-positive) face of the block.  Args: block, x, y, z, texture
+//    */
+//   public void renderSouthFace(RenderBlocks rb, int height, Block par1Block, double par2, double par4, double par6, int par8)
+//   {
+//       Tessellator var9 = Tessellator.instance;
+//
+//       if (rb.overrideBlockTexture >= 0)
+//       {
+//           par8 = rb.overrideBlockTexture;
+//       }
+//
+//       int var10 = (par8 & 15) << 4;
+//       int var11 = par8 & 240;
+//       double var12 = ((double)var10 + rb.renderMinZ * (double)16) / 256.0D;
+//       double var14 = ((double)var10 + rb.renderMaxZ * (double)16 - 0.01D) / 256.0D;
+//       double var16 = ((double)(var11 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//       double var18 = ((double)(var11 + 16) - rb.renderMinY * (double)16 - 0.01D) / 256.0D;
+//       double var20;
+//
+//       if (rb.flipTexture)
+//       {
+//           var20 = var12;
+//           var12 = var14;
+//           var14 = var20;
+//       }
+//
+//       if (rb.renderMinZ < 0.0D || rb.renderMaxZ > 1.0D)
+//       {
+//           var12 = (double)(((float)var10 + 0.0F) / 256.0F);
+//           var14 = (double)(((float)var10 + 15.99F) / 256.0F);
+//       }
+//
+//       if (rb.renderMinY < 0.0D || rb.renderMaxY > 1.0D)
+//       {
+//           var16 = (double)(((float)var11 + 0.0F) / 256.0F);
+//           var18 = (double)(((float)var11 + 15.99F) / 256.0F);
+//       }
+//
+//       var20 = var14;
+//       double var22 = var12;
+//       double var24 = var16;
+//       double var26 = var18;
+//
+//       if (rb.uvRotateSouth == 2)
+//       {
+//           var12 = ((double)var10 + rb.renderMinY * (double)height) / 256.0D;
+//           var16 = ((double)(var11 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+//           var14 = ((double)var10 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)(var11 + 16) - rb.renderMaxZ * (double)height) / 256.0D;
+//           var24 = var16;
+//           var26 = var18;
+//           var20 = var12;
+//           var22 = var14;
+//           var16 = var18;
+//           var18 = var24;
+//       }
+//       else if (rb.uvRotateSouth == 1)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMaxY * (double)height) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMaxZ * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMinY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMinZ * (double)height) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var12 = var14;
+//           var14 = var22;
+//           var24 = var18;
+//           var26 = var16;
+//       }
+//       else if (rb.uvRotateSouth == 3)
+//       {
+//           var12 = ((double)(var10 + 16) - rb.renderMinZ * (double)height) / 256.0D;
+//           var14 = ((double)(var10 + 16) - rb.renderMaxZ * (double)height - 0.01D) / 256.0D;
+//           var16 = ((double)var11 + rb.renderMaxY * (double)height) / 256.0D;
+//           var18 = ((double)var11 + rb.renderMinY * (double)height - 0.01D) / 256.0D;
+//           var20 = var14;
+//           var22 = var12;
+//           var24 = var16;
+//           var26 = var18;
+//       }
+//
+//       double var28 = par2 + rb.renderMaxX;
+//       double var30 = par4 + rb.renderMinY;
+//       double var32 = par4 + rb.renderMaxY;
+//       double var34 = par6 + rb.renderMinZ;
+//       double var36 = par6 + rb.renderMaxZ;
+//
+//       if (rb.enableAO)
+//       {
+//           var9.setColorOpaque_F(rb.colorRedTopLeft, rb.colorGreenTopLeft, rb.colorBlueTopLeft);
+//           var9.setBrightness(rb.brightnessTopLeft);
+//           var9.addVertexWithUV(var28, var30, var36, var22, var26);
+//           var9.setColorOpaque_F(rb.colorRedBottomLeft, rb.colorGreenBottomLeft, rb.colorBlueBottomLeft);
+//           var9.setBrightness(rb.brightnessBottomLeft);
+//           var9.addVertexWithUV(var28, var30, var34, var14, var18);
+//           var9.setColorOpaque_F(rb.colorRedBottomRight, rb.colorGreenBottomRight, rb.colorBlueBottomRight);
+//           var9.setBrightness(rb.brightnessBottomRight);
+//           var9.addVertexWithUV(var28, var32, var34, var20, var24);
+//           var9.setColorOpaque_F(rb.colorRedTopRight, rb.colorGreenTopRight, rb.colorBlueTopRight);
+//           var9.setBrightness(rb.brightnessTopRight);
+//           var9.addVertexWithUV(var28, var32, var36, var12, var16);
+//       }
+//       else
+//       {
+//           var9.addVertexWithUV(var28, var30, var36, var22, var26);
+//           var9.addVertexWithUV(var28, var30, var34, var14, var18);
+//           var9.addVertexWithUV(var28, var32, var34, var20, var24);
+//           var9.addVertexWithUV(var28, var32, var36, var12, var16);
+//       }
+//   }
 
     
 

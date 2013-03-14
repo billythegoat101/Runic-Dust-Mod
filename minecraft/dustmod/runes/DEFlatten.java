@@ -146,22 +146,22 @@ public class DEFlatten extends DustEvent
 
                             if (id == Block.waterMoving.blockID || id == Block.waterStill.blockID)
                             {
-                                world.setBlockWithNotify(ix + x, iy + y, iz + z, Block.cobblestone.blockID);
+                                world.setBlockAndMetadataWithNotify(ix + x, iy + y, iz + z, Block.cobblestone.blockID,0,3);
                                 id = 0;
                                 meta = 0;
                             }
 
                             if (bidu == Block.waterMoving.blockID || bidu == Block.waterStill.blockID)
                             {
-                                world.setBlockWithNotify(ix + x, iy + y + 1, iz + z, Block.cobblestone.blockID);
+                                world.setBlockAndMetadataWithNotify(ix + x, iy + y + 1, iz + z, Block.cobblestone.blockID,0,3);
                             }
 
                             if (bidd == 0)
                             {
-                                world.setBlockAndMetadataWithNotify(ix + x, iy + y - 1, iz + z, id, meta);
+                                world.setBlockAndMetadataWithNotify(ix + x, iy + y - 1, iz + z, id, meta,3);
                             }
 
-                            world.setBlockWithNotify(ix + x, iy + y, iz + z, 0);
+                            world.setBlockAndMetadataWithNotify(ix + x, iy + y, iz + z, 0,0,3);
                             break next;
                         }
                     }

@@ -1,20 +1,26 @@
 package dustmod;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemInscription extends Item {
+public class ItemInscription extends DustModItem {
 
 	public static final int max = 3600*2;
+	
+	private Icon dryingIcon;
+	private Icon driedIcon;
+	private Icon blankIcon;
 	
 	protected ItemInscription(int par1) {
 		super(par1);
 		this.setMaxStackSize(1);
-		this.setIconIndex(38);
 		this.setMaxDamage(max);
 	}
 
@@ -156,7 +162,7 @@ public class ItemInscription extends Item {
 	}
 
 
-    public String getItemNameIS(ItemStack itemstack)
+    public String getUnlocalizedName(ItemStack itemstack)
     {
     	boolean isDried = isDried(itemstack);
     	int damage = itemstack.getItemDamage();
@@ -164,9 +170,22 @@ public class ItemInscription extends Item {
     	else if(damage != 0) return "dryinginsc";
     	else return "emptyinsc";
     }
-
-    public String getLocalItemName(ItemStack itemstack)
-    {
-        return getItemNameIS(itemstack);
+    
+    @Override
+    public Icon getIcon(ItemStack stack, int pass) {
+    	int meta = stack.getItemDamage();
+    	boolean isDried = isDried(stack);
+    	int damage = stack.getItemDamage();
+    	if(isDried) return driedIcon;
+    	else if(damage != 0) return dryingIcon;
+    	else return blankIcon;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void func_94581_a(IconRegister iconRegister) {
+    	this.blankIcon = iconRegister.func_94245_a(DustMod.resPath + "blankInscription");
+    	this.dryingIcon = iconRegister.func_94245_a(DustMod.resPath + "dryingInscription");
+    	this.driedIcon = iconRegister.func_94245_a(DustMod.resPath + "driedInscription");
     }
 }

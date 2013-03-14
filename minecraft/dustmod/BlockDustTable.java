@@ -1,36 +1,33 @@
 package dustmod;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockDustTable extends BlockContainer 
 {
-        //[non-forge]
-//    public static int standTex;
-//    public static int standTexSide;
+
+	private Icon topTex;
+	private Icon sideTex;
+	private Icon botTex;
     public BlockDustTable(int i)
     {
-        super(i, 166, Material.wood);
+        super(i, Material.wood);
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
         setLightOpacity(0);
-        
-        //[non-forge]
-//        standTex = ;//ModLoader.addOverride("/terrain.png", mod_DustMod.path + "/standTop.png");
-//        standTexSide = ModLoader.addOverride("/terrain.png", mod_DustMod.path + "/standSide.png");
-        
-        //[forge]
-        this.setBlockName("dustrutblock");
         this.setHardness(3F);
-        this.setTextureFile(DustMod.path + "/dustBlocks.png");
         this.setHardness(2.5F);
-        this.setBlockName("dustTable");
+        this.setUnlocalizedName("dustTable");
         this.setStepSound(Block.soundWoodFootstep);
     }
 
@@ -73,7 +70,7 @@ public class BlockDustTable extends BlockContainer
     public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving)
     {
         int l = MathHelper.floor_double((double)((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-        world.setBlockMetadataWithNotify(i, j, k, l - 1);
+        world.setBlockMetadataWithNotify(i, j, k, l - 1,3);
     }
 
     public boolean isOpaqueCube()
@@ -81,25 +78,19 @@ public class BlockDustTable extends BlockContainer
         return false;
     }
 
-    public int getBlockTextureFromSideAndMetadata(int i, int j)
+    public Icon getBlockTextureFromSideAndMetadata(int i, int meta)
     {
-        return getBlockTextureFromSide(i);
-    }
-
-    public int getBlockTextureFromSide(int i)
-    {
-        //[forge]
         if (i == 1)
         {
-            return 16; //[non-forge] standTex;
+            return topTex;
         }
 
         if (i == 0)
         {
-            return 18;//[non-forge] Block.wood.blockIndexInTexture;
+            return botTex;
         }
 
-        return 17;//[non-forge] standTexSide;
+        return sideTex;
     }
 
     @Override
@@ -179,4 +170,12 @@ public class BlockDustTable extends BlockContainer
 	public TileEntity createNewTileEntity(World var1) {
         return new TileEntityDustTable();
 	}
+
+    @SideOnly(Side.CLIENT)
+    public void func_94332_a(IconRegister par1IconRegister)
+    {
+        this.topTex = par1IconRegister.func_94245_a(DustMod.resPath + "table_top");
+        this.sideTex = par1IconRegister.func_94245_a(DustMod.resPath + "table_side");
+        this.botTex = par1IconRegister.func_94245_a(DustMod.resPath + "table_bottom");
+    }
 }

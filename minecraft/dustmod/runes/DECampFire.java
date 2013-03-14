@@ -59,7 +59,7 @@ public class DECampFire extends PoweredEvent
 
             if (block == 0 && under != 0 && Block.blocksList[under].isBlockSolidOnSide(e.worldObj, e.getX(), e.getY() - 1, e.getZ(), ForgeDirection.UP))
             {
-                e.worldObj.setBlockWithNotify(e.getX(), e.getY(), e.getZ(), Block.fire.blockID);
+                e.worldObj.setBlockAndMetadataWithNotify(e.getX(), e.getY(), e.getZ(), Block.fire.blockID,0,3);
             }
         }
         e.posY += 0.65d;
@@ -95,7 +95,7 @@ public class DECampFire extends PoweredEvent
 
             if (block == 0 && under != 0 && Block.blocksList[under].isBlockSolidOnSide(e.worldObj, e.getX(), e.getY() - 1, e.getZ(), ForgeDirection.UP))
             {
-                e.worldObj.setBlockWithNotify(e.getX(), e.getY(), e.getZ(), Block.fire.blockID);
+                e.worldObj.setBlockAndMetadataWithNotify(e.getX(), e.getY(), e.getZ(), Block.fire.blockID,0,3);
             }
             else
             {

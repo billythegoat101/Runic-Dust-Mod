@@ -106,7 +106,7 @@ public class DEFireSprite extends PoweredEvent
                     {
                         if (e.worldObj.getBlockId(ex + x, ey + y - 1, ez + z) != 0 && e.worldObj.getBlockId(ex + x, ey + y, ez + z) == 0 && Math.random() < 0.05D)
                         {
-                            e.worldObj.setBlockWithNotify(ex + x, ey + y, ez + z, Block.fire.blockID);
+                            e.worldObj.setBlockAndMetadataWithNotify(ex + x, ey + y, ez + z, Block.fire.blockID,0,3);
                             ignited = true;
                         }
                     }

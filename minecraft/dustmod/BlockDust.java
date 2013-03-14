@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -36,26 +38,21 @@ public class BlockDust extends BlockContainer {
 	public static final int ACTIVE_DUST = 1;
 	public static final int DEAD_DUST = 2;
 	public static final int ACTIVATING_DUST = 3;
-	// private int itemID=0;
-	public BlockDust(int i, int j) {
-		super(i, j, Material.circuits);
-		// this.itemID = item + 256;
-		// this.color = color;
-		// wiresProvidePower = true;
-		// blocksNeedingUpdate = new HashSet();
+
+	private Icon topTexture;
+	private Icon sideTexture;
+	public BlockDust(int i) {
+		super(i, Material.circuits);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
-		this.setTextureFile(DustMod.path + "/dustBlocks.png");
-		this.blockIndexInTexture = 0;
 		this.setHardness(0.2F);
-//		this.setLightValue(0.45F);
 		this.setStepSound(Block.soundGrassFootstep);
-		this.setBlockName("dustblock");
-		this.setRequiresSelfNotify();
+		this.disableStats();
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int i, int j) {
-		return blockIndexInTexture + (i==1 ? 0:1);
+	public Icon getBlockTextureFromSideAndMetadata(int i, int j) {
+		
+		return (i==1 ? topTexture:sideTexture);
 	}
 
 	@Override
@@ -120,8 +117,8 @@ public class BlockDust extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k,
-			EntityLiving entityliving) {
-		super.onBlockPlacedBy(world, i, j, k, entityliving);
+			EntityLiving entityliving, ItemStack item) {
+		super.onBlockPlacedBy(world, i, j, k, entityliving, item);
 //		this.onBlockActivated(world, i, j, k, (EntityPlayer) entityliving, 0,
 //				0, 0, 0);
 
@@ -154,8 +151,9 @@ public class BlockDust extends BlockContainer {
 
 	@Override
 	public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k) {
-		switch (iblockaccess.getBlockMetadata(i, j, k)) {
-		case 0:
+		int meta = iblockaccess.getBlockMetadata(i, j, k);
+		switch (meta) {
+		case BlockDust.UNUSED_DUST:
 			TileEntityDust ted = (TileEntityDust) iblockaccess
 					.getBlockTileEntity(i, j, k);
 
@@ -165,10 +163,11 @@ public class BlockDust extends BlockContainer {
 
 			return ted.getRandomDustColor();
 
-		case 1://case 3:
+		case BlockDust.ACTIVE_DUST://case 3:
+		case BlockDust.ACTIVATING_DUST:
 			return 0xDD0000;
 
-		case 2:
+		case BlockDust.DEAD_DUST:
 			return 0xEFEFEF;
 
 		default:
@@ -199,11 +198,14 @@ public class BlockDust extends BlockContainer {
 			// if (world.getBlockMetadata(i, j, k) == 0) {
 			// onBlockRemoval(world, i, j, k);
 			// }
-			world.setBlockWithNotify(i, j, k, 0);
+			world.setBlockAndMetadataWithNotify(i, j, k, 0, 0, 3);
 		} else if (world.isBlockIndirectlyGettingPowered(i, j, k) && i1 == 0) {
 			updatePattern(world, i, j, k, null);
 			world.notifyBlockChange(i, j, k, 0);
-		}
+		} 
+		
+		TileEntityDust ted = (TileEntityDust)world.getBlockTileEntity(i, j, k);
+		ted.onNeighborBlockChange();
 
 		super.onNeighborBlockChange(world, i, j, k, l);
 	}
@@ -219,7 +221,7 @@ public class BlockDust extends BlockContainer {
 //		}
 
 		if (world.getBlockMetadata(i, j, k) > 0) {
-			world.setBlockWithNotify(i, j, k, 0);
+			world.setBlockAndMetadataWithNotify(i, j, k, 0,0,3);
 			// for(int x = -1; x <= 1; x++)
 			// for(int z = -1; z <= 1; z++){
 			// if(world.getBlockId(i+x, j, k+z) == blockID &&
@@ -492,7 +494,7 @@ public class BlockDust extends BlockContainer {
 					// System.out.println("drop click");
 					if (ted.isEmpty() && world.getBlockMetadata(i, j, k) != 10) {
 						// System.out.println("Destroying");
-						world.setBlockWithNotify(i, j, k, 0);
+						world.setBlockAndMetadataWithNotify(i, j, k, 0,0,3);
 						this.onBlockDestroyedByPlayer(world, i, j, k, 0);
 					}
 				}
@@ -520,7 +522,7 @@ public class BlockDust extends BlockContainer {
 
 		for (Integer[] iter : n) {
 			if (world.getBlockId(iter[0], j, iter[2]) == blockID) {
-				world.setBlockMetadataWithNotify(iter[0], j, iter[2], ACTIVATING_DUST);
+				world.setBlockMetadataWithNotify(iter[0], j, iter[2], ACTIVATING_DUST,2);
 			}
 		}
 
@@ -653,6 +655,13 @@ public class BlockDust extends BlockContainer {
         	return 8;
         }
         return lightValue[blockID];
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void func_94332_a(IconRegister par1IconRegister)
+    {
+        this.topTexture = par1IconRegister.func_94245_a(DustMod.resPath + "dust_top");
+        this.sideTexture = par1IconRegister.func_94245_a(DustMod.resPath + "dust_side");
     }
     
 }

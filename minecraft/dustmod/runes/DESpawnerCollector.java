@@ -75,14 +75,14 @@ public class DESpawnerCollector extends DustEvent
 
             if (e.ticksExisted > 100)
             {
-                e.worldObj.setBlockWithNotify(fin[0], fin[1], fin[2], 0);
+                e.worldObj.setBlockAndMetadataWithNotify(fin[0], fin[1], fin[2], 0,0,3);
                 EntityItem ei = new EntityItem(e.worldObj);
                 ei.setPosition(e.posX, e.posY - e.yOffset, e.posZ);
                 ItemStack item = new ItemStack(Block.mobSpawner, 1);
 //                NBTTagCompound nbt = new NBTTagCompound();
 //                item.setTagCompound(nbt);
 //                nbt.setString("EntityID", entID); 
-                ei.func_92058_a(item); 
+                ei.setEntityItemStack(item); 
                 e.worldObj.spawnEntityInWorld(ei);
                 e.worldObj.markBlockForUpdate(fin[0], fin[1], fin[2]);
             }

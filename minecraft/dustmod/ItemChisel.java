@@ -6,7 +6,6 @@ package dustmod;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -14,24 +13,13 @@ import net.minecraft.world.World;
  *
  * @author billythegoat101
  */
-public class ItemChisel extends Item
+public class ItemChisel extends DustModItem
 {
     private int tex;
 
     public ItemChisel(int i)
     {
         super(i);
-//        blockID = block.blockID;
-//        setMaxDamage(0);
-//        setHasSubtypes(true);
-        
-        //[non-forge]
-//        tex = ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/hammerandchisel.png");
-//        this.setIconIndex(tex);
-        
-        //[forge]
-        this.setIconCoord(4,2);
-        this.setTextureFile(DustMod.path + "/dustItems.png");
         
         setMaxStackSize(1);
         setMaxDamage(238);
@@ -76,7 +64,7 @@ public class ItemChisel extends Item
 
 //        if (!world.isRemote)
 //        {
-            world.setBlockAndMetadataWithNotify(i, j, k, DustMod.rutBlock.blockID, meta);
+            world.setBlockAndMetadataWithNotify(i, j, k, DustMod.rutBlock.blockID, meta,3);
             TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
             ter.maskBlock = blockId;
             ter.maskMeta = meta;

@@ -71,7 +71,6 @@ public class DEObelisk extends DustEvent
             if (e.data[1] > 0)
             {
                 List<Entity> ents = getEntities(e.worldObj, (double)x + 0.5D, (double)y + (double)e.data[0] + 1D, (double)z + 0.5D, 1.5D);
-            	System.out.println("RAWR " + e.data[0] + " " + ents.size());
 
                 for (Entity i: ents)
                 {
@@ -111,8 +110,8 @@ public class DEObelisk extends DustEvent
                         return;
                     }
 
-                    world.setBlockAndMetadataWithNotify(x, y + c + 1, z, b, m);
-                    world.setBlockWithNotify(x, y + c, z, 0);
+                    world.setBlockAndMetadataWithNotify(x, y + c + 1, z, b, m,3);
+                    world.setBlockAndMetadataWithNotify(x, y + c, z, 0,0,3);
                 }
             }
             else
@@ -137,8 +136,8 @@ public class DEObelisk extends DustEvent
                         return;
                     }
 
-                    world.setBlockAndMetadataWithNotify(x, y - t + e.data[0] + e.data[1], z, b, m);
-                    world.setBlockWithNotify(x, y - t + e.data[0], z, 0);
+                    world.setBlockAndMetadataWithNotify(x, y - t + e.data[0] + e.data[1], z, b, m,3);
+                    world.setBlockAndMetadataWithNotify(x, y - t + e.data[0], z, 0,0,3);
                 }
             }
 

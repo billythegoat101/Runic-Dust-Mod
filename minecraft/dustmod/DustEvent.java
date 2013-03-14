@@ -406,7 +406,7 @@ public abstract class DustEvent {
 						i.setDead();
 					} else {
 						is.stackSize -= item.stackSize;
-						i.func_92058_a(is);
+						i.setEntityItemStack(is);
 						break;
 					}
 				}
@@ -488,7 +488,7 @@ public abstract class DustEvent {
 				rz += (rz < 0) ? -min : min;
 				i.addVelocity(rx, Math.random() * 0.5, rz);
 			}
-	        i.func_92058_a(is);
+	        i.setEntityItemStack(is);
 		}
 
 		if (negate) {

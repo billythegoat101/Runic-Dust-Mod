@@ -85,7 +85,7 @@ public class DEFarm extends DustEvent {
 			int k = e.getZ();
 			// System.out.println("R = " + r + " " + dustID);
 			World world = e.worldObj;
-			world.setBlockWithNotify(i, j - 1, k, Block.waterStill.blockID);
+			world.setBlockAndMetadataWithNotify(i, j - 1, k, Block.waterStill.blockID,0,3);
 			Random rand = new Random();
 
 			ArrayList<Double> locs = new ArrayList<Double>();
@@ -102,8 +102,8 @@ public class DEFarm extends DustEvent {
 								|| bidb == Block.grass.blockID
 								|| bidb == Block.tilledField.blockID || bidb == Block.sand.blockID)
 								&& (bidt == 0 || DustMod.isDust(bidt) || bidt == Block.tallGrass.blockID)) {
-							world.setBlockWithNotify(i + di, j + dj - 1,
-									k + dk, Block.tilledField.blockID);
+							world.setBlockAndMetadataWithNotify(i + di, j + dj - 1,
+									k + dk, Block.tilledField.blockID,0,3);
 							int meta = cBase + rand.nextInt(cRand);
 
 							if (meta > 7) {
@@ -111,9 +111,9 @@ public class DEFarm extends DustEvent {
 							}
 
 							world.setBlockAndMetadataWithNotify(i + di, j + dj,
-									k + dk, 0, 0);
+									k + dk, 0, 0,3);
 							world.setBlockAndMetadataWithNotify(i + di, j + dj,
-									k + dk, Block.crops.blockID, meta);
+									k + dk, Block.crops.blockID, meta,3);
 							locs.add(i+di +0.5);
 							locs.add((double)j+dj);
 							locs.add(k+dk +0.5);
@@ -132,7 +132,7 @@ public class DEFarm extends DustEvent {
 			locs.add((double)i);
 			locs.add(j-1D);
 			locs.add((double)k);
-			world.setBlockWithNotify(i, j - 1, k, Block.waterStill.blockID);
+			world.setBlockAndMetadataWithNotify(i, j - 1, k, Block.waterStill.blockID,0,3);
 			
 			double[] locations = new double[locs.size()];
 			for(int d = 0; d < locs.size(); d++){

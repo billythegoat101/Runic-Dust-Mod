@@ -2,16 +2,22 @@ package dustmod;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemInk extends Item {
+public class ItemInk extends DustModItem {
 	
 	public static final int maxAmount = 32;
+	
+	private Icon bottle;
+	private Icon[] main;
+	private Icon[] sub;
 	
 	public ItemInk(int i)
     {
@@ -26,7 +32,6 @@ public class ItemInk extends Item {
         
         //[forge]
         this.setMaxStackSize(1);
-        this.setTextureFile(DustMod.path + "/dustItems.png");
         this.setCreativeTab(DustMod.creativeTab);
     }
 	
@@ -50,29 +55,13 @@ public class ItemInk extends Item {
     
 
     @Override
-    public String getItemNameIS(ItemStack itemstack)
+    public String getUnlocalizedName(ItemStack itemstack)
     {
     	int dustID = getDustID(itemstack);
     	String id = DustItemManager.getIDS()[dustID];
     	if(id != null) return "tile.ink." + DustItemManager.idsRemote[dustID];
 
         return "tile.ink";
-    }
-
-    @Override
-    public String getLocalItemName(ItemStack itemstack)
-    {
-    	int dustID = getDustID(itemstack);
-    	String id = DustItemManager.getIDS()[dustID];
-    	if(id != null) return "ink." + DustItemManager.idsRemote[dustID];
-
-        return "ink";
-    }
-
-    @Override
-    public int getIconFromDamage(int i)
-    {
-        return i-1;
     }
 
     @Override
@@ -96,20 +85,18 @@ public class ItemInk extends Item {
     /**
      * Gets an icon index based on an item's damage value and the given render pass
      */
-    public int getIconFromDamageForRenderPass(int meta, int rend)
+    public Icon getIconFromDamageForRenderPass(int meta, int rend)
     {
-    	if(rend == 0) return 48;
+    	if(rend == 0) return bottle;
     	
     	int off = (maxAmount-1)-meta%maxAmount;
     	
     	off /= (maxAmount/8);
     	
     	if(rend == 1){
-    		return 49 + off * 16;
-    	}else if(rend == 2){
-    		return 50 + off * 16;
-    	}
-        return 0;
+    		return main[off];
+    	}else
+    		return sub[off];
     }
     
     public static ItemStack getInk(int dustID){
@@ -135,6 +122,18 @@ public class ItemInk extends Item {
     	}else
     		item.setItemDamage(level + fill);
     	return true;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void func_94581_a(IconRegister iconRegister) {
+    	this.bottle = iconRegister.func_94245_a(DustMod.resPath + "inkBottle");
+    	main = new Icon[8];
+    	sub = new Icon[8];
+    	for(int i = 0; i < main.length; i++){
+    		main[i] = iconRegister.func_94245_a(DustMod.resPath + "ink_main_" + i);
+    		sub[i] = iconRegister.func_94245_a(DustMod.resPath + "ink_sub_" + i); 
+    	}
     }
 
 }

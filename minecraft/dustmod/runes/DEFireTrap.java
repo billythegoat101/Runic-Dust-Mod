@@ -83,7 +83,7 @@ public class DEFireTrap extends DETrap
                 {
                     if (e.worldObj.getBlockId(ex + x, ey + y - 1, ez + z) != 0 && e.worldObj.getBlockId(ex + x, ey + y, ez + z) == 0 && Math.random() < firerand)
                     {
-                        e.worldObj.setBlockWithNotify(ex + x, ey + y, ez + z, Block.fire.blockID);
+                        e.worldObj.setBlockAndMetadataWithNotify(ex + x, ey + y, ez + z, Block.fire.blockID,0,3);
                     }
                 }
             }

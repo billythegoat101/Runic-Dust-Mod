@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.RenderEngine;
@@ -549,54 +551,12 @@ public class PageHelper
         return rtn;
     }
     
-    public static IntBuffer singleIntBuffer;
-
-    public static void bindExternalTexture(String file)
-    {
-    	if(singleIntBuffer == null){
-    		 singleIntBuffer = GLAllocation.createDirectIntBuffer(1);
-    	}
-    	file = file.replace('/', File.separatorChar);
-        Minecraft mc = ModLoader.getMinecraftInstance();
-        RenderEngine re = mc.renderEngine;
-
-        singleIntBuffer.clear();
-        GLAllocation.generateTextureNames(singleIntBuffer);
-        int tex = singleIntBuffer.get(0);
-
-        File f = new File(file);
-        if (!f.exists())
-        {
-            re.setupTexture(missingExternalTextureImage, tex);
-        } else
-        {
-            try
-            {
-                InputStream stream = new FileInputStream(f);
-                BufferedImage image = ImageIO.read(stream);
-                stream.close();
-                re.setupTexture(image, tex);
-            } catch (IOException ex)
-            {
-                Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        re.bindTexture(tex);
-
-    }
-    
     public static void bindPage(String name){
-
-    	if(singleIntBuffer == null){
-    		 singleIntBuffer = GLAllocation.createDirectIntBuffer(1);
-    	}
         Minecraft mc = ModLoader.getMinecraftInstance();
         RenderEngine re = mc.renderEngine;
 
-        singleIntBuffer.clear();
-        GLAllocation.generateTextureNames(singleIntBuffer);
-        int tex = singleIntBuffer.get(0);
-
+        int tex = GLAllocation.generateTextureNames();
+        
         try
         {
             BufferedImage image = getImage(name);
@@ -605,6 +565,7 @@ public class PageHelper
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        re.bindTexture(tex);
+//        re.bindTexture(tex);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
     }
 }

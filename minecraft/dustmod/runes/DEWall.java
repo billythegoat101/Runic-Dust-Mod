@@ -88,8 +88,8 @@ public class DEWall extends DustEvent
                         return;
                     }
 
-                    world.setBlockAndMetadataWithNotify(x + (dir ? w : 0), y - t + currentHeight + 1, z + (dir ? 0 : w), b, m);
-                    world.setBlockWithNotify(x + (dir ? w : 0), y - t + currentHeight, z + (dir ? 0 : w), /*(t == height+1) ? Block.brick.blockID:*/0);
+                    world.setBlockAndMetadataWithNotify(x + (dir ? w : 0), y - t + currentHeight + 1, z + (dir ? 0 : w), b, m,3);
+                    world.setBlockAndMetadataWithNotify(x + (dir ? w : 0), y - t + currentHeight, z + (dir ? 0 : w), /*(t == height+1) ? Block.brick.blockID:*/0,0,3);
                 }
             }
 
