@@ -430,17 +430,6 @@ public class DustShape {
 		for (int rot = 0; rot < 4; rot++) {
 			int w = d.length;
 			int l = d[0].length;
-
-			// if(name.equals("bomb")){
-			// System.out.println("WIDTHxLENGTH " + w + "x" + l + " " + width +
-			// "x" + length);
-			// System.out.println("DURR1 " + (w != width) + " " + (l !=
-			// length));
-			// System.out.println("DURR2 " + (d.length != data[0].length) + " "
-			// + (d[0].length != data[0][0].length));
-			// System.out.println("blarg " + Arrays.deepToString(d));
-			// System.out.println("first " + Arrays.deepToString(data[0]));
-			// }
 			if (w != width || l != length) {
 				// System.out.println("firsderp");
 				equal = false;
@@ -458,15 +447,10 @@ public class DustShape {
 										+ ox][z + oz] != -1))
 								|| (data[oy][x + ox][z + oz] == -1 && !this
 										.isDustAllowedAsVariable(d[x][z]))) {
-							// System.out.println("Derp0 [" + x + "," + z + "]["
-							// + (x+oy) + "," + (z+oy) + "] ");
 							equal = false;
 							break kill;
 						}
 					} catch (Exception e) {
-						// /dont feel like figuring out the outofbounds
-						// exception right now >_>
-						// System.out.println("DERP comparechunk");
 						equal = false;
 						break kill;
 					}
@@ -488,16 +472,6 @@ public class DustShape {
 			int w = d.length;
 			int l = d[0].length;
 
-			// if(name.equals("bomb")){
-			// System.out.println("WIDTHxLENGTH " + w + "x" + l + " " + width +
-			// "x" + length);
-			// System.out.println("DURR1 " + (w != width) + " " + (l !=
-			// length));
-			// System.out.println("DURR2 " + (d.length != data[0].length) + " "
-			// + (d[0].length != data[0][0].length));
-			// System.out.println("blarg " + Arrays.deepToString(d));
-			// System.out.println("first " + Arrays.deepToString(data[0]));
-			// }
 			if (w != width || l != length) {
 				// System.out.println("firsderp");
 				equal = false;
@@ -514,15 +488,10 @@ public class DustShape {
 										+ ox][z + oz] == -1))
 								|| (data[oy][x + ox][z + oz] == -1 && !this
 										.isDustAllowedAsVariable(d[x][z]))) {
-							// System.out.println("Derp0 [" + x + "," + z + "]["
-							// + (x+oy) + "," + (z+oy) + "] ");
 							equal = false;
 							break kill;
 						}
 					} catch (Exception e) {
-						// /dont feel like figuring out the outofbounds
-						// exception right now >_>
-						// System.out.println("DERP comparechunk");
 						equal = false;
 						break kill;
 					}
@@ -536,56 +505,6 @@ public class DustShape {
 			d = rotateMatrix(d);
 			equal = true;
 		}
-
-		// System.out.println("second " + Arrays.deepToString(data[0]));
-		// second:
-		// for(int x = 0; x < l; x++){
-		// for(int z = 0; z < w; z++){
-		// if(x >= width || z >= length || (d[x][z] != -1 && d[x][z] !=
-		// data[ox][x + oy][z + oy])){
-		// // System.out.println("Derp1 [" + x + "," + z + "][" + (x+oy) + "," +
-		// (z+oy) + "] ");
-		// blargh = false;
-		// break second;
-		// }
-		// }
-		// }
-		// if(blargh) return true;
-		// d = rotateMatrix(d);
-		// blargh = true;
-		// // System.out.println("third " + Arrays.deepToString(data[0]));
-		// third:
-		// for(int x = 0; x < w; x++){
-		// for(int z = 0; z < l; z++){
-		// if(x >= width || z >= length || (d[x][z] != -1 && d[x][z] !=
-		// data[ox][x + oy][z + oy])){
-		// // System.out.println("Derp2 [" + x + "," + z + "][" + (x+oy) + "," +
-		// (z+oy) + "] ");
-		// blargh = false;
-		// break third;
-		// }
-		// }
-		// }
-		// if(blargh) return true;
-		// d = rotateMatrix(d);
-		// blargh = true;
-		// // System.out.println("fourth " + Arrays.deepToString(data[0]));
-		// fourth:
-		// for(int x = 0; x < l; x++){
-		// for(int z = 0; z < w; z++){
-		// if(x >= width || z >= length || (d[x][z] != -1 && d[x][z] !=
-		// data[ox][x + oy][z + oy])){
-		// // System.out.println("Derp3 [" + x + "," + z + "][" + (x+oy) + "," +
-		// (z+oy) + "] ");
-		// blargh = false;
-		// break fourth;
-		// }
-		// }
-		// }
-		// if(blargh) return true;
-		// d = rotateMatrix(d);
-		// }
-		// System.out.println("returning false");
 		return -1;
 	}
 
@@ -934,6 +853,13 @@ public class DustShape {
 			if (blockID != DustMod.dust.blockID) {
 				w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
 						DustMod.dust.blockID, 0, 2);
+			}else if(meta == BlockDust.DEAD_DUST){
+				w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
+						0, 0, 2);
+				w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
+						DustMod.dust.blockID, 0, 2);
+			}else if(meta != BlockDust.UNUSED_DUST){
+				continue;
 			}
 			TileEntityDust ted;
 			TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);

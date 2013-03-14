@@ -64,5 +64,9 @@ public class ForesightInscription extends InscriptionEvent {
 			}
 			
 		} 
+		
+		if(world.getTotalWorldTime()%40 == 0){
+			this.damage((EntityPlayer)wearer, item, 1);
+		}
 	}
 }
