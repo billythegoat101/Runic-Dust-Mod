@@ -67,11 +67,11 @@ public class ItemPlaceScroll extends DustModItem
             }
 
             try{
-            if (ds.drawOnWorldPart(world, i, j, k, (EntityPlayer)wielder, r, ((EntityPlayer)wielder).getItemInUseCount()))
-            {
-//                itemstack.stackSize--;
-//                    System.out.println("Drawing success!");
-            }
+             if(wielder.capabilities.isCreativeMode) {
+            	 ds.drawOnWorldWhole(world, i, j, k, (EntityPlayer)wielder, r);
+             }else{
+            	 ds.drawOnWorldPart(world, i, j, k, (EntityPlayer)wielder, r, ((EntityPlayer)wielder).getItemInUseCount());
+             }
             } catch(Exception e){
             	FMLLog.log(Level.SEVERE, "THE FUUUUCK " + e.getMessage(), e.getStackTrace());
             	e.printStackTrace();
@@ -219,6 +219,6 @@ public class ItemPlaceScroll extends DustModItem
     @Override
     @SideOnly(Side.CLIENT)
     public void func_94581_a(IconRegister iconRegister) {
-    	this.iconIndex = iconRegister.func_94245_a(DustMod.spritePath + "/dustScroll");
+    	this.iconIndex = iconRegister.func_94245_a(DustMod.spritePath + "dustScroll");
     }
 }

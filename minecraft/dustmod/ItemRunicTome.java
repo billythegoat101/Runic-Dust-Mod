@@ -22,25 +22,14 @@ public class ItemRunicTome  extends DustModItem
     {
         super(i);
         blockID = DustMod.dust.blockID;
-        
-        //[non-forge]
-//        this.setIconIndex(ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/notebook.png"));
-        //[forge]
         this.setMaxStackSize(1);
     }
-
-//    @Override
-//    public boolean onItemUse(ItemStack itemstack, EntityPlayer p, World world, int i, int j, int k, int l) {
-//        ModLoader.openGUI(p, new GuiTome());
-//        return true;
-//    }
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer p)
     {
         if (p.isSneaking())
         {
-//        	p.openGui(DustMod.instance, 0, world, 0, 0, 0);
             DustMod.proxy.openTomeGUI(itemstack, p);
         }
 
@@ -74,17 +63,7 @@ public class ItemRunicTome  extends DustModItem
                 return false;
             }
         }
-
-        if (ds.drawOnWorldWhole(world, i, j, k, p, r))
-        {
-//                itemstack.stackSize--;
-        }
     	
-        return true;//DustMod.proxy.placeDustWithTome(itemstack, p, world, i, j, k, l);
+        return true;
     }
-
-//    @Override
-//    public String getItemName() {
-//        return "dustchisel";
-//    }
 }

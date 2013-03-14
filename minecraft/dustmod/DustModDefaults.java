@@ -5,6 +5,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import dustmod.inscriptions.BlinkerInscription;
 import dustmod.inscriptions.BounceInscription;
 import dustmod.inscriptions.EnderInscription;
 import dustmod.inscriptions.ForesightInscription;
@@ -54,7 +55,6 @@ import dustmod.runes.DEVoid;
 import dustmod.runes.DEWall;
 import dustmod.runes.DEXP;
 import dustmod.runes.DEXPStore;
-import dustmodtestpack.inscriptions.BlinkerInscription;
 
 /**
  * This pack is meant for testing runes & inscriptions as a separate download to
@@ -63,7 +63,7 @@ import dustmodtestpack.inscriptions.BlinkerInscription;
  * @author billythegoat101
  * 
  */
-@Mod(modid = "DustModDefaults", name = "Dust mod default Rune Pack", version = "1.6", dependencies = "after:DustMod")
+@Mod(modid = "DustModDefaults", name = "Dust mod default Rune Pack", version = "1.6.1", dependencies = "after:DustMod")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModDefaults {
 
@@ -159,7 +159,7 @@ public class DustModDefaults {
 		
 		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/ench.silktouch.xml", new DESilkTouchEnch());
 		
-		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/ench.Fortune.xml", new DEFortuneEnch());
+		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/ench.fortune.xml", new DEFortuneEnch());
 		
 		XMLDustShapeReader.readAndRegiterShape("/dustmod/runes/data/protection.xml", new DEForcefield());
 		
@@ -276,8 +276,20 @@ public class DustModDefaults {
 				"Blink II", 7);
 		InscriptionManager.registerInscriptionEvent(evt);
 
-		design = new int[][] { { G, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
-				{ 0, G, G, 0 } };
+		design = new int[][] {
+				{0, 0, G, 0, 0, 0},
+				{0, 0, G, L, 0, 0},
+				{0, 0, G, G, 0, 0},
+				{0, G, 0, G, L, 0},
+				{0, G, G, G, L, 0},
+				{G, G, L, L, G, G},
+				{G, G, L, L, G, G},
+				{0, L, G, G, G, 0},
+				{0, L, G, 0, G, 0},
+				{0, 0, G, G, 0, 0},
+				{0, 0, L, G, 0, 0},
+				{0, 0, 0, G, 0, 0},
+		};
 		evt = new ForesightInscription(design, "foresight", "Foresight I", 8);
 		evt.setAuthor("billythegoat101");
 		InscriptionManager.registerInscriptionEvent(evt);
