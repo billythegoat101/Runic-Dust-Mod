@@ -319,8 +319,8 @@ public class ItemPouch extends DustModItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void func_94581_a(IconRegister iconRegister) {
-    	this.bagIcon = iconRegister.func_94245_a(DustMod.resPath + "dustPouch_back");
-    	this.mainIcon = iconRegister.func_94245_a(DustMod.resPath + "dustPouch_main");
-    	this.subIcon = iconRegister.func_94245_a(DustMod.resPath + "dustPouch_sub");
+    	this.bagIcon = iconRegister.func_94245_a(DustMod.spritePath + "dustPouch_back");
+    	this.mainIcon = iconRegister.func_94245_a(DustMod.spritePath + "dustPouch_main");
+    	this.subIcon = iconRegister.func_94245_a(DustMod.spritePath + "dustPouch_sub");
     }
 }

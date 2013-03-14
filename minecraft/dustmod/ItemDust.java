@@ -175,7 +175,7 @@ public class ItemDust extends DustModItem
     @Override
     @SideOnly(Side.CLIENT)
     public void func_94581_a(IconRegister iconRegister) {
-    	this.mainIcon = iconRegister.func_94245_a(DustMod.resPath + "dustItem_main");
-    	this.subIcon = iconRegister.func_94245_a(DustMod.resPath + "dustItem_sub");
+    	this.mainIcon = iconRegister.func_94245_a(DustMod.spritePath + "dustItem_main");
+    	this.subIcon = iconRegister.func_94245_a(DustMod.spritePath + "dustItem_sub");
     }
 }

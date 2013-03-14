@@ -44,7 +44,7 @@ public class DustItemManager {
 		ids[value] = idsRemote[value] = idName;
 
 		LanguageRegistry.instance().addStringLocalization("tile.dust." + idName + ".name", "en_US", name + " Runic Dust");
-		LanguageRegistry.instance().addStringLocalization("ink." + idName + ".name", "en_US", name + " Runic Ink");
+		LanguageRegistry.instance().addStringLocalization("tile.ink." + idName + ".name", "en_US", name + " Runic Ink");
 		LanguageRegistry.instance().addStringLocalization("pouch." + idName + ".name", "en_US", name + " Dust Pouch");
 		reloadLanguage();
 		
@@ -69,7 +69,7 @@ public class DustItemManager {
 		idsRemote[value] = idName;
 		
 		LanguageRegistry.instance().addStringLocalization("tile.dust." + idName + ".name", "en_US", name + " Runic Dust");
-		LanguageRegistry.instance().addStringLocalization("ink." + idName + ".name", "en_US", name + " Runic Ink");
+		LanguageRegistry.instance().addStringLocalization("tile.ink." + idName + ".name", "en_US", name + " Runic Ink");
 		LanguageRegistry.instance().addStringLocalization("pouch." + idName + ".name", "en_US", name + " Dust Pouch");
 
     	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});

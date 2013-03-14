@@ -91,7 +91,7 @@ public class DETeleportation extends PoweredEvent
                 {
                     fnd = i;
                     e.data[0] = world.getBlockId(i[0], i[1] - 1, i[2]);
-                    DustMod.log("Warp ID set to " + e.data[0] + " " + (Block.blocksList[e.data[0]].func_94330_A()));
+                    DustMod.log("Warp ID set to " + e.data[0] + " " + (Block.blocksList[e.data[0]].getUnlocalizedName()));
                 }
             }
             else

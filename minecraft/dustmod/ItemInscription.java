@@ -172,7 +172,13 @@ public class ItemInscription extends DustModItem {
     }
     
     @Override
-    public Icon getIcon(ItemStack stack, int pass) {
+    @SideOnly(Side.CLIENT)
+    public boolean requiresMultipleRenderPasses() {
+    	return true;
+    }
+    
+    @Override
+    public Icon getIcon(ItemStack stack, int renderPass) {
     	int meta = stack.getItemDamage();
     	boolean isDried = isDried(stack);
     	int damage = stack.getItemDamage();
@@ -184,8 +190,8 @@ public class ItemInscription extends DustModItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void func_94581_a(IconRegister iconRegister) {
-    	this.blankIcon = iconRegister.func_94245_a(DustMod.resPath + "blankInscription");
-    	this.dryingIcon = iconRegister.func_94245_a(DustMod.resPath + "dryingInscription");
-    	this.driedIcon = iconRegister.func_94245_a(DustMod.resPath + "driedInscription");
+    	this.blankIcon = iconRegister.func_94245_a(DustMod.spritePath + "blankInscription");
+    	this.dryingIcon = iconRegister.func_94245_a(DustMod.spritePath + "dryingInscription");
+    	this.driedIcon = iconRegister.func_94245_a(DustMod.spritePath + "driedInscription");
     }
 }

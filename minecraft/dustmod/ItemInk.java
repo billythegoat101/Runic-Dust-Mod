@@ -127,12 +127,12 @@ public class ItemInk extends DustModItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void func_94581_a(IconRegister iconRegister) {
-    	this.bottle = iconRegister.func_94245_a(DustMod.resPath + "inkBottle");
+    	this.bottle = iconRegister.func_94245_a(DustMod.spritePath + "inkBottle");
     	main = new Icon[8];
     	sub = new Icon[8];
     	for(int i = 0; i < main.length; i++){
-    		main[i] = iconRegister.func_94245_a(DustMod.resPath + "ink_main_" + i);
-    		sub[i] = iconRegister.func_94245_a(DustMod.resPath + "ink_sub_" + i); 
+    		main[i] = iconRegister.func_94245_a(DustMod.spritePath + "ink_main_" + i);
+    		sub[i] = iconRegister.func_94245_a(DustMod.spritePath + "ink_sub_" + i); 
     	}
     }
 

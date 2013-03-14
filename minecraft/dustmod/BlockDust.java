@@ -660,8 +660,8 @@ public class BlockDust extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void func_94332_a(IconRegister par1IconRegister)
     {
-        this.topTexture = par1IconRegister.func_94245_a(DustMod.resPath + "dust_top");
-        this.sideTexture = par1IconRegister.func_94245_a(DustMod.resPath + "dust_side");
+        this.topTexture = par1IconRegister.func_94245_a(DustMod.spritePath + "dust_top");
+        this.sideTexture = par1IconRegister.func_94245_a(DustMod.spritePath + "dust_side");
     }
     
 }

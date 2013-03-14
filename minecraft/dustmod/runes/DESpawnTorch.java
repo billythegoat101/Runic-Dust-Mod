@@ -107,7 +107,6 @@ public class DESpawnTorch extends DustEvent
         {
             if (e.worldObj.getBlockId(e.getX(), e.getY(), e.getZ()) != Block.torchWood.blockID)
             {
-            	DustMod.log("KILL" + Block.blocksList[e.worldObj.getBlockId(e.getX(), e.getY(), e.getZ())]);
                 e.fade();
                 e.kill();
             }

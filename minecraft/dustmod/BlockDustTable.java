@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -27,7 +28,6 @@ public class BlockDustTable extends BlockContainer
         setLightOpacity(0);
         this.setHardness(3F);
         this.setHardness(2.5F);
-        this.setUnlocalizedName("dustTable");
         this.setStepSound(Block.soundWoodFootstep);
     }
 
@@ -67,10 +67,35 @@ public class BlockDustTable extends BlockContainer
 //        }
 //    }
 
-    public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving)
+    @Override
+    public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving, ItemStack item)
     {
-        int l = MathHelper.floor_double((double)((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-        world.setBlockMetadataWithNotify(i, j, k, l - 1,3);
+    	int l = MathHelper.floor_double((double)(entityliving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l == 0)
+        {
+            world.setBlockMetadataWithNotify(i, j, k, 3, 2);
+        }
+
+        if (l == 1)
+        {
+            world.setBlockMetadataWithNotify(i, j, k, 0, 2);
+        }
+
+        if (l == 2)
+        {
+            world.setBlockMetadataWithNotify(i, j, k, 1, 2);
+        }
+
+        if (l == 3)
+        {
+            world.setBlockMetadataWithNotify(i, j, k, 2, 2);
+        }
+
+        if (item.hasDisplayName())
+        {
+            ((TileEntityFurnace)world.getBlockTileEntity(i, j, k)).func_94129_a(item.getDisplayName());
+        }
     }
 
     public boolean isOpaqueCube()
@@ -174,8 +199,8 @@ public class BlockDustTable extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void func_94332_a(IconRegister par1IconRegister)
     {
-        this.topTex = par1IconRegister.func_94245_a(DustMod.resPath + "table_top");
-        this.sideTex = par1IconRegister.func_94245_a(DustMod.resPath + "table_side");
-        this.botTex = par1IconRegister.func_94245_a(DustMod.resPath + "table_bottom");
+        this.topTex = par1IconRegister.func_94245_a(DustMod.spritePath + "table_top");
+        this.sideTex = par1IconRegister.func_94245_a(DustMod.spritePath + "table_side");
+        this.botTex = par1IconRegister.func_94245_a(DustMod.spritePath + "table_bottom");
     }
 }

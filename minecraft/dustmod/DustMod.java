@@ -67,8 +67,8 @@ public class DustMod {
 	public static int lapisDID = 3;
 	public static int blazeDID = 4;
 
-	public static String path = "/dust";
-	public static String resPath = "dustmod:";
+	public static String path = "/mods/dustmod";
+	public static String spritePath = "dustmod:";
 	public static File suggestedConfig;
 	public static int[] tex;
 	public static int groundTex;
@@ -203,7 +203,7 @@ public class DustMod {
 		dust = new BlockDust(BLOCK_DustID);
 		idust = (DustModItem)(new ItemDust(ITEM_DustID, dust)).setUnlocalizedName("idust")
 				.setCreativeTab(creativeTab);
-		dustTable = ((Block) new BlockDustTable(BLOCK_DustTableID))
+		dustTable = ((Block) new BlockDustTable(BLOCK_DustTableID)).setUnlocalizedName("dustTable")
 				.setCreativeTab(creativeTab);
 		tome = (DustModItem)(new ItemRunicTome(ITEM_RunicTomeID)).setUnlocalizedName("dustlibrary")
 				.setCreativeTab(creativeTab);
@@ -240,9 +240,9 @@ public class DustMod {
 
 		proxy.registerEventHandlers();
 
-		GameRegistry.registerBlock(dust, ItemBlock.class, dust.func_94330_A());
-		GameRegistry.registerBlock(dustTable, ItemBlock.class, dustTable.func_94330_A());
-		GameRegistry.registerBlock(rutBlock, ItemBlock.class, rutBlock.func_94330_A());
+		GameRegistry.registerBlock(dust, ItemBlock.class, dust.getUnlocalizedName());
+		GameRegistry.registerBlock(dustTable, ItemBlock.class, dustTable.getUnlocalizedName());
+		GameRegistry.registerBlock(rutBlock, ItemBlock.class, rutBlock.getUnlocalizedName());
 
 		GameRegistry.registerTileEntity(TileEntityDust.class, "dusttileentity");
 		GameRegistry.registerTileEntity(TileEntityDustTable.class,
@@ -256,7 +256,7 @@ public class DustMod {
 		lang.addStringLocalization("tile.dust.name", "en_US",
 				"[DustMod] :Do not use this");
 
-		lang.addStringLocalization(dustTable.func_94330_A() + ".name", "en_US",
+		lang.addStringLocalization(dustTable.getUnlocalizedName() + ".name", "en_US",
 				"Runic Lexicon");
 		lang.addStringLocalization(tome.getUnlocalizedName() + ".name", "en_US",
 				"Runic Tome");

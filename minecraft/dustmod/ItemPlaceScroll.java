@@ -219,6 +219,6 @@ public class ItemPlaceScroll extends DustModItem
     @Override
     @SideOnly(Side.CLIENT)
     public void func_94581_a(IconRegister iconRegister) {
-    	this.iconIndex = iconRegister.func_94245_a(DustMod.resPath + "/dustScroll");
+    	this.iconIndex = iconRegister.func_94245_a(DustMod.spritePath + "/dustScroll");
     }
 }

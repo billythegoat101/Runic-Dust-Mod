@@ -18,7 +18,7 @@ public class ForesightInscription extends InscriptionEvent {
 		super(design, idName, properName, id);
 		this.setAuthor("billythegoat101");
 		this.setDescription("Description:\n" +
-				"Hold shift while falling to glide and prevent fall damage.");
+				"Enables you to anticipate the coming of mobs in the dark. Ground on which they are able to spawn will shine.");
 		this.setNotes("Sacrifice:\n" +
 				"2xFeather + 1xGoldIngot + 7XP");
 	}
@@ -35,7 +35,7 @@ public class ForesightInscription extends InscriptionEvent {
 		
 		EntityPlayer player = (EntityPlayer)wearer;
 		World world = player.worldObj;
-		if(!world.isDaytime()){
+		if(world.getTotalWorldTime()%10 == 0){//!world.isDaytime()){
 			int x = (int)player.posX;
 			int y = (int)player.posY;
 			int z = (int)player.posZ;
@@ -51,7 +51,7 @@ public class ForesightInscription extends InscriptionEvent {
 							if(b != null && b.isOpaqueCube() && Math.random() < 0.2){
 								dummy.setPosition(x+i, y+j, z+k);
 								if(dummy.getCanSpawnHere())
-									DustMod.spawnParticles(world, "reddust", x+i+0.5, y+j, z+k+0.5, -0.5, 1.25, 1, 3, 0.5d);
+									DustMod.spawnParticles(world, "witchMagic", x+i+0.5, y+j, z+k+0.5, 0, -0.8, 0, 5, 0.5d);
 							}
 						}
 					}
