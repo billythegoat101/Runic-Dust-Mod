@@ -138,7 +138,7 @@ public class RenderEntityDust extends Render implements IRenderLast
         Tessellator tessellator = Tessellator.instance;
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(GL11.GL_CULL_FACE);
-        loadTexture("/dust/beam.png");
+        loadTexture(DustMod.path + "/beam.png");
         GL11.glShadeModel(GL11.GL_SMOOTH);
         float f9 = 0.0F - ((float)(ticks)) * 0.01F;
         float f10 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6) / 32F - ((float)(ticks)) * 0.01F;

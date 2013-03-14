@@ -121,7 +121,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         	float b =  (float)c.getBlue()/255F;
         	if(r == 0) r-=1;
         	
-        	if(Math.random() < 0.25)
+        	if(Math.random() < 0.75)
 	        	for(int d = 0; d < Math.random()*3; d++){
 	        		worldObj.spawnParticle("reddust", xCoord+ (double)i/4D + Math.random()*0.15, yCoord, zCoord+ (double)j/4D + Math.random()*0.15, r,g,b);
 	        	}
