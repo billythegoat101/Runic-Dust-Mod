@@ -319,6 +319,7 @@ public class TileEntityRut extends TileEntity
 
 //        System.out.println("Setting [" + i + "," + j + "," + k + "]");
         worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
+        worldObj.markBlockForUpdate(xCoord,yCoord,zCoord);
     }
     public int getRut(int i, int j, int k)
     {
@@ -359,6 +360,7 @@ public class TileEntityRut extends TileEntity
             this.fluid = fluid;
             worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
             changed = true;
+            worldObj.markBlockForUpdate(xCoord,yCoord,zCoord);
         }
     }
     public boolean canEdit()

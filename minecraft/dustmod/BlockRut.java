@@ -322,7 +322,6 @@ public class BlockRut extends BlockContainer
     	TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
     	return ter.maskMeta;
     }
-    
 
 
     /**
